@@ -4,7 +4,6 @@
 
 
 def save_to_log(logdir, logfile, message):
-    f = open(logdir + '/' + logfile, "a")
-    f.write(message + '\n')
-    f.close()
+    with open(f'{logdir}/{logfile}', "a") as f:
+        f.write(message + '\n')
     return

@@ -303,5 +303,4 @@ class Asymm_3d_spconv(nn.Module):
         up0e.features = torch.cat((up0e.features, up1e.features), 1)
 
         logits = self.logits(up0e)
-        y = logits.dense()
-        return y
+        return logits.dense()

@@ -31,10 +31,7 @@ def build_dataset(dataset_config,
                   grid_size=[480, 360, 32],
                   demo_label_dir=None):
 
-    if demo_label_dir == '':
-        imageset = "demo"
-    else:
-        imageset = "val"
+    imageset = "demo" if demo_label_dir == '' else "val"
     label_mapping = dataset_config["label_mapping"]
 
     SemKITTI_demo = get_pc_model_class('SemKITTI_demo')
@@ -50,13 +47,11 @@ def build_dataset(dataset_config,
         min_volume_space=dataset_config['min_volume_space'],
         ignore_label=dataset_config["ignore_label"],
     )
-    demo_dataset_loader = torch.utils.data.DataLoader(dataset=demo_dataset,
+    return torch.utils.data.DataLoader(dataset=demo_dataset,
                                                      batch_size=1,
                                                      collate_fn=collate_fn_BEV,
                                                      shuffle=False,
                                                      num_workers=4)
-
-    return demo_dataset_loader
 
 def main(args):
     pytorch_device = torch.device('cuda:0')
@@ -65,7 +60,7 @@ def main(args):
     dataset_config = configs['dataset_params']
     data_dir = args.demo_folder
     demo_label_dir = args.demo_label_folder
-    save_dir = args.save_folder + "/"
+    save_dir = f'{args.save_folder}/'
 
     demo_batch_size = 1
     model_config = configs['model_params']
@@ -116,11 +111,11 @@ def main(args):
                                                     count, demo_grid[count][:, 0], demo_grid[count][:, 1],
                                                     demo_grid[count][:, 2]], demo_pt_labs[count],
                                                 unique_label))
-                inv_labels = np.vectorize(inv_learning_map.__getitem__)(predict_labels[count, demo_grid[count][:, 0], demo_grid[count][:, 1], demo_grid[count][:, 2]]) 
+                inv_labels = np.vectorize(inv_learning_map.__getitem__)(predict_labels[count, demo_grid[count][:, 0], demo_grid[count][:, 1], demo_grid[count][:, 2]])
                 inv_labels = inv_labels.astype('uint32')
                 outputPath = save_dir + str(i_iter_demo).zfill(6) + '.label'
                 inv_labels.tofile(outputPath)
-                print("save " + outputPath)
+                print(f"save {outputPath}")
             demo_loss_list.append(loss.detach().cpu().numpy())
 
     if demo_label_dir != '':
