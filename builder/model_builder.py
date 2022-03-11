@@ -28,10 +28,8 @@ def build(model_config):
                               out_pt_fea_dim=out_fea_dim,
                               fea_compre=num_input_features)
 
-    model = get_model_class(model_config["model_architecture"])(
+    return get_model_class(model_config["model_architecture"])(
         cylin_model=cy_fea_net,
         segmentator_spconv=cylinder_3d_spconv_seg,
         sparse_shape=output_shape
     )
-
-    return model
