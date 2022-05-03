@@ -41,7 +41,7 @@ dataset_params:
 ###################
 ## Data_loader options
 train_data_loader:
-  data_path: "/home/boylel/data/test_nusc/nuscenes/"
+  data_path: "/home/boylel/data/nuscenes_complete/nuscenes/"
   imageset: "/home/boylel/data/nuscenes/nuscenes_infos_train.pkl"
   return_ref: True
   batch_size: 1
@@ -49,7 +49,7 @@ train_data_loader:
   num_workers: 4
 
 val_data_loader:
-  data_path: "/home/boylel/data/test_nusc/nuscenes/"
+  data_path: "/home/boylel/data/nuscenes_complete/nuscenes/"
   imageset: "/home/boylel/data/nuscenes/nuscenes_infos_val.pkl"
   return_ref: True
   batch_size: 1
@@ -60,9 +60,9 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path: "/home/boylel/Git/Cylinder3D/models/load/model_load_nuscenes.pt"
-  model_save_path: "/home/boylel/Git/Cylinder3D/models/save/model_save.pt"
+  model_load_path: "/home/boylel/Git/Cylinder3D/models/nuscenes/load/model_load_nuscenes.pt"
+  model_save_path: "/home/boylel/Git/Cylinder3D/models/nuscenes/save/model_save.pt"
   checkpoint_every_n_steps: 4599
   max_num_epochs: 40
-  eval_every_n_steps: 4599
+  eval_every_n_steps: 2000
   learning_rate: 0.001
