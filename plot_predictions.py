@@ -18,6 +18,7 @@ def main() -> None:
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
     parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
     args, opts = parser.parse_known_args()
+    DATASET = 'kitti'
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -26,7 +27,10 @@ def main() -> None:
             print(exc)
     color_map = label_configs['color_map']
 
-    pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 4)
+    if DATASET == 'nuscenes':
+        pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 5)
+    elif DATASET == 'kitti':
+        pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 4)
     labels = np.fromfile(args.label_file, dtype=np.int32)
     if args.mask_info_file != '':
         with open(args.mask_info_file, "r") as read_file:
