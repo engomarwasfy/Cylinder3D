@@ -13,7 +13,7 @@ model_params:
 
   fea_dim: 9
   out_fea_dim: 256
-  num_class: 17
+  num_class: 20
   num_input_features: 16
   use_norm: True
   init_size: 32
@@ -22,35 +22,35 @@ model_params:
 ###################
 ## Dataset options
 dataset_params:
-  dataset_type: "cylinder_dataset_nuscenes"
-  pc_dataset_type: "SemKITTI_nusc"
+  dataset_type: "cylinder_dataset"
+  pc_dataset_type: "SemKITTI_Heap"
   ignore_label: 0
   return_test: False
   fixed_volume_space: True
-  label_mapping: "./config/label_mapping/nuscenes.yaml"
+  label_mapping: "./config/label_mapping/heap.yaml"
   max_volume_space:
     - 50
     - 3.1415926
-    - 3
+    - 2
   min_volume_space:
     - 0
     - -3.1415926
-    - -5
+    - -4
 
 
 ###################
 ## Data_loader options
 train_data_loader:
-  data_path: "/home/boylel/data/nuscenes_complete/nuscenes/"
-  imageset: "/home/boylel/data/nuscenes/nuscenes_infos_train.pkl"
+  data_path: "/home/lterenzi/data/rsl-dataset/hoengg/mapping/labelled_points"
+  imageset: "train"
   return_ref: True
   batch_size: 1
   shuffle: True
   num_workers: 4
 
 val_data_loader:
-  data_path: "/home/boylel/data/nuscenes_complete/nuscenes/"
-  imageset: "/home/boylel/data/nuscenes/nuscenes_infos_val.pkl"
+  data_path: "/home/lterenzi/data/rsl-dataset/hoengg/mapping/labelled_points"
+  imageset: "val"
   return_ref: True
   batch_size: 1
   shuffle: False
@@ -60,9 +60,9 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path: "/home/boylel/Git/Cylinder3D/models/nuScenes/load/model_load_nuscenes.pt"
-  model_save_path: "/home/boylel/Git/Cylinder3D/models/nuScenes/save/model_save.pt"
+  model_load_path: "/home/lterenzi/Documents/git/Cylinder3D/models/heap/load/model_save_backup.pt"
+  model_save_path: "/home/lterenzi/Documents/git/Cylinder3D/models/heap/save/model_save.pt"
   checkpoint_every_n_steps: 4599
   max_num_epochs: 40
-  eval_every_n_steps: 2000
+  eval_every_n_steps: 4599
   learning_rate: 0.001

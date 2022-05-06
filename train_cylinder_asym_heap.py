@@ -1,8 +1,3 @@
-# -*- coding:utf-8 -*-
-# author: Xinge
-# @file: train_cylinder_asym.py
-
-
 import os
 import time
 import argparse
@@ -14,7 +9,7 @@ from tqdm import tqdm
 import wandb
 
 from utils.metric_util import per_class_iu, fast_hist_crop
-from dataloader.pc_dataset import get_nuScenes_label_name
+from dataloader.pc_dataset import get_heap_label_name
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
 
@@ -24,10 +19,10 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-use_wandb = True
+use_wandb = False
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
-    run = wandb.init(project="Cylinder3D-NuScenes", entity="liamkboyle")
+    run = wandb.init(project="Cylinder3D-Heap", entity="liamkboyle")
 
 
 def main(args):
@@ -54,7 +49,7 @@ def main(args):
     model_load_path = train_hypers['model_load_path']
     model_save_path = train_hypers['model_save_path']
 
-    SemKITTI_label_name = get_nuScenes_label_name(dataset_config["label_mapping"])
+    SemKITTI_label_name = get_heap_label_name(dataset_config["label_mapping"])
     unique_label = np.asarray(sorted(list(SemKITTI_label_name.keys())))[1:] - 1
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
@@ -121,7 +116,8 @@ def main(args):
                 print('Validation per class iou: ')
                 for class_name, class_iou in zip(unique_label_str, iou):
                     print('%s : %.2f%%' % (class_name, class_iou * 100))
-                    run.log({class_name + 'IoU': class_iou * 100})
+                    if use_wandb:
+                        run.log({class_name + 'IoU': class_iou * 100})
                 val_miou = np.nanmean(iou) * 100
                 del val_vox_label, val_grid, val_pt_fea, val_grid_ten
 
@@ -134,17 +130,20 @@ def main(args):
                                   'loss': loss}
                     # torch.save(my_model.state_dict(), model_save_path)
                     torch.save(model_dict, model_save_path)
-                    artifact = wandb.Artifact('model', type='model')
-                    artifact.add_file(model_save_path)
-                    run.log_artifact(artifact)
+                    if use_wandb:
+                        artifact = wandb.Artifact('model', type='model')
+                        artifact.add_file(model_save_path)
+                        run.log_artifact(artifact)
 
 
                 print('Current val miou is %.3f while the best val miou is %.3f' %
                       (val_miou, best_val_miou))
-                run.log({'Validation mean IoU': val_miou})
+                if use_wandb:
+                    run.log({'Validation mean IoU': val_miou})
                 print('Current val loss is %.3f' %
                       (np.mean(val_loss_list)))
-                run.log({'Validation loss': np.mean(val_loss_list)})
+                if use_wandb:
+                    run.log({'Validation loss': np.mean(val_loss_list)})
 
             train_pt_fea_ten = [torch.from_numpy(i).type(torch.FloatTensor).to(pytorch_device) for i in train_pt_fea]
             train_vox_ten = [torch.from_numpy(i).to(pytorch_device) for i in train_grid]
@@ -157,7 +156,7 @@ def main(args):
             loss.backward()
             optimizer.step()
             loss_list.append(loss.item())
-            if global_iter % 10 == 0:
+            if global_iter % 10 == 0 and use_wandb:
                 if len(loss_list) > 0:
                     run.log({'Training loss': np.mean(loss_list)})
 
@@ -184,7 +183,7 @@ def main(args):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-y', '--config_path', default='config/nuScenes.yaml')
+    parser.add_argument('-y', '--config_path', default='config/heap.yaml')
     args = parser.parse_args()
 
     print(' '.join(sys.argv))

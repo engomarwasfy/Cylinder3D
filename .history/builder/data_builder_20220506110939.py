@@ -53,8 +53,11 @@ def build(dataset_config,
         min_volume_space=dataset_config['min_volume_space'],
         ignore_label=dataset_config["ignore_label"],
     )
+<<<<<<< HEAD
     print(len(train_dataset))
     print(len(val_dataset))
+=======
+>>>>>>> pr/2
     train_dataset_loader = torch.utils.data.DataLoader(dataset=train_dataset,
                                                        batch_size=train_dataloader_config["batch_size"],
                                                        collate_fn=collate_fn_BEV,
