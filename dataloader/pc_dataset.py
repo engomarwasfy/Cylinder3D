@@ -322,7 +322,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
         self.times = []
         self.poses = []
 
-        for seq in range(0, 22):
+        for seq in range(22):
             seq_folder = join(self.data_path, str(seq).zfill(2))
 
             # Read Calib
@@ -345,20 +345,18 @@ class SemKITTI_sk_multiscan(data.Dataset):
         """
         calib = {}
 
-        calib_file = open(filename)
-        for line in calib_file:
-            key, content = line.strip().split(":")
-            values = [float(v) for v in content.strip().split()]
+        with open(filename) as calib_file:
+            for line in calib_file:
+                key, content = line.strip().split(":")
+                values = [float(v) for v in content.strip().split()]
 
-            pose = np.zeros((4, 4))
-            pose[0, 0:4] = values[0:4]
-            pose[1, 0:4] = values[4:8]
-            pose[2, 0:4] = values[8:12]
-            pose[3, 3] = 1.0
+                pose = np.zeros((4, 4))
+                pose[0, 0:4] = values[:4]
+                pose[1, 0:4] = values[4:8]
+                pose[2, 0:4] = values[8:12]
+                pose[3, 3] = 1.0
 
-            calib[key] = pose
-
-        calib_file.close()
+                calib[key] = pose
 
         return calib
 
@@ -381,7 +379,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
             values = [float(v) for v in line.strip().split()]
 
             pose = np.zeros((4, 4))
-            pose[0, 0:4] = values[0:4]
+            pose[0, 0:4] = values[:4]
             pose[1, 0:4] = values[4:8]
             pose[2, 0:4] = values[8:12]
             pose[3, 3] = 1.0
@@ -461,17 +459,16 @@ class SemKITTI_sk_multiscan(data.Dataset):
 def get_SemKITTI_label_name(label_mapping):
     with open(label_mapping, 'r') as stream:
         semkittiyaml = yaml.safe_load(stream)
-    SemKITTI_label_name = dict()
-    for i in sorted(list(semkittiyaml['learning_map'].keys()))[::-1]:
-        SemKITTI_label_name[semkittiyaml['learning_map'][i]] = semkittiyaml['labels'][i]
-
-    return SemKITTI_label_name
+    return {
+        semkittiyaml['learning_map'][i]: semkittiyaml['labels'][i]
+        for i in sorted(list(semkittiyaml['learning_map'].keys()))[::-1]
+    }
 
 
 def get_nuScenes_label_name(label_mapping):
     with open(label_mapping, 'r') as stream:
         nuScenesyaml = yaml.safe_load(stream)
-    nuScenes_label_name = dict()
+    nuScenes_label_name = {}
     for i in sorted(list(nuScenesyaml['learning_map'].keys()))[::-1]:
         val_ = nuScenesyaml['learning_map'][i]
         nuScenes_label_name[val_] = nuScenesyaml['labels_16'][val_]
@@ -481,7 +478,7 @@ def get_nuScenes_label_name(label_mapping):
 def get_heap_label_name(label_mapping):
     with open(label_mapping, 'r') as stream:
         heapyaml = yaml.safe_load(stream)
-    heap_label_name = dict()
+    heap_label_name = {}
     for i in sorted(list(heapyaml['learning_map'].keys()))[::-1]:
         val_ = heapyaml['learning_map'][i]
         heap_label_name[val_] = heapyaml['labels_16'][val_]
