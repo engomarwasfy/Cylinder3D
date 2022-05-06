@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
     parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
     args, opts = parser.parse_known_args()
-    DATASET = 'kitti'
+    DATASET = 'nuscenes'
 
     with open(args.label_color_map, "r") as stream:
         try:
