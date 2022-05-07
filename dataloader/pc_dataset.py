@@ -483,7 +483,8 @@ def get_heap_label_name(label_mapping):
         heapyaml = yaml.safe_load(stream)
     heap_label_name = dict()
     for i in sorted(list(heapyaml['learning_map'].keys()))[::-1]:
-        val_ = heapyaml['learning_map'][i]
-        heap_label_name[val_] = heapyaml['labels_16'][val_]
+        # val_ = heapyaml['learning_map'][i]
+        # heap_label_name[val_] = heapyaml['labels'][val_]
+        heap_label_name[heapyaml['learning_map'][i]] = heapyaml['labels'][i]
 
     return heap_label_name
