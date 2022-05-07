@@ -34,7 +34,7 @@ def build_dataset(dataset_config,
         imageset = "val"
     label_mapping = dataset_config["label_mapping"]
 
-    SemKITTI_demo = get_pc_model_class('SemKITTI_inference_nusc')
+    SemKITTI_demo = get_pc_model_class('SemKITTI_inference')
 
     demo_pt_dataset = SemKITTI_demo(data_dir, imageset=imageset,
                               return_ref=True, label_mapping=label_mapping, demo_label_path=demo_label_dir)
