@@ -60,9 +60,9 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path: "/home/boylel/Git/Cylinder3D/models/nuscenes/load/model_load_nuscenes.pt"
-  model_save_path: "/home/boylel/Git/Cylinder3D/models/nuscenes/save/model_save.pt"
+  model_load_path: "./artifacts/model:v32/model_save.pt"
+  model_save_path: "./models/nuScenes/save/model_save.pt"
   checkpoint_every_n_steps: 4599
   max_num_epochs: 40
-  eval_every_n_steps: 2000
+  eval_every_n_steps: 4599
   learning_rate: 0.001

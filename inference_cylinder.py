@@ -7,6 +7,7 @@ import torch
 import torch.optim as optim
 from tqdm import tqdm
 import yaml
+import wandb
 
 from utils.metric_util import per_class_iu, fast_hist_crop
 from dataloader.pc_dataset import get_SemKITTI_label_name
@@ -28,12 +29,12 @@ def build_dataset(dataset_config,
                   demo_label_dir=None):
 
     if demo_label_dir == '':
-        imageset = "demo"
+        imageset = "inference"
     else:
         imageset = "val"
     label_mapping = dataset_config["label_mapping"]
 
-    SemKITTI_demo = get_pc_model_class('SemKITTI_demo')
+    SemKITTI_demo = get_pc_model_class('SemKITTI_inference')
 
     demo_pt_dataset = SemKITTI_demo(data_dir, imageset=imageset,
                               return_ref=True, label_mapping=label_mapping, demo_label_path=demo_label_dir)
@@ -55,6 +56,7 @@ def build_dataset(dataset_config,
     return demo_dataset_loader
 
 def main(args):
+
     pytorch_device = torch.device('cuda:0')
     config_path = args.config_path
     configs = load_config_data(config_path)
@@ -77,11 +79,14 @@ def main(args):
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
     my_model = model_builder.build(model_config)
+    optimizer = optim.Adam(my_model.parameters(), lr=train_hypers["learning_rate"])
     if os.path.exists(model_load_path):
-        my_model = load_checkpoint(model_load_path, my_model)
+        # my_model = load_checkpoint(model_load_path, my_model)
+        model_dict = torch.load(model_load_path)
+        my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
+        optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
     my_model.to(pytorch_device)
-    optimizer = optim.Adam(my_model.parameters(), lr=train_hypers["learning_rate"])
 
     loss_func, lovasz_softmax = loss_builder.build(wce=True, lovasz=True,
                                                    num_class=num_class, ignore_label=ignore_label)
@@ -136,7 +141,7 @@ def main(args):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-y', '--config_path', default='config/semantickitti.yaml')
+    parser.add_argument('-y', '--config_path', default='config/nuScenes.yaml')
     parser.add_argument('--lidar-folder', type=str, default='', help='path to the folder containing lidar scans', required=True)
     parser.add_argument('--save-folder', type=str, default='', help='path to save your result', required=True)
     parser.add_argument('--label-folder', type=str, default='', help='path to the folder containing labels')
