@@ -141,7 +141,7 @@ def main(args):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-y', '--config_path', default='config/nuScenes.yaml')
+    parser.add_argument('-y', '--config_path', default='config/heap.yaml')
     parser.add_argument('--lidar-folder', type=str, default='', help='path to the folder containing lidar scans', required=True)
     parser.add_argument('--save-folder', type=str, default='', help='path to save your result', required=True)
     parser.add_argument('--label-folder', type=str, default='', help='path to the folder containing labels')
