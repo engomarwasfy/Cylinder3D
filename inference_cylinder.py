@@ -9,7 +9,7 @@ from tqdm import tqdm
 import yaml
 import wandb
 
-from utils.metric_util import per_class_iu, fast_hist_crop
+from utils.metric_util import per_class_iu, fast_hist_crop, f1_score
 from dataloader.pc_dataset import get_SemKITTI_label_name
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
@@ -118,11 +118,15 @@ def main(args):
                                                     demo_grid[count][:, 2]], demo_pt_labs[count],
                                                 unique_label))
                 inv_labels = np.vectorize(inv_learning_map.__getitem__)(predict_labels[count, demo_grid[count][:, 0], demo_grid[count][:, 1], demo_grid[count][:, 2]])
+                torch_inv_labels = inv_labels
+                unique_labels = np.unique(inv_labels)
                 inv_labels = inv_labels.astype('uint32')
                 outputPath = save_dir + str(i_iter_demo).zfill(6) + '.label'
                 inv_labels.tofile(outputPath)
                 print("save " + outputPath)
             demo_loss_list.append(loss.detach().cpu().numpy())
+            f1_metrics = f1_score(torch.from_numpy(torch_inv_labels), torch.from_numpy(demo_pt_labs[0].T))
+            print(f1_metrics)
 
     if demo_label_dir != '':
         my_model.train()
