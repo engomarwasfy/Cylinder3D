@@ -31,6 +31,8 @@ def main() -> None:
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 5)
     elif DATASET == 'kitti':
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 4)
+    elif DATASET == 'heap_section':
+        pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(4, -1).T
     labels = np.fromfile(args.label_file, dtype=np.int32)
     if args.mask_info_file != '':
         with open(args.mask_info_file, "r") as read_file:
@@ -42,11 +44,13 @@ def main() -> None:
         labels_as_colors[index, 0] = color[0] / 255
         labels_as_colors[index, 1] = color[1] / 255
         labels_as_colors[index, 2] = color[2] / 255
+    pcl[:, -1] = 0
+    pcl.tofile('heap_segments_format' + '.bin')
 
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
     pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)
-    pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
+    # pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
     vis = o3d.visualization.Visualizer()
     vis.create_window()
     vis.add_geometry(pcd)
