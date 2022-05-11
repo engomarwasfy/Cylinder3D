@@ -26,6 +26,7 @@ def main() -> None:
         except yaml.YAMLError as exc:
             print(exc)
     color_map = label_configs['color_map']
+    learning_map = label_configs['learning_map']
 
     if DATASET == 'nuscenes':
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(-1, 5)
@@ -40,17 +41,19 @@ def main() -> None:
 
     labels_as_colors = np.ones((pcl.shape[0], 3))
     for index, label in enumerate(labels):
-        color = color_map[label]
+        if DATASET == 'heap_section':
+            mapped_label = learning_map[label]
+            color = color_map[mapped_label]
+        else:
+            color = color_map[label]
         labels_as_colors[index, 0] = color[0] / 255
         labels_as_colors[index, 1] = color[1] / 255
         labels_as_colors[index, 2] = color[2] / 255
-    pcl[:, -1] = 0
-    pcl.tofile('heap_segments_format' + '.bin')
 
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
     pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)
-    # pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
+    pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
     vis = o3d.visualization.Visualizer()
     vis.create_window()
     vis.add_geometry(pcd)
