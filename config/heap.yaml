@@ -13,7 +13,7 @@ model_params:
 
   fea_dim: 9
   out_fea_dim: 256
-  num_class: 20
+  num_class: 10
   num_input_features: 16
   use_norm: True
   init_size: 32
@@ -23,36 +23,36 @@ model_params:
 ## Dataset options
 dataset_params:
   dataset_type: "cylinder_dataset"
-  pc_dataset_type: "SemKITTI_sk"
+  pc_dataset_type: "SemKITTI_Heap"
   ignore_label: 0
   return_test: False
   fixed_volume_space: True
-  label_mapping: "./config/label_mapping/semantic-kitti.yaml"
+  label_mapping: "./config/label_mapping/heap.yaml"
   max_volume_space:
     - 50
     - 3.1415926
-    - 2
+    - 3
   min_volume_space:
     - 0
     - -3.1415926
-    - -4
+    - -5
 
 
 ###################
 ## Data_loader options
 train_data_loader:
-  data_path: "/home/boylel/data/kitti-00_08/sequences"
+  data_path: "/home/boylel/data/rsl-dataset/mapping_mini/labelled_points"
   imageset: "train"
   return_ref: True
-  batch_size: 1
+  batch_size: 2
   shuffle: True
   num_workers: 4
 
 val_data_loader:
-  data_path: "/home/boylel/data/kitti-00_08/sequences"
+  data_path: "/home/boylel/data/rsl-dataset/mapping_mini/labelled_points"
   imageset: "val"
   return_ref: True
-  batch_size: 1
+  batch_size: 2
   shuffle: False
   num_workers: 4
 
@@ -60,9 +60,9 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path: "./models/kitti/load/model_save_backup.pt"
-  model_save_path: "./models/kitti/save/model_save.pt"
-  checkpoint_every_n_steps: 4599
-  max_num_epochs: 40
-  eval_every_n_steps: 4599
+  model_load_path: "/home/lterenzi/Documents/git/Cylinder3D/artifacts/heap_overfit:v15/model_save.pt"
+  model_save_path: "./models/heap/save/model_save.pt"
+  checkpoint_every_n_steps: 1000
+  max_num_epochs: 4000
+  eval_every_n_steps: 1000
   learning_rate: 0.001
