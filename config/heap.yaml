@@ -41,7 +41,7 @@ dataset_params:
 ###################
 ## Data_loader options
 train_data_loader:
-  data_path: "/home/boylel/data/rsl-dataset/mapping_mini/labelled_points"
+  data_path: "/home/lterenzi/data/rsl-dataset/hoengg/mapping_mini/labelled_points"
   imageset: "train"
   return_ref: True
   batch_size: 2

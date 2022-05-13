@@ -197,35 +197,35 @@ class cylinder_dataset(data.Dataset):
             if len(sig.shape) == 2: sig = np.squeeze(sig)
         else:
             raise Exception('Return invalid data tuple')
-
-        # random data augmentation by rotation
-        if self.rotate_aug:
-            rotate_rad = np.deg2rad(np.random.random() * 90) - np.pi / 4
-            c, s = np.cos(rotate_rad), np.sin(rotate_rad)
-            j = np.matrix([[c, s], [-s, c]])
-            xyz[:, :2] = np.dot(xyz[:, :2], j)
-
-        # random data augmentation by flip x , y or x+y
-        if self.flip_aug:
-            flip_type = np.random.choice(4, 1)
-            if flip_type == 1:
-                xyz[:, 0] = -xyz[:, 0]
-            elif flip_type == 2:
-                xyz[:, 1] = -xyz[:, 1]
-            elif flip_type == 3:
-                xyz[:, :2] = -xyz[:, :2]
-        if self.scale_aug:
-            noise_scale = np.random.uniform(0.95, 1.05)
-            xyz[:, 0] = noise_scale * xyz[:, 0]
-            xyz[:, 1] = noise_scale * xyz[:, 1]
-        # convert coordinate into polar coordinates
-
-        if self.transform:
-            noise_translate = np.array([np.random.normal(0, self.trans_std[0], 1),
-                                        np.random.normal(0, self.trans_std[1], 1),
-                                        np.random.normal(0, self.trans_std[2], 1)]).T
-
-            xyz[:, 0:3] += noise_translate
+        #
+        # # random data augmentation by rotation
+        # if self.rotate_aug:
+        #     rotate_rad = np.deg2rad(np.random.random() * 90) - np.pi / 4
+        #     c, s = np.cos(rotate_rad), np.sin(rotate_rad)
+        #     j = np.matrix([[c, s], [-s, c]])
+        #     xyz[:, :2] = np.dot(xyz[:, :2], j)
+        #
+        # # random data augmentation by flip x , y or x+y
+        # if self.flip_aug:
+        #     flip_type = np.random.choice(4, 1)
+        #     if flip_type == 1:
+        #         xyz[:, 0] = -xyz[:, 0]
+        #     elif flip_type == 2:
+        #         xyz[:, 1] = -xyz[:, 1]
+        #     elif flip_type == 3:
+        #         xyz[:, :2] = -xyz[:, :2]
+        # if self.scale_aug:
+        #     noise_scale = np.random.uniform(0.95, 1.05)
+        #     xyz[:, 0] = noise_scale * xyz[:, 0]
+        #     xyz[:, 1] = noise_scale * xyz[:, 1]
+        # # convert coordinate into polar coordinates
+        #
+        # if self.transform:
+        #     noise_translate = np.array([np.random.normal(0, self.trans_std[0], 1),
+        #                                 np.random.normal(0, self.trans_std[1], 1),
+        #                                 np.random.normal(0, self.trans_std[2], 1)]).T
+        #
+        #     xyz[:, 0:3] += noise_translate
 
         xyz_pol = cart2polar(xyz)
 
@@ -246,16 +246,21 @@ class cylinder_dataset(data.Dataset):
         if (intervals == 0).any(): print("Zero interval!")
         grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
 
-        voxel_position = np.zeros(self.grid_size, dtype=np.float32)
-        dim_array = np.ones(len(self.grid_size) + 1, int)
-        dim_array[0] = -1
-        voxel_position = np.indices(self.grid_size) * intervals.reshape(dim_array) + min_bound.reshape(dim_array)
-        voxel_position = polar2cat(voxel_position)
+        # Voxel postion never actually gets used, but for the moment it is easier to keep it so that the
+        # function return can stay the same
+        voxel_position = []
+        # voxel_position = np.zeros(self.grid_size, dtype=np.float32)
+        # dim_array = np.ones(len(self.grid_size) + 1, int)
+        # dim_array[0] = -1
+        # voxel_position = np.indices(self.grid_size) * intervals.reshape(dim_array) + min_bound.reshape(dim_array)
+        # voxel_position = polar2cat(voxel_position)
 
         processed_label = np.ones(self.grid_size, dtype=np.uint8) * self.ignore_label
-        label_voxel_pair = np.concatenate([grid_ind, labels], axis=1)
-        label_voxel_pair = label_voxel_pair[np.lexsort((grid_ind[:, 0], grid_ind[:, 1], grid_ind[:, 2])), :]
-        processed_label = nb_process_label(np.copy(processed_label), label_voxel_pair)
+        for idx, label in enumerate(labels):
+            processed_label[grid_ind[idx, 0], grid_ind[idx, 1], grid_ind[idx, 2]] = label
+        # label_voxel_pair = np.concatenate([grid_ind, labels], axis=1)
+        # label_voxel_pair = label_voxel_pair[np.lexsort((grid_ind[:, 0], grid_ind[:, 1], grid_ind[:, 2])), :]
+        # processed_label = nb_process_label(np.copy(processed_label), label_voxel_pair)
         data_tuple = (voxel_position, processed_label)
 
         # center data on each voxel for PTnet

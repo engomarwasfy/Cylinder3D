@@ -19,7 +19,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-use_wandb = True
+use_wandb = False
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
     run = wandb.init(project="Cylinder3D-Heap", entity="rsl-lidar-seg")
@@ -58,7 +58,6 @@ def main(args):
         run.watch(my_model)
     optimizer = optim.Adam(my_model.parameters(), lr=train_hypers["learning_rate"])
     if os.path.exists(model_load_path):
-        # my_model = load_checkpoint_1b1(model_load_path, my_model)
         model_dict = torch.load(model_load_path)
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
