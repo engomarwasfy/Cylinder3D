@@ -49,16 +49,25 @@ To create an environment for training and inference, run the following command:
 
 ```
 
-## Training
+## Training for SemanticKITTI
 1. modify the config/semantickitti.yaml with your custom settings. We provide a sample yaml for SemanticKITTI
-2. train the network by running "sh train.sh"
+2. train the network by running:
+```
+python train_cylinder_asym.py
+```
 
-### Training for nuScenes
+## Training for nuScenes
 1. modify the config/nuScenes.yaml with your custom settings.
-
-### Training for heap
+2. train the network by running:
+```
+python train_cylinder_asym_nuscenes.py
+```
+## Training for heap
 1. modify the config/heap.yaml with your custom settings.
-
+2. train the network by running:
+```
+python train_cylinder_asym_heap.py
+```
 
 ## Semantic segmentation Inference for a folder of lidar scans
 ```
