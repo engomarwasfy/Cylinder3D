@@ -202,9 +202,9 @@ class cylinder_dataset(data.Dataset):
         xyz_pol = cart2polar(xyz)
 
         # Normalize rho and z to be in range [0, 1]
-        rho_normalized = sklearn.preprocessing.minmax_scale(xyz_pol[:, 0], feature_range=(0, 1), axis=0, copy=True)
-        z_normalized = sklearn.preprocessing.minmax_scale(xyz_pol[:, 2], feature_range=(0, 1), axis=0, copy=True)
-        xyz_pol_normalized = np.stack([rho_normalized, xyz_pol[:, 1], z_normalized], axis=1)
+        # rho_normalized = sklearn.preprocessing.minmax_scale(xyz_pol[:, 0], feature_range=(0, 1), axis=0, copy=True)
+        # z_normalized = sklearn.preprocessing.minmax_scale(xyz_pol[:, 2], feature_range=(0, 1), axis=0, copy=True)
+        # xyz_pol_normalized = np.stack([rho_normalized, xyz_pol[:, 1], z_normalized], axis=1)
 
         max_bound = np.asarray(self.max_volume_space)
         min_bound = np.asarray(self.min_volume_space)
@@ -215,13 +215,14 @@ class cylinder_dataset(data.Dataset):
         intervals = crop_range / (cur_grid_size - 1)
 
         if (intervals == 0).any(): print("Zero interval!")
-        grid_ind = (np.floor((np.clip(xyz_pol_normalized, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
+        grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
 
         # Voxel postion never actually gets used, but for the moment it is easier to keep it so that the
         # function return can stay the same
         voxel_position = []
 
         # Assign each voxel a label
+        unique, counts = np.unique(labels, return_counts=True)
         processed_label = np.ones(self.grid_size, dtype=np.uint8) * self.ignore_label
         for idx, label in enumerate(labels):
             processed_label[grid_ind[idx, 0], grid_ind[idx, 1], grid_ind[idx, 2]] = label
@@ -229,8 +230,8 @@ class cylinder_dataset(data.Dataset):
 
         # center data on each voxel for PTnet
         voxel_centers = (grid_ind.astype(np.float32) + 0.5) * intervals + min_bound
-        return_xyz = xyz_pol_normalized - voxel_centers
-        return_xyz = np.concatenate((return_xyz, xyz_pol_normalized, xyz[:, :2]), axis=1)
+        return_xyz = xyz_pol - voxel_centers
+        return_xyz = np.concatenate((return_xyz, xyz_pol, xyz[:, :2]), axis=1)
         # data_tuple += (grid_ind, labels, return_xyz)
 
         if len(data) == 2:

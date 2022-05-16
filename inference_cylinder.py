@@ -11,7 +11,7 @@ import wandb
 
 from prettytable import PrettyTable
 from utils.metric_util import per_class_iu, fast_hist_crop, f1_score
-from dataloader.pc_dataset import get_SemKITTI_label_name
+from dataloader.pc_dataset import get_SemKITTI_label_name, get_heap_label_name
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
 from dataloader.dataset_semantickitti import get_model_class, collate_fn_BEV
@@ -35,26 +35,26 @@ def build_dataset(dataset_config,
         imageset = "val"
     label_mapping = dataset_config["label_mapping"]
 
-    SemKITTI_demo = get_pc_model_class('SemKITTI_inference')
+    SemKITTI_inference = get_pc_model_class('SemKITTI_inference')
 
-    demo_pt_dataset = SemKITTI_demo(data_dir, imageset=imageset,
+    inference_pt_dataset = SemKITTI_inference(data_dir, imageset=imageset,
                               return_ref=True, label_mapping=label_mapping, demo_label_path=demo_label_dir)
 
-    demo_dataset = get_model_class(dataset_config['dataset_type'])(
-        demo_pt_dataset,
+    inference_dataset = get_model_class(dataset_config['dataset_type'])(
+        inference_pt_dataset,
         grid_size=grid_size,
         fixed_volume_space=dataset_config['fixed_volume_space'],
         max_volume_space=dataset_config['max_volume_space'],
         min_volume_space=dataset_config['min_volume_space'],
         ignore_label=dataset_config["ignore_label"],
     )
-    demo_dataset_loader = torch.utils.data.DataLoader(dataset=demo_dataset,
+    inference_dataset_loader = torch.utils.data.DataLoader(dataset=inference_dataset,
                                                      batch_size=1,
                                                      collate_fn=collate_fn_BEV,
                                                      shuffle=False,
                                                      num_workers=4)
 
-    return demo_dataset_loader
+    return inference_dataset_loader
 
 
 def count_parameters(model):
@@ -102,6 +102,9 @@ def model_summary(model):
     print(f"Total Params:{total_params}")
 
 def main(args):
+    # run = wandb.init()
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v58', type='model')
+    # artifact_dir = artifact.download()
 
     # import wandb
     # run = wandb.init()
@@ -125,7 +128,7 @@ def main(args):
     ignore_label = dataset_config['ignore_label']
     model_load_path = train_hypers['model_load_path']
 
-    SemKITTI_label_name = get_SemKITTI_label_name(dataset_config["label_mapping"])
+    SemKITTI_label_name = get_heap_label_name(dataset_config["label_mapping"])
     unique_label = np.asarray(sorted(list(SemKITTI_label_name.keys())))[1:] - 1
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 

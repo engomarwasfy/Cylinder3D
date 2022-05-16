@@ -8,6 +8,7 @@ import torch.optim as optim
 from tqdm import tqdm
 import wandb
 
+from prettytable import PrettyTable
 from utils.metric_util import per_class_iu, fast_hist_crop
 from dataloader.pc_dataset import get_heap_label_name
 from builder import data_builder, model_builder, loss_builder
@@ -19,10 +20,26 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-use_wandb = False
+use_wandb = True
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
     run = wandb.init(project="Cylinder3D-Heap", entity="rsl-lidar-seg")
+
+
+def count_parameters(model):
+    table = PrettyTable(["Modules", "Parameters"])
+    total_params = 0
+    num_layers = 0
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad: continue
+        params = parameter.numel()
+        table.add_row([name, params])
+        total_params+=params
+        num_layers+=1
+    print(table)
+    print(f"Total Trainable Params: {total_params}")
+    print(f"Total Number of Layers: {num_layers}")
+    return total_params
 
 
 def main(args):
@@ -62,6 +79,7 @@ def main(args):
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
+    # count_parameters(my_model)
     my_model.to(pytorch_device)
     # optimizer = optim.Adam(my_model.parameters(), lr=train_hypers["learning_rate"])
 
@@ -83,8 +101,8 @@ def main(args):
     while epoch < train_hypers['max_num_epochs']:
         loss_list = []
         pbar = tqdm(total=len(train_dataset_loader))
-        time.sleep(10)
-        print(global_iter)
+        # time.sleep(1)
+        print("\n Epoch: ", epoch)
         for i_iter, (_, train_vox_label, train_grid, _, train_pt_fea) in enumerate(train_dataset_loader):
             if global_iter % check_iter == 0 and epoch >= 0:
                 my_model.eval()
