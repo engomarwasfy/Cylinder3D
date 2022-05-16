@@ -149,6 +149,7 @@ dependencies:
     - pexpect==4.8.0
     - pickleshare==0.7.5
     - portalocker==2.4.0
+    - prettytable==3.3.0
     - prometheus-client==0.14.1
     - promise==2.3
     - prompt-toolkit==3.0.29
@@ -187,4 +188,3 @@ dependencies:
     - webencodings==0.5.1
     - widgetsnbextension==3.6.0
     - zipp==3.8.0
-prefix: /home/boylel/software/anaconda3/envs/cylinder3d
