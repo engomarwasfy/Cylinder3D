@@ -35,7 +35,7 @@ def build_dataset(dataset_config,
         imageset = "val"
     label_mapping = dataset_config["label_mapping"]
 
-    SemKITTI_inference = get_pc_model_class('SemKITTI_inference')
+    SemKITTI_inference = get_pc_model_class(dataset_config["pc_dataset_type"])
 
     inference_pt_dataset = SemKITTI_inference(data_dir, imageset=imageset,
                               return_ref=True, label_mapping=label_mapping, demo_label_path=demo_label_dir)
@@ -102,14 +102,6 @@ def model_summary(model):
     print(f"Total Params:{total_params}")
 
 def main(args):
-    # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v58', type='model')
-    # artifact_dir = artifact.download()
-
-    # import wandb
-    # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v41', type='model')
-    # artifact_dir = artifact.download()
 
     pytorch_device = torch.device('cuda:0')
     config_path = args.config_path
@@ -140,9 +132,7 @@ def main(args):
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
-    # model_summary(my_model)
-    # print(sum(p.numel() for p in my_model.parameters()))
-    count_parameters(my_model)
+    # count_parameters(my_model)
     my_model.to(pytorch_device)
 
     loss_func, lovasz_softmax = loss_builder.build(wce=True, lovasz=True,
@@ -202,7 +192,7 @@ def main(args):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-y', '--config_path', default='config/nuScenes.yaml')
+    parser.add_argument('-y', '--config_path', default='config/heap.yaml')
     parser.add_argument('--lidar-folder', type=str, default='', help='path to the folder containing lidar scans', required=True)
     parser.add_argument('--save-folder', type=str, default='', help='path to save your result', required=True)
     parser.add_argument('--label-folder', type=str, default='', help='path to the folder containing labels')
