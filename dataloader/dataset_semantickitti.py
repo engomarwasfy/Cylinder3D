@@ -193,6 +193,9 @@ class cylinder_dataset(data.Dataset):
         data = self.point_cloud_dataset[index]
         if len(data) == 2:
             xyz, labels = data
+        elif len(data) == 3:
+            xyz, labels, sig = data
+            if len(sig.shape) == 2: sig = np.squeeze(sig)
         else:
             raise Exception('Return invalid data tuple')
 
@@ -228,7 +231,17 @@ class cylinder_dataset(data.Dataset):
         voxel_centers = (grid_ind.astype(np.float32) + 0.5) * intervals + min_bound
         return_xyz = xyz_pol_normalized - voxel_centers
         return_xyz = np.concatenate((return_xyz, xyz_pol_normalized, xyz[:, :2]), axis=1)
-        data_tuple += (grid_ind, labels, return_xyz)
+        # data_tuple += (grid_ind, labels, return_xyz)
+
+        if len(data) == 2:
+            return_fea = return_xyz
+        elif len(data) == 3:
+            return_fea = np.concatenate((return_xyz, sig[..., np.newaxis]), axis=1)
+
+        if self.return_test:
+            data_tuple += (grid_ind, labels, return_fea, index)
+        else:
+            data_tuple += (grid_ind, labels, return_fea)
         return data_tuple
 
 

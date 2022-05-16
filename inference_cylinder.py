@@ -9,6 +9,7 @@ from tqdm import tqdm
 import yaml
 import wandb
 
+from prettytable import PrettyTable
 from utils.metric_util import per_class_iu, fast_hist_crop, f1_score
 from dataloader.pc_dataset import get_SemKITTI_label_name
 from builder import data_builder, model_builder, loss_builder
@@ -55,7 +56,57 @@ def build_dataset(dataset_config,
 
     return demo_dataset_loader
 
+
+def count_parameters(model):
+    table = PrettyTable(["Modules", "Parameters"])
+    total_params = 0
+    num_layers = 0
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad: continue
+        params = parameter.numel()
+        table.add_row([name, params])
+        total_params+=params
+        num_layers+=1
+    print(table)
+    print(f"Total Trainable Params: {total_params}")
+    print(f"Total Number of Layers: {num_layers}")
+    return total_params
+
+
+def model_summary(model):
+    print("model_summary")
+    print()
+    print("Layer_name" + "\t" * 7 + "Number of Parameters")
+    print("=" * 100)
+    model_parameters = [layer for layer in model.parameters() if layer.requires_grad]
+    layer_name = [child for child in model.children()]
+    j = 0
+    total_params = 0
+    print("\t" * 10)
+    for i in layer_name:
+        print()
+        param = 0
+        try:
+            bias = (i.bias is not None)
+        except:
+            bias = False
+        if not bias:
+            param = model_parameters[j].numel() + model_parameters[j + 1].numel()
+            j = j + 2
+        else:
+            param = model_parameters[j].numel()
+            j = j + 1
+        print(str(i) + "\t" * 3 + str(param))
+        total_params += param
+    print("=" * 100)
+    print(f"Total Params:{total_params}")
+
 def main(args):
+
+    # import wandb
+    # run = wandb.init()
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v41', type='model')
+    # artifact_dir = artifact.download()
 
     pytorch_device = torch.device('cuda:0')
     config_path = args.config_path
@@ -86,6 +137,9 @@ def main(args):
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
+    # model_summary(my_model)
+    # print(sum(p.numel() for p in my_model.parameters()))
+    count_parameters(my_model)
     my_model.to(pytorch_device)
 
     loss_func, lovasz_softmax = loss_builder.build(wce=True, lovasz=True,
@@ -125,8 +179,8 @@ def main(args):
                 inv_labels.tofile(outputPath)
                 print("save " + outputPath)
             demo_loss_list.append(loss.detach().cpu().numpy())
-            f1_metrics = f1_score(torch.from_numpy(torch_inv_labels), torch.from_numpy(demo_pt_labs[0].T))
-            print(f1_metrics)
+            # f1_metrics = f1_score(torch.from_numpy(torch_inv_labels), torch.from_numpy(demo_pt_labs[0].T))
+            # print(f1_metrics)
 
     if demo_label_dir != '':
         my_model.train()
@@ -145,7 +199,7 @@ def main(args):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-y', '--config_path', default='config/heap.yaml')
+    parser.add_argument('-y', '--config_path', default='config/nuScenes.yaml')
     parser.add_argument('--lidar-folder', type=str, default='', help='path to the folder containing lidar scans', required=True)
     parser.add_argument('--save-folder', type=str, default='', help='path to save your result', required=True)
     parser.add_argument('--label-folder', type=str, default='', help='path to the folder containing labels')
