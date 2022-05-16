@@ -102,6 +102,9 @@ def model_summary(model):
     print(f"Total Params:{total_params}")
 
 def main(args):
+    # run = wandb.init()
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v58', type='model')
+    # artifact_dir = artifact.download()
 
     # import wandb
     # run = wandb.init()
