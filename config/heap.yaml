@@ -13,7 +13,7 @@ model_params:
 
   fea_dim: 9
   out_fea_dim: 256
-  num_class: 10
+  num_class: 17
   num_input_features: 16
   use_norm: True
   init_size: 32
@@ -68,7 +68,7 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path: "./artifacts/heap_overfit_camview_model:v58/model_save.pt"
+  model_load_path: "./artifacts/model:v32/model_save.pt"
   model_save_path: "./models/heap/save/model_save.pt"
   checkpoint_every_n_steps: 50
   max_num_epochs: 400

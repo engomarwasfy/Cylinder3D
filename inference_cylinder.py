@@ -73,6 +73,16 @@ def count_parameters(model):
     return total_params
 
 
+def print_layers(model):
+    table = PrettyTable(["Modules", "Parameters"])
+    total_params = 0
+    num_layers = 0
+    for name, module in model.named_modules():
+        if not isinstance(module, torch.nn.Sequential):
+            table.add_row([name, module])
+    print(table)
+
+
 def model_summary(model):
     print("model_summary")
     print()
@@ -103,6 +113,10 @@ def model_summary(model):
 
 def main(args):
 
+    # run = wandb.init()
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v60', type='model')
+    # artifact_dir = artifact.download()
+
     pytorch_device = torch.device('cuda:0')
     config_path = args.config_path
     configs = load_config_data(config_path)
@@ -132,7 +146,9 @@ def main(args):
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
-    # count_parameters(my_model)
+    count_parameters(my_model)
+    print_layers(my_model)
+    num_ftrs = my_model.cylinder_3d_spconv_seg.logits.in_channels
     my_model.to(pytorch_device)
 
     loss_func, lovasz_softmax = loss_builder.build(wce=True, lovasz=True,
