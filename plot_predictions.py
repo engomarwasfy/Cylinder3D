@@ -5,6 +5,9 @@ import json
 import cv2
 import open3d as o3d
 import yaml
+import torch
+
+from utils.metric_util import f1_score
 
 
 def main() -> None:
@@ -17,9 +20,11 @@ def main() -> None:
     parser.add_argument('--label-file', type=str, help='label file name')
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
     parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
+    parser.add_argument('--ground-truth-file', type=str, help='ground truth file name')
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
-    REDUCED_LABELS = False
+    REDUCED_LABELS = True
+    GROUND_TRUTH_AVAILABLE = False
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -39,7 +44,11 @@ def main() -> None:
     if args.mask_info_file != '':
         with open(args.mask_info_file, "r") as read_file:
             mask_info = json.load(read_file)
-
+    if GROUND_TRUTH_AVAILABLE:
+        ground_truth = np.fromfile(args.ground_truth_file, dtype=np.int32)
+        for index, label in enumerate(ground_truth):
+            ground_truth[index] = learning_map[label]
+            f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
     labels_as_colors = np.ones((pcl.shape[0], 3))
     for index, label in enumerate(labels):
         if REDUCED_LABELS:
@@ -52,6 +61,8 @@ def main() -> None:
         labels_as_colors[index, 1] = color[1] / 255
         labels_as_colors[index, 2] = color[2] / 255
     unique, counts = np.unique(labels, return_counts=True)
+
+    # f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
     pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)

@@ -39,6 +39,10 @@ def f1_score(prob, label):
         recall_scores[i] = confusion_matrix[i, i] / np.sum(confusion_matrix[i, :])
         f1_scores[i] = 2 * precision_scores[i] * recall_scores[i] / (precision_scores[i] + recall_scores[i])
 
+    # Set scores for unlabelled class to nan so it won't affect the average
+    f1_scores[0] = None
+    precision_scores[0] = None
+    recall_scores[0] = None
     mean_precision = np.nanmean(precision_scores)
     mean_recall = np.nanmean(recall_scores)
     mean_f1_score = np.nanmean(f1_scores)
