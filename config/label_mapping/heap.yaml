@@ -112,9 +112,12 @@ learning_ignore: # Ignore classes
   9: False     # "pile-other-merged"
 split: # sequence numbers
   train:
-    - 0
+    - '2022-04-22-14-39-32-humans'
+    - '2022-04-22-14-48-12-humans'
+    - '2022-05-17-08-36-41-driving'
+    - 'mapping_bag'
   valid:
-    - 0
+    - '2022-05-17-08-50-44-driving'
   test:
     - 0
 color_map: # bgr
