@@ -187,7 +187,7 @@ class SemKITTI_Heap(data.Dataset):
 
         self.im_idx = []
         for i_folder in split:
-            self.im_idx += absoluteFilePaths('/'.join([data_path, 'pointclouds']))
+            self.im_idx += absoluteFilePaths('/'.join([data_path, i_folder, 'pointclouds']))
 
     def __len__(self):
         'Denotes the total number of samples'

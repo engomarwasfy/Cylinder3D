@@ -17,7 +17,7 @@ model_params:
   num_classes_transfer_learning: 10
   num_input_features: 16
   use_norm: True
-  init_size: 16
+  init_size: 2
 
 
 ###################
@@ -50,18 +50,18 @@ dataset_params:
 ###################
 ## Data_loader options
 train_data_loader:
-  data_path: "/home/lterenzi/data/rsl-dataset/hoengg/mapping_mini/labelled_points"
+  data_path: "/home/boylel/data/heap-dataset/processed_sequences/hoengg"
   imageset: "train"
   return_ref: True
-  batch_size: 1
+  batch_size: 2
   shuffle: True
   num_workers: 4
 
 val_data_loader:
-  data_path: "/home/lterenzi/data/rsl-dataset/hoengg/mapping_mini/labelled_points"
+  data_path: "/home/boylel/data/heap-dataset/processed_sequences/hoengg"
   imageset: "val"
   return_ref: True
-  batch_size: 1
+  batch_size: 2
   shuffle: False
   num_workers: 4
 
@@ -72,6 +72,6 @@ train_params:
   model_load_path:
   model_save_path: "./models/heap/save/model_save.pt"
   checkpoint_every_n_steps: 50
-  max_num_epochs: 4000
+  max_num_epochs: 400
   eval_every_n_steps: 50
   learning_rate: 0.001
