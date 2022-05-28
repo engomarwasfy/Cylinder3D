@@ -114,7 +114,7 @@ def model_summary(model):
 def main(args):
 
     # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v94', type='model')
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v209', type='model')
     # artifact_dir = artifact.download()
 
     pytorch_device = torch.device('cuda:0')

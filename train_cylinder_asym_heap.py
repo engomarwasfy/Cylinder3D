@@ -7,12 +7,14 @@ import torch
 import torch.optim as optim
 from tqdm import tqdm
 import wandb
+import yaml
 
 from prettytable import PrettyTable
 from utils.metric_util import per_class_iu, fast_hist_crop
 from dataloader.pc_dataset import get_heap_label_name
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
+from dataloader.dataset_semantickitti import polar2cat
 
 from utils.load_save_util import load_checkpoint, load_checkpoint_1b1
 
@@ -23,7 +25,7 @@ warnings.filterwarnings("ignore")
 use_wandb = True
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
-    run = wandb.init(project="Cylinder3D-Heap", entity="rsl-lidar-seg")
+    run = wandb.init(project="Cylinder3D-Heap-plot-test", entity="rsl-lidar-seg")
 
 
 def count_parameters(model):
@@ -69,6 +71,11 @@ def main(args):
     SemKITTI_label_name = get_heap_label_name(dataset_config["label_mapping"])
     unique_label = np.asarray(sorted(list(SemKITTI_label_name.keys())))[1:] - 1
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
+
+    with open(dataset_config["label_mapping"], 'r') as stream:
+        heap_yaml = yaml.safe_load(stream)
+    inv_learning_map = heap_yaml['learning_map_inv']
+    color_map = heap_yaml['color_map']
 
     my_model = model_builder.build(model_config)
     if use_wandb:
@@ -128,6 +135,29 @@ def main(args):
                                                                 val_grid[count][:, 2]], val_pt_labs[count],
                                                             unique_label))
                         val_loss_list.append(loss.detach().cpu().numpy())
+
+                        inv_labels = np.vectorize(inv_learning_map.__getitem__)(predict_labels[count,
+                                                                                               val_grid[count][:, 0],
+                                                                                               val_grid[count][:, 1],
+                                                                                               val_grid[count][:, 2]])
+                        points_rgb = np.zeros((inv_labels.shape[0], 6))
+                        for label_index, label in enumerate(inv_labels):
+                            points_rgb[label_index, 0:3] = polar2cat(val_pt_fea[0][label_index][3:6])
+                            color = color_map[label]
+                            points_rgb[label_index, 3] = color[0]
+                            points_rgb[label_index, 4] = color[1]
+                            points_rgb[label_index, 5] = color[2]
+
+                        if use_wandb and i_iter_val % 100 == 0:
+                            wandb.log(
+                                {
+                                    "3d point cloud": wandb.Object3D(
+                                    {
+                                        "type": "lidar/beta",
+                                        "points": points_rgb,
+                                    }
+                                    )
+                                })
                 my_model.train()
                 iou = per_class_iu(sum(hist_list))
                 print('Validation per class iou: ')
