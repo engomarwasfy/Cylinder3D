@@ -520,6 +520,6 @@ def get_heap_label_name(label_mapping):
     heap_label_name = dict()
     for i in sorted(list(heapyaml['learning_map'].keys()))[::-1]:
         val_ = heapyaml['learning_map'][i]
-        heap_label_name[val_] = heapyaml['labels_9'][val_]
+        heap_label_name[val_] = heapyaml['labels_2'][val_]
 
     return heap_label_name
