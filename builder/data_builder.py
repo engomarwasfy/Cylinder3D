@@ -35,14 +35,14 @@ def build(dataset_config,
     train_dataset = get_model_class(dataset_config['dataset_type'])(
         train_pt_dataset,
         grid_size=grid_size,
-        flip_aug=True,
+        flip_aug=False,
         fixed_volume_space=dataset_config['fixed_volume_space'],
         max_volume_space=dataset_config['max_volume_space'],
         min_volume_space=dataset_config['min_volume_space'],
         ignore_label=dataset_config["ignore_label"],
-        rotate_aug=True,
-        scale_aug=True,
-        transform_aug=True
+        rotate_aug=False,
+        scale_aug=False,
+        transform_aug=False
     )
 
     val_dataset = get_model_class(dataset_config['dataset_type'])(

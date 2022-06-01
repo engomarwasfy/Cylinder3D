@@ -48,9 +48,12 @@ def count_parameters(model):
 
 
 def main(args):
+
     # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v233', type='model')
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v271', type='model')
     # artifact_dir = artifact.download()
+    USE_PREDICTION_THRESHOLD = False
+    PREDICTION_THRESHOLD = 0.7
 
     pytorch_device = torch.device('cuda:0')
     torch.cuda.empty_cache()
@@ -144,7 +147,7 @@ def main(args):
                 with torch.no_grad():
                     for i_iter_val, (_, val_vox_label, val_grid, val_pt_labs, val_pt_fea) in enumerate(
                             val_dataset_loader):
-
+                        print(i_iter_val)
                         val_pt_fea_ten = [torch.from_numpy(i).type(torch.FloatTensor).to(pytorch_device) for i in
                                           val_pt_fea]
                         val_grid_ten = [torch.from_numpy(i).to(pytorch_device) for i in val_grid]
@@ -153,14 +156,34 @@ def main(args):
                         predict_labels = my_model(val_pt_fea_ten, val_grid_ten, val_batch_size)
                         loss = lovasz_softmax(torch.nn.functional.softmax(predict_labels).detach(), val_label_tensor,
                                               ignore=0) + loss_func(predict_labels.detach(), val_label_tensor)
-                        predict_labels = torch.argmax(predict_labels, dim=1)
-                        predict_labels = predict_labels.cpu().detach().numpy()
+
+                        if USE_PREDICTION_THRESHOLD:
+                            thresholded_labels = np.zeros((predict_labels.shape[0], predict_labels.shape[2],
+                                                           predict_labels.shape[3], predict_labels.shape[4]))
+                            predict_labels = torch.nn.functional.softmax(predict_labels).cpu().detach().numpy()
+
+                            # Threshold predictions that fall below confidence threshold
+                            counter = 0
+                            for count, i_val_grid in enumerate(val_grid):
+                                for indices in i_val_grid:
+                                    max_ind = np.argmax(predict_labels[count, :, indices[0], indices[1], indices[2]])
+                                    if predict_labels[count, max_ind, indices[0], indices[1], indices[2]] > PREDICTION_THRESHOLD:
+                                        thresholded_labels[count, indices[0], indices[1], indices[2]] = max_ind
+                                    else:
+                                        counter += 1
+                            print("Number of rejected predictions: ", counter)
+                            predict_labels = thresholded_labels.astype('int64')
+                        else:
+                            predict_labels = torch.argmax(predict_labels, dim=1)
+                            predict_labels = predict_labels.cpu().detach().numpy()
+
                         for count, i_val_grid in enumerate(val_grid):
                             hist_list.append(fast_hist_crop(predict_labels[
                                                                 count, val_grid[count][:, 0], val_grid[count][:, 1],
                                                                 val_grid[count][:, 2]], val_pt_labs[count],
                                                             unique_label))
                         val_loss_list.append(loss.detach().cpu().numpy())
+
 
 
 
