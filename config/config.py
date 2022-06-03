@@ -12,6 +12,7 @@ model_params = Map(
         "fea_dim": Int(),
         "out_fea_dim": Int(),
         "num_class": Int(),
+        "num_classes_transfer_learning": Int(),
         "num_input_features": Int(),
         "use_norm": Bool(),
         "init_size": Int(),
