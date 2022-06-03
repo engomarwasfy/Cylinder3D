@@ -18,7 +18,8 @@ def main() -> None:
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
     parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
     args, opts = parser.parse_known_args()
-    DATASET = 'kitti'
+    DATASET = 'heap_section'
+    REDUCED_LABELS = False
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -41,15 +42,16 @@ def main() -> None:
 
     labels_as_colors = np.ones((pcl.shape[0], 3))
     for index, label in enumerate(labels):
-        if DATASET == 'heap_section':
+        if REDUCED_LABELS:
             mapped_label = learning_map[label]
             color = color_map[mapped_label]
+            print(color)
         else:
             color = color_map[label]
         labels_as_colors[index, 0] = color[0] / 255
         labels_as_colors[index, 1] = color[1] / 255
         labels_as_colors[index, 2] = color[2] / 255
-
+    unique, counts = np.unique(labels, return_counts=True)
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
     pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)
