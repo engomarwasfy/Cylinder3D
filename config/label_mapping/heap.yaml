@@ -47,6 +47,18 @@ labels_2:
   0: 'unlabeled'
   1: 'object'
   2: 'ground'
+labels_10:
+  0: 'unlabeled'
+  1: 'person'
+  2: 'vehicle'
+  3: 'building-other-merged'
+  4: 'floor-other-merged'
+  5: 'rock-merged'
+  6: 'tree-merged'
+  7: 'bridge'
+  8: 'pile-other-merged'
+  9: 'grass-merged'
+  10: 'container'
 #learning_map:
 #  0: 0
 #  1: 1
@@ -92,40 +104,108 @@ labels_2:
 #  30: 9
 #  31: 0
 #  32: 0
+#learning_map:
+#  0: 1
+#  1: 1
+#  2: 1
+#  3: 1
+#  4: 1
+#  5: 1
+#  6: 1
+#  7: 1
+#  8: 1
+#  9: 2
+#  10: 2
+#  11: 2
+#  12: 2
+#  13: 2
+#  14: 2
+#  15: 2
+#  16: 2
+#  17: 2
+#  18: 1
+#  19: 1
+#  20: 2
+#  21: 1
+#  22: 1
+#  23: 0
+#  24: 2
+#  25: 1
+#  26: 0
+#  27: 0
+#  28: 0
+#  29: 1
+#  30: 1
+#  31: 0
+#  32: 0
 learning_map:
   0: 1
-  1: 1
-  2: 1
-  3: 1
-  4: 1
-  5: 1
-  6: 1
-  7: 1
-  8: 1
-  9: 2
-  10: 2
-  11: 2
-  12: 2
-  13: 2
-  14: 2
-  15: 2
-  16: 2
-  17: 2
-  18: 1
-  19: 1
-  20: 2
-  21: 1
-  22: 1
+  1: 2
+  2: 2
+  3: 2
+  4: 2
+  5: 2
+  6: 2
+  7: 7
+  8: 3
+  9: 4
+  10: 4
+  11: 4
+  12: 4
+  13: 4
+  14: 4
+  15: 4
+  16: 4
+  17: 9
+  18: 3
+  19: 5
+  20: 0
+  21: 6
+  22: 3
   23: 0
-  24: 2
-  25: 1
+  24: 4
+  25: 10
   26: 0
   27: 0
-  28: 0
-  29: 1
-  30: 1
+  28: 5
+  29: 9
+  30: 9
   31: 0
   32: 0
+#learning_map:
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#  10: 10
+#  11: 11
+#  12: 12
+#  13: 13
+#  14: 14
+#  15: 15
+#  16: 16
+#  17: 17
+#  18: 18
+#  19: 19
+#  20: 20
+#  21: 21
+#  22: 22
+#  23: 23
+#  24: 24
+#  25: 25
+#  26: 26
+#  27: 27
+#  28: 28
+#  29: 29
+#  30: 30
+#  31: 31
+#  32: 32
 #learning_map_inv:
 #  0: 0
 #  1: 1
@@ -141,6 +221,52 @@ learning_map_inv:
   0: 0
   1: 1
   2: 2
+  3: 3
+  4: 4
+  5: 5
+  6: 6
+  7: 7
+  8: 8
+  9: 9
+  10: 10
+#learning_map_inv:
+#  0: 0
+#  1: 1
+#  2: 2
+#learning_map_inv:
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#  10: 10
+#  11: 11
+#  12: 12
+#  13: 13
+#  14: 14
+#  15: 15
+#  16: 16
+#  17: 17
+#  18: 18
+#  19: 19
+#  20: 20
+#  21: 21
+#  22: 22
+#  23: 23
+#  24: 24
+#  25: 25
+#  26: 26
+#  27: 27
+#  28: 28
+#  29: 29
+#  30: 30
+#  31: 31
+#  32: 32
 #learning_ignore: # Ignore classes
 #  0: True      # "unlabeled", and others ignored
 #  1: False     # "person"
@@ -154,8 +280,20 @@ learning_map_inv:
 #  9: False     # "pile-other-merged"
 learning_ignore: # Ignore classes
   0: True      # "unlabeled", and others ignored
-  1: False     # "object"
-  2: False     # "ground"
+  1: False     # "person"
+  2: False     # "vehicle"
+  3: False     # "building-other-merged"
+  4: False     # "floor-other-merged"
+  5: False     # "rock-merged"
+  6: False     # "tree-merged"
+  7: False     # "bridge"
+  8: False     # "pile-other-merged"
+  9: False     # "grass-merged"
+  10: False    # "container"
+#learning_ignore: # Ignore classes
+#  0: True      # "unlabeled", and others ignored
+#  1: False     # "object"
+#  2: False     # "ground"
 split: # sequence numbers
   train:
     - '2022-04-22-14-39-32-humans_hoengg'

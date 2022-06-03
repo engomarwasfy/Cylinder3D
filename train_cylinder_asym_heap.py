@@ -50,7 +50,7 @@ def count_parameters(model):
 def main(args):
 
     # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v271', type='model')
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v299', type='model')
     # artifact_dir = artifact.download()
     USE_PREDICTION_THRESHOLD = False
     PREDICTION_THRESHOLD = 0.7
