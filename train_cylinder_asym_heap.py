@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore")
 use_wandb = True
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
-    run = wandb.init(project="Cylinder3D-Heap", entity="rsl-lidar-seg")
+    run = wandb.init(project="Cylinder3D-Heap-31-classes", entity="rsl-lidar-seg")
 
 
 def count_parameters(model):
@@ -140,7 +140,8 @@ def main(args):
         for i_iter, (_, train_vox_label, train_grid, _, train_pt_fea) in enumerate(train_dataset_loader):
             # torch.cuda.synchronize()
             # data_time.update(time.time() - end)
-            if global_iter % check_iter == 0 and epoch >= 0:
+            # if global_iter % check_iter == 0 and epoch >= 0:
+            if i_iter == 0:
                 my_model.eval()
                 hist_list = []
                 val_loss_list = []
