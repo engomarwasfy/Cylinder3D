@@ -50,7 +50,7 @@ def main() -> None:
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
     REDUCED_LABELS = False
-    CREATE_NEW_VIEW_POINT = True
+    CREATE_NEW_VIEW_POINT = False
     # SAVE_FOLDER = '/home/lterenzi/Pictures/o3d_image_sequences/2021-08-27-11-36-12-009'
 
     with open(args.label_color_map, "r") as stream:
@@ -74,7 +74,7 @@ def main() -> None:
         save_view_point(initial_pcd, args.save_folder + '/viewpoint.json')
 
 
-    for i in tqdm(range(100, len(pcl_paths))):
+    for i in tqdm(range(2000, len(pcl_paths))):
         pcl_path = args.pcl_folder + '/' + pcl_paths[i]
         label_path = args.label_folder + '/' + label_paths[i]
         if DATASET == 'nuscenes':
@@ -93,12 +93,12 @@ def main() -> None:
             else:
                 color = color_map[label]
 
-            # labels_as_colors[index, 0] = color[0] / 255
-            # labels_as_colors[index, 1] = color[1] / 255
-            # labels_as_colors[index, 2] = color[2] / 255
-            labels_as_colors[index, 0] = 1
-            labels_as_colors[index, 1] = 1
-            labels_as_colors[index, 2] = 1
+            labels_as_colors[index, 0] = color[0] / 255
+            labels_as_colors[index, 1] = color[1] / 255
+            labels_as_colors[index, 2] = color[2] / 255
+            # labels_as_colors[index, 0] = 1
+            # labels_as_colors[index, 1] = 1
+            # labels_as_colors[index, 2] = 1
 
         pcd = o3d.geometry.PointCloud()
         full_points_np_ar = np.asarray(pcl)[:, 0:3]
