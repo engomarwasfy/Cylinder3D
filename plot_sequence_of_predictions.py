@@ -31,6 +31,7 @@ def load_view_point(pcd, filename, capture_name):
     vis.update_geometry(pcd)
     vis.poll_events()
     vis.update_renderer()
+    vis.run()
     vis.capture_screen_image(capture_name)
     vis.destroy_window()
 
@@ -64,7 +65,7 @@ def main() -> None:
     label_paths = sorted(os.listdir(args.label_folder))
 
 
-    initial_pcl_path = args.pcl_folder + '/' + pcl_paths[0]
+    initial_pcl_path = args.pcl_folder + '/' + pcl_paths[2350]
     initial_pcl = np.fromfile(initial_pcl_path, dtype=np.float32).reshape(4, -1).T
     initial_pcd = o3d.geometry.PointCloud()
     initial_full_points_np_ar = np.asarray(initial_pcl)[:, 0:3]
@@ -74,7 +75,7 @@ def main() -> None:
         save_view_point(initial_pcd, args.save_folder + '/viewpoint.json')
 
 
-    for i in tqdm(range(2000, len(pcl_paths))):
+    for i in tqdm(range(2350, 2400)):
         pcl_path = args.pcl_folder + '/' + pcl_paths[i]
         label_path = args.label_folder + '/' + label_paths[i]
         if DATASET == 'nuscenes':
