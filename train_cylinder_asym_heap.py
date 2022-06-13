@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore")
 use_wandb = True
 if use_wandb:
     wandb.login(key='4d8dd62b978bbed4276d53f03a9e5f4973fc320b')
-    run = wandb.init(project="Cylinder3D-Heap-31-classes", entity="rsl-lidar-seg")
+    run = wandb.init(project="Cylinder3D-Heap-6-classes-with-self-arm", entity="rsl-lidar-seg")
 
 
 def count_parameters(model):

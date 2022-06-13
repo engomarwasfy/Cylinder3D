@@ -201,7 +201,7 @@ class cylinder_dataset(data.Dataset):
 
         # random data augmentation by rotation
         if self.rotate_aug:
-            rotate_rad = np.deg2rad(np.random.random() * 90) - np.pi / 4
+            rotate_rad = np.deg2rad(np.random.random() * 360) - np.pi / 1
             c, s = np.cos(rotate_rad), np.sin(rotate_rad)
             j = np.matrix([[c, s], [-s, c]])
             xyz[:, :2] = np.dot(xyz[:, :2], j)
