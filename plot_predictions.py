@@ -11,20 +11,31 @@ from utils.metric_util import f1_score
 
 
 def main() -> None:
-    """"This script will visualize a point cloud with lables in the format specified by ml3d.
-        More specifically it is currently hardcoded to assign the subset of categories that was
-        selected by the authors of the SPVNAS paper."""
+    """"This script will visualize a point cloud with labels. The colors for each label are defined by the
+    label-color-map.
+
+    Inputs:
+    - pcl-file: Path to the point cloud, stored as a .bin file
+    -label-file: Path to the label file
+    -label-color-map: Path to the label color map, stored as a yaml file (this file must also contain a label mapping)
+    -ground-truth-file: Path to the ground truth label file (optional)
+
+    Variables:
+    -DATASET: This variable can either be set to 'kitti', 'nuscenes' or 'heap_section', where the name denotes the
+              dataset from which the point cloud came from.
+    -APPLY_LABEL_MAPPING: This variable should be set to true if you want the label mapping from the label-color-map
+              file to be applied.
+    """
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--pcl-file', type=str, help='pcl file name')
     parser.add_argument('--label-file', type=str, help='label file name')
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
-    parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
+    # parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
     parser.add_argument('--ground-truth-file', type=str, help='ground truth file name')
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
-    REDUCED_LABELS = True
-    GROUND_TRUTH_AVAILABLE = False
+    APPlY_LABEL_MAPPING = True
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -41,17 +52,17 @@ def main() -> None:
     elif DATASET == 'heap_section':
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(4, -1).T
     labels = np.fromfile(args.label_file, dtype=np.int32)
-    if args.mask_info_file != '':
-        with open(args.mask_info_file, "r") as read_file:
-            mask_info = json.load(read_file)
-    if GROUND_TRUTH_AVAILABLE:
+    # if args.mask_info_file != '':
+    #     with open(args.mask_info_file, "r") as read_file:
+    #         mask_info = json.load(read_file)
+    if args.ground_truth_file != '':
         ground_truth = np.fromfile(args.ground_truth_file, dtype=np.int32)
         for index, label in enumerate(ground_truth):
             ground_truth[index] = learning_map[label]
             f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
     labels_as_colors = np.ones((pcl.shape[0], 3))
     for index, label in enumerate(labels):
-        if REDUCED_LABELS:
+        if APPlY_LABEL_MAPPING:
             mapped_label = learning_map[label]
             color = color_map[mapped_label]
             print(color)
@@ -62,7 +73,6 @@ def main() -> None:
         labels_as_colors[index, 2] = color[2] / 255
     unique, counts = np.unique(labels, return_counts=True)
 
-    # f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
     pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)

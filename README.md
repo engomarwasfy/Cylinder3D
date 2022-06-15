@@ -88,3 +88,8 @@ To plot the inference results you can run:
 python plot_predictions.py --pcl-file YOUR_PCL_FILE--label-file YOUR_LABEL_FILE --label-color-map YOUR_LABEL_COLOR_MAP
 ```
 , where the label-color-map could for example be: /config/label_mapping/heap.yaml
+
+To save a sequence of predictions as a images you can run:
+```
+python plot_sequence_of_predictions.py --pcl-folder YOUR_PCL_FOLDER --label-folder YOUR_LABEL_FOLDER --label-color-map YOUR_LABEL_COLOR_MAP --save-folder YOUR_SAVE_FOLDER
+```
