@@ -49,7 +49,7 @@ def main() -> None:
         for index, label in enumerate(ground_truth):
             ground_truth[index] = learning_map[label]
             f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
-    labels_as_colors = np.ones((pcl.shape[0], 3))
+    labels_as_colors = np.zeros((pcl.shape[0], 3))
     for index, label in enumerate(labels):
         if REDUCED_LABELS:
             mapped_label = learning_map[label]
@@ -57,9 +57,9 @@ def main() -> None:
             print(color)
         else:
             color = color_map[label]
-        labels_as_colors[index, 0] = color[0] / 255
-        labels_as_colors[index, 1] = color[1] / 255
-        labels_as_colors[index, 2] = color[2] / 255
+        # labels_as_colors[index, 0] = color[0] / 255
+        # labels_as_colors[index, 1] = color[1] / 255
+        # labels_as_colors[index, 2] = color[2] / 255
     unique, counts = np.unique(labels, return_counts=True)
 
     # f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
@@ -71,7 +71,7 @@ def main() -> None:
     vis.create_window()
     vis.add_geometry(pcd)
     opt = vis.get_render_option()
-    opt.background_color = np.asarray([42, 39, 71]) / 255.0
+    # opt.background_color = np.asarray([42, 39, 71]) / 255.0
     vis.run()
     vis.destroy_window()
 
