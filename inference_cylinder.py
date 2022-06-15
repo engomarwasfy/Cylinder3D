@@ -114,7 +114,7 @@ def model_summary(model):
 def main(args):
 
     # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap-5-classes/model:v28', type='model')
+    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v209', type='model')
     # artifact_dir = artifact.download()
 
     pytorch_device = torch.device('cuda:0')
@@ -147,6 +147,7 @@ def main(args):
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
     # count_parameters(my_model)
+    # print_layers(my_model)
     # num_ftrs = my_model.cylinder_3d_spconv_seg.logits.in_channels
     my_model.to(pytorch_device)
 
