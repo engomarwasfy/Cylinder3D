@@ -11,9 +11,9 @@ model_params:
     - 360
     - 32
 
-  fea_dim: 9
+  fea_dim: 8
   out_fea_dim: 256
-  num_class: 11
+  num_class: 6
   num_classes_transfer_learning: 10
   num_input_features: 16
   use_norm: True
@@ -24,7 +24,7 @@ model_params:
 ## Dataset options
 dataset_params:
   dataset_type: "cylinder_dataset"
-  pc_dataset_type: "SemKITTI_Heap"
+  pc_dataset_type: "SemKITTI_inference_heap"
   ignore_label: 0
   return_test: False
   fixed_volume_space: True
@@ -52,7 +52,7 @@ dataset_params:
 train_data_loader:
   data_path: "/home/boylel/data/heap-dataset/processed_sequences"
   imageset: "train"
-  return_ref: True
+  return_ref: False
   batch_size: 2
   shuffle: True
   num_workers: 4
@@ -60,8 +60,8 @@ train_data_loader:
 val_data_loader:
   data_path: "/home/boylel/data/heap-dataset/processed_sequences"
   imageset: "val"
-  return_ref: True
-  batch_size: 2
+  return_ref: False
+  batch_size: 1
   shuffle: False
   num_workers: 4
 
@@ -69,7 +69,7 @@ val_data_loader:
 ###################
 ## Train params
 train_params:
-  model_load_path:
+  model_load_path: "/home/lterenzi/Documents/git/Cylinder3D/artifacts/five_classes_rotation_augmentation_no_intensity_model:v4/model_save.pt"
   model_save_path: "./models/heap/save/model_save.pt"
   checkpoint_every_n_steps: 1000
   max_num_epochs: 40
