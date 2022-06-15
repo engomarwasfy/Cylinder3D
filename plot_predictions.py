@@ -1,8 +1,5 @@
-import open3d.ml.torch as ml3d
 import argparse
 import numpy as np
-import json
-import cv2
 import open3d as o3d
 import yaml
 import torch
@@ -11,7 +8,8 @@ from utils.metric_util import f1_score
 
 
 def main() -> None:
-    """"This script will visualize a point cloud with labels. The colors for each label are defined by the
+    """"
+    This script will visualize a point cloud with labels. The colors for each label are defined by the
     label-color-map.
 
     Inputs:
@@ -31,7 +29,6 @@ def main() -> None:
     parser.add_argument('--pcl-file', type=str, help='pcl file name')
     parser.add_argument('--label-file', type=str, help='label file name')
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
-    # parser.add_argument('--mask-info-file', type=str, default='', help='mask info file name')
     parser.add_argument('--ground-truth-file', type=str, help='ground truth file name')
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
@@ -52,9 +49,6 @@ def main() -> None:
     elif DATASET == 'heap_section':
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(4, -1).T
     labels = np.fromfile(args.label_file, dtype=np.int32)
-    # if args.mask_info_file != '':
-    #     with open(args.mask_info_file, "r") as read_file:
-    #         mask_info = json.load(read_file)
     if args.ground_truth_file != '':
         ground_truth = np.fromfile(args.ground_truth_file, dtype=np.int32)
         for index, label in enumerate(ground_truth):
@@ -68,10 +62,9 @@ def main() -> None:
             print(color)
         else:
             color = color_map[label]
-        # labels_as_colors[index, 0] = color[0] / 255
-        # labels_as_colors[index, 1] = color[1] / 255
-        # labels_as_colors[index, 2] = color[2] / 255
-    unique, counts = np.unique(labels, return_counts=True)
+        labels_as_colors[index, 0] = color[0] / 255
+        labels_as_colors[index, 1] = color[1] / 255
+        labels_as_colors[index, 2] = color[2] / 255
 
     pcd = o3d.geometry.PointCloud()
     full_points_np_ar = np.asarray(pcl)[:, 0:3]
@@ -81,7 +74,7 @@ def main() -> None:
     vis.create_window()
     vis.add_geometry(pcd)
     opt = vis.get_render_option()
-    # opt.background_color = np.asarray([42, 39, 71]) / 255.0
+    opt.background_color = np.asarray([42, 39, 71]) / 255.0
     vis.run()
     vis.destroy_window()
 

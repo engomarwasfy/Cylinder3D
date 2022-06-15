@@ -47,10 +47,25 @@ def load_view_point(pcd, filename, capture_name):
 
 
 def main() -> None:
-    """"This script will visualize a series of point clouds with lables.
-        By setting CREATE_NEW_VIEW_POINT to True you can select viewpoint and confirm
-        your selection by pressing "q". This viewpoint will be saved as a json file and
-        can be used again when you set CREATE_NEW_VIEW_POINT to False."""
+    """"
+    This script will visualize a series of point clouds with lables.
+    By setting CREATE_NEW_VIEW_POINT to True you can select viewpoint and confirm
+    your selection by pressing "q". This viewpoint will be saved as a json file and
+    can be used again when you set CREATE_NEW_VIEW_POINT to False.
+
+    Inputs:
+    - pcl-folder: Path to the folder containing the point clouds
+    -label-folder: Path to the folder containing the label files
+    -label-color-map: Path to the label color map, stored as a yaml file (this file must also contain a label mapping)
+    -save-folder: Path to the folder in which you want to save your images
+
+    Variables:
+    -DATASET: This variable can either be set to 'kitti', 'nuscenes' or 'heap_section', where the name denotes the
+              dataset from which the point cloud came from.
+    -APPLY_LABEL_MAPPING: This variable should be set to true if you want the label mapping from the label-color-map
+              file to be applied.
+    -CREATE_NEW_VIEW_POINT: This variable should be set to true if you want to create and save a new viewpoint.
+    """
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--pcl-folder', type=str, help='pcl file name')
@@ -60,7 +75,7 @@ def main() -> None:
 
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
-    REDUCED_LABELS = False # Set to true if you want label mapping to be applied
+    APPLY_LABEL_MAPPING = False # Set to true if you want label mapping to be applied
     CREATE_NEW_VIEW_POINT = False # Set to true if you want to save a new viewpoint
 
     with open(args.label_color_map, "r") as stream:
@@ -97,7 +112,7 @@ def main() -> None:
 
         labels_as_colors = np.ones((pcl.shape[0], 3))
         for index, label in enumerate(labels):
-            if REDUCED_LABELS:
+            if APPLY_LABEL_MAPPING:
                 mapped_label = learning_map[label]
                 color = color_map[mapped_label]
             else:
@@ -113,8 +128,6 @@ def main() -> None:
         pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
         capture_name = args.save_folder + '/capture_' + str(i) + '.png'
         load_view_point(pcd, args.save_folder + '/viewpoint.json', capture_name)
-
-
 
 
 if __name__ == '__main__':
