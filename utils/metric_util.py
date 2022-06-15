@@ -25,7 +25,7 @@ def fast_hist_crop(output, target, unique_label):
 
 def f1_score(prob, label):
 
-    nb_classes = 10
+    nb_classes = 3
     confusion_matrix = torch.zeros(nb_classes, nb_classes)
     for t, p in zip(label.view(-1), prob.view(-1)):
         confusion_matrix[t.long(), p.long()] += 1

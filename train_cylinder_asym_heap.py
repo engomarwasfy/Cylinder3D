@@ -120,27 +120,8 @@ def main(args):
     while epoch < train_hypers['max_num_epochs']:
         loss_list = []
         pbar = tqdm(total=len(train_dataset_loader))
-        # time.sleep(1)
-        batch_time = AverageMeter('Time', ':6.3f')
-        data_time = AverageMeter('Data', ':6.3f')
-        totaltime = AverageMeter('Total Time', ':6.3f')
-        dataconversion_time = AverageMeter('Data conversion Time', ':6.3f')
-        forwardtime = AverageMeter('Forward Time', ':6.3f')
-        losstime = AverageMeter('Loss Time', ':6.3f')
-        backward_time = AverageMeter('Backward Time', ':6.3f')
-        optimizer_time = AverageMeter('Optimizer Time', ':6.3f')
-        rest_time = AverageMeter('Rest Time', ':6.3f')
-        progress = ProgressMeter(
-            len(train_dataset_loader),
-            [batch_time, data_time, dataconversion_time, forwardtime, losstime, backward_time, optimizer_time, rest_time],
-            prefix="Epoch: [{}]".format(epoch))
         print("\n Epoch: ", epoch)
-        # torch.cuda.synchronize()
-        # end = time.time()
         for i_iter, (_, train_vox_label, train_grid, _, train_pt_fea) in enumerate(train_dataset_loader):
-            # torch.cuda.synchronize()
-            # data_time.update(time.time() - end)
-            # if global_iter % check_iter == 0 and epoch >= 0:
             if i_iter == 0:
                 my_model.eval()
                 hist_list = []
@@ -245,29 +226,17 @@ def main(args):
                       (np.mean(val_loss_list)))
                 if use_wandb:
                     run.log({'Validation loss': np.mean(val_loss_list)})
-            # torch.cuda.synchronize()
-            # t0 = time.time()
             train_pt_fea_ten = [torch.from_numpy(i).type(torch.FloatTensor).to(pytorch_device) for i in train_pt_fea]
             train_vox_ten = [torch.from_numpy(i).to(pytorch_device) for i in train_grid]
             point_label_tensor = train_vox_label.type(torch.LongTensor).to(pytorch_device)
-            # torch.cuda.synchronize()
-            # t1 = time.time()
 
 
             # forward + backward + optimize
             outputs = my_model(train_pt_fea_ten, train_vox_ten, train_batch_size)
-            # torch.cuda.synchronize()
-            # t2 = time.time()
             loss = lovasz_softmax(torch.nn.functional.softmax(outputs), point_label_tensor, ignore=0) + loss_func(
                 outputs, point_label_tensor)
-            # torch.cuda.synchronize()
-            # t3 = time.time()
             loss.backward()
-            # torch.cuda.synchronize()
-            # t4 = time.time()
             optimizer.step()
-            # torch.cuda.synchronize()
-            # t5 = time.time()
             loss_list.append(loss.item())
             if global_iter % 10 == 0 and use_wandb:
                 if len(loss_list) > 0:
@@ -289,27 +258,6 @@ def main(args):
                           (epoch, i_iter, np.mean(loss_list)))
                 else:
                     print('loss error')
-            # torch.cuda.synchronize()
-            # t6 = time.time()
-            # torch.cuda.synchronize()
-            # batch_time.update(time.time() - end)
-            # torch.cuda.synchronize()
-            # end = time.time()
-
-            # dataloading_time = t1 -t0
-            # forward_time = t2 - t1
-            # loss_time = t3 -t2
-            # backward_time = t4 -t3
-            # optimizer_time = t5 -t4
-            # rest_time = t6 - t5
-            # dataconversion_time.update(t1 - t0)
-            # forwardtime.update(t2 - t1)
-            # losstime.update(t3 - t2)
-            # backward_time.update(t4 - t3)
-            # optimizer_time.update(t5 - t4)
-            # rest_time.update(t6 - t5)
-            # if global_iter % 10 == 0:
-            #     progress.display(global_iter)
         pbar.close()
         epoch += 1
 

@@ -113,9 +113,6 @@ def model_summary(model):
 
 def main(args):
 
-    # run = wandb.init()
-    # artifact = run.use_artifact('rsl-lidar-seg/Cylinder3D-Heap/model:v209', type='model')
-    # artifact_dir = artifact.download()
 
     pytorch_device = torch.device('cuda:0')
     config_path = args.config_path
@@ -146,9 +143,6 @@ def main(args):
         my_model.load_state_dict(state_dict=model_dict['model_state_dict'], strict=True)
         optimizer.load_state_dict(model_dict['optimizer_state_dict'])
 
-    # count_parameters(my_model)
-    # print_layers(my_model)
-    # num_ftrs = my_model.cylinder_3d_spconv_seg.logits.in_channels
     my_model.to(pytorch_device)
 
     loss_func, lovasz_softmax = loss_builder.build(wce=True, lovasz=True,
@@ -181,8 +175,8 @@ def main(args):
                                                     demo_grid[count][:, 2]], demo_pt_labs[count],
                                                 unique_label))
                 inv_labels = np.vectorize(inv_learning_map.__getitem__)(predict_labels[count, demo_grid[count][:, 0], demo_grid[count][:, 1], demo_grid[count][:, 2]])
-                torch_inv_labels = inv_labels
-                unique_labels = np.unique(inv_labels)
+                # torch_inv_labels = inv_labels
+                # unique_labels = np.unique(inv_labels)
                 inv_labels = inv_labels.astype('uint32')
                 outputPath = save_dir + str(i_iter_demo).zfill(6) + '.label'
                 inv_labels.tofile(outputPath)

@@ -16,7 +16,6 @@ def main() -> None:
     - pcl-file: Path to the point cloud, stored as a .bin file
     -label-file: Path to the label file
     -label-color-map: Path to the label color map, stored as a yaml file (this file must also contain a label mapping)
-    -ground-truth-file: Path to the ground truth label file (optional)
 
     Variables:
     -DATASET: This variable can either be set to 'kitti', 'nuscenes' or 'heap_section', where the name denotes the
@@ -29,10 +28,9 @@ def main() -> None:
     parser.add_argument('--pcl-file', type=str, help='pcl file name')
     parser.add_argument('--label-file', type=str, help='label file name')
     parser.add_argument('--label-color-map', type=str, help='label color map file name')
-    parser.add_argument('--ground-truth-file', type=str, help='ground truth file name')
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
-    APPlY_LABEL_MAPPING = True
+    APPlY_LABEL_MAPPING = False
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -49,17 +47,11 @@ def main() -> None:
     elif DATASET == 'heap_section':
         pcl = np.fromfile(args.pcl_file, dtype=np.float32).reshape(4, -1).T
     labels = np.fromfile(args.label_file, dtype=np.int32)
-    if args.ground_truth_file != '':
-        ground_truth = np.fromfile(args.ground_truth_file, dtype=np.int32)
-        for index, label in enumerate(ground_truth):
-            ground_truth[index] = learning_map[label]
-            f1_metrics = f1_score(torch.from_numpy(labels), torch.from_numpy(ground_truth))
     labels_as_colors = np.zeros((pcl.shape[0], 3))
     for index, label in enumerate(labels):
         if APPlY_LABEL_MAPPING:
             mapped_label = learning_map[label]
             color = color_map[mapped_label]
-            print(color)
         else:
             color = color_map[label]
         labels_as_colors[index, 0] = color[0] / 255
