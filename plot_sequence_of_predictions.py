@@ -6,8 +6,13 @@ import yaml
 from tqdm import tqdm
 
 def save_view_point(pcd, filename):
+    """
+    This function opens a open3d visualization window with the point cloud that is passed as input.
+    Once you have set the viewpoint you like, press q to close the window and save the viewpoint under the specified
+    filename.
+    """
     vis = o3d.visualization.Visualizer()
-    vis.create_window()
+    vis.create_window(width=3840, height=2160)
     ctr = vis.get_view_control()
     vis.add_geometry(pcd)
     vis.run() # user changes the view and press "q" to terminate
@@ -18,11 +23,15 @@ def save_view_point(pcd, filename):
     vis.destroy_window()
 
 def load_view_point(pcd, filename, capture_name):
+    """
+    This function opens a open3d visualization window with the point cloud that is passed as input and loads a viewpoint
+    saved under filename. It then immediately saves an image of the point cloud with the loaded viewpoint.
+    """
     vis = o3d.visualization.Visualizer()
-    vis.create_window()
+    vis.create_window(width=3840, height=2160)
     opt = vis.get_render_option()
     opt.background_color = np.asarray([42, 39, 71]) / 255.0
-    opt.point_size = 2
+    opt.point_size = 5
     ctr = vis.get_view_control()
     trajectory = o3d.io.read_pinhole_camera_trajectory(filename)
     params = trajectory.parameters[0]
@@ -31,7 +40,8 @@ def load_view_point(pcd, filename, capture_name):
     vis.update_geometry(pcd)
     vis.poll_events()
     vis.update_renderer()
-    vis.run()
+    # Uncomment this line if you want the program to wait for you to close the window manually
+    # vis.run()
     vis.capture_screen_image(capture_name)
     vis.destroy_window()
 
@@ -50,9 +60,8 @@ def main() -> None:
 
     args, opts = parser.parse_known_args()
     DATASET = 'heap_section'
-    REDUCED_LABELS = False
-    CREATE_NEW_VIEW_POINT = False
-    # SAVE_FOLDER = '/home/lterenzi/Pictures/o3d_image_sequences/2021-08-27-11-36-12-009'
+    REDUCED_LABELS = False # Set to true if you want label mapping to be applied
+    CREATE_NEW_VIEW_POINT = False # Set to true if you want to save a new viewpoint
 
     with open(args.label_color_map, "r") as stream:
         try:
@@ -65,7 +74,7 @@ def main() -> None:
     label_paths = sorted(os.listdir(args.label_folder))
 
 
-    initial_pcl_path = args.pcl_folder + '/' + pcl_paths[2350]
+    initial_pcl_path = args.pcl_folder + '/' + pcl_paths[0]
     initial_pcl = np.fromfile(initial_pcl_path, dtype=np.float32).reshape(4, -1).T
     initial_pcd = o3d.geometry.PointCloud()
     initial_full_points_np_ar = np.asarray(initial_pcl)[:, 0:3]
@@ -75,7 +84,7 @@ def main() -> None:
         save_view_point(initial_pcd, args.save_folder + '/viewpoint.json')
 
 
-    for i in tqdm(range(2350, 2400)):
+    for i in tqdm(range(0, len(pcl_paths))):
         pcl_path = args.pcl_folder + '/' + pcl_paths[i]
         label_path = args.label_folder + '/' + label_paths[i]
         if DATASET == 'nuscenes':
@@ -97,9 +106,6 @@ def main() -> None:
             labels_as_colors[index, 0] = color[0] / 255
             labels_as_colors[index, 1] = color[1] / 255
             labels_as_colors[index, 2] = color[2] / 255
-            # labels_as_colors[index, 0] = 1
-            # labels_as_colors[index, 1] = 1
-            # labels_as_colors[index, 2] = 1
 
         pcd = o3d.geometry.PointCloud()
         full_points_np_ar = np.asarray(pcl)[:, 0:3]
