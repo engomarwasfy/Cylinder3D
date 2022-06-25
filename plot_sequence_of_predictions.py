@@ -89,25 +89,25 @@ def main() -> None:
     label_paths = sorted(os.listdir(args.label_folder))
 
 
-    initial_pcl_path = args.pcl_folder + '/' + pcl_paths[0]
+    initial_pcl_path = f'{args.pcl_folder}/{pcl_paths[0]}'
     initial_pcl = np.fromfile(initial_pcl_path, dtype=np.float32).reshape(4, -1).T
     initial_pcd = o3d.geometry.PointCloud()
     initial_full_points_np_ar = np.asarray(initial_pcl)[:, 0:3]
     initial_pcd.points = o3d.utility.Vector3dVector(initial_full_points_np_ar)
 
     if CREATE_NEW_VIEW_POINT:
-        save_view_point(initial_pcd, args.save_folder + '/viewpoint.json')
+        save_view_point(initial_pcd, f'{args.save_folder}/viewpoint.json')
 
 
-    for i in tqdm(range(0, len(pcl_paths))):
-        pcl_path = args.pcl_folder + '/' + pcl_paths[i]
-        label_path = args.label_folder + '/' + label_paths[i]
-        if DATASET == 'nuscenes':
-            pcl = np.fromfile(pcl_path, dtype=np.float32).reshape(-1, 5)
+    for i in tqdm(range(len(pcl_paths))):
+        pcl_path = f'{args.pcl_folder}/{pcl_paths[i]}'
+        label_path = f'{args.label_folder}/{label_paths[i]}'
+        if DATASET == 'heap_section':
+            pcl = np.fromfile(pcl_path, dtype=np.float32).reshape(4, -1).T
         elif DATASET == 'kitti':
             pcl = np.fromfile(pcl_path, dtype=np.float32).reshape(-1, 4)
-        elif DATASET == 'heap_section':
-            pcl = np.fromfile(pcl_path, dtype=np.float32).reshape(4, -1).T
+        elif DATASET == 'nuscenes':
+            pcl = np.fromfile(pcl_path, dtype=np.float32).reshape(-1, 5)
         labels = np.fromfile(label_path, dtype=np.int32)
 
         labels_as_colors = np.ones((pcl.shape[0], 3))
@@ -126,8 +126,8 @@ def main() -> None:
         full_points_np_ar = np.asarray(pcl)[:, 0:3]
         pcd.points = o3d.utility.Vector3dVector(full_points_np_ar)
         pcd.colors = o3d.utility.Vector3dVector(labels_as_colors)
-        capture_name = args.save_folder + '/capture_' + str(i) + '.png'
-        load_view_point(pcd, args.save_folder + '/viewpoint.json', capture_name)
+        capture_name = f'{args.save_folder}/capture_{str(i)}.png'
+        load_view_point(pcd, f'{args.save_folder}/viewpoint.json', capture_name)
 
 
 if __name__ == '__main__':

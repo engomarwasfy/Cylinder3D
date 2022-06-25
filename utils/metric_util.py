@@ -46,14 +46,14 @@ def f1_score(prob, label):
     mean_precision = np.nanmean(precision_scores)
     mean_recall = np.nanmean(recall_scores)
     mean_f1_score = np.nanmean(f1_scores)
-    metrics = {'mean_precision': mean_precision,
-               'mean_recall': mean_recall,
-               'mean_f1_score': mean_f1_score,
-               'precision_scores': precision_scores,
-               'recall_scores': recall_scores,
-               'f1_scores': f1_scores}
-
-    return metrics
+    return {
+        'mean_precision': mean_precision,
+        'mean_recall': mean_recall,
+        'mean_f1_score': mean_f1_score,
+        'precision_scores': precision_scores,
+        'recall_scores': recall_scores,
+        'f1_scores': f1_scores,
+    }
 
 
 class ProgressMeter(object):
@@ -70,7 +70,7 @@ class ProgressMeter(object):
     def _get_batch_fmtstr(self, num_batches):
         num_digits = len(str(num_batches // 1))
         fmt = '{:' + str(num_digits) + 'd}'
-        return '[' + fmt + '/' + fmt.format(num_batches) + ']'
+        return f'[{fmt}/{fmt.format(num_batches)}]'
 
 
 class AverageMeter(object):

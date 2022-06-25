@@ -89,8 +89,7 @@ def load_config_data(path: str) -> dict:
         raise Exception(f"Unsupported schema format version: {schema_version}.")
 
     strict_cfg = load(yaml_string, schema=SCHEMA_FORMAT_VERSION_TO_SCHEMA[schema_version])
-    cfg: dict = strict_cfg.data
-    return cfg
+    return strict_cfg.data
 
 
 def config_data_to_config(data):  # type: ignore
