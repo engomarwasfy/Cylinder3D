@@ -28,9 +28,9 @@ def build(dataset_config,
         nusc = NuScenes(version='v1.0-trainval', dataroot=data_path, verbose=True)
 
     train_pt_dataset = SemKITTI(data_path, imageset=train_imageset,
-                                return_ref=train_ref, label_mapping=label_mapping, nusc=nusc)
+                                return_ref=train_ref, label_mapping=label_mapping)
     val_pt_dataset = SemKITTI(data_path, imageset=val_imageset,
-                              return_ref=val_ref, label_mapping=label_mapping, nusc=nusc)
+                              return_ref=val_ref, label_mapping=label_mapping)
 
     train_dataset = get_model_class(dataset_config['dataset_type'])(
         train_pt_dataset,
@@ -56,14 +56,14 @@ def build(dataset_config,
     train_dataset_loader = MultiEpochsDataLoader(dataset=train_dataset,
                                                        batch_size=train_dataloader_config["batch_size"],
                                                        collate_fn=collate_fn_BEV,
-                                                       pin_memory=True,
+                                                       pin_memory=False,
                                                        drop_last=True,
                                                        shuffle=train_dataloader_config["shuffle"],
                                                        num_workers=train_dataloader_config["num_workers"])
     val_dataset_loader = torch.utils.data.DataLoader(dataset=val_dataset,
                                                      batch_size=val_dataloader_config["batch_size"],
                                                      collate_fn=collate_fn_BEV,
-                                                     pin_memory=True,
+                                                     pin_memory=False,
                                                      drop_last=True,
                                                      shuffle=val_dataloader_config["shuffle"],
                                                      num_workers=val_dataloader_config["num_workers"])
