@@ -1,0 +1,530 @@
+labels:
+  0: 'person'
+  1: 'bicycle'
+  2: 'car'
+  3: 'motorcycle'
+  4: 'train'
+  5: 'truck'
+  6: 'boat'
+  7: 'bridge'
+  8: 'building-other-merged'
+  9: 'gravel'
+  10: 'railroad'
+  11: 'road'
+  12: 'pavement-merged'
+  13: 'dirt-merged'
+  14: 'sand'
+  15: 'snow'
+  16: 'floor-other-merged'
+  17: 'grass-merged'
+  18: 'wall-other-merged'
+  19: 'rock-merged'
+  20: 'water-other'
+  21: 'tree-merged'
+  22: 'fence-merged'
+  23: 'sky-other-merged'
+  24: 'floor-concrete'
+  25: 'container'
+  26: 'self-arm'
+  27: 'self-leg'
+  28: 'stone'
+  29: 'gravel-pile'
+  30: 'sand-pile'
+  31: 'unknown'
+  32: 'unknown2'
+labels_9:
+  0: 'unlabeled'
+  1: 'person'
+  2: 'vehicle'
+  3: 'building-other-merged'
+  4: 'floor-other-merged'
+  5: 'rock-merged'
+  6: 'water-other'
+  7: 'tree-merged'
+  8: 'stone'
+  9: 'pile-other-merged'
+labels_2:
+  0: 'unlabeled'
+  1: 'object'
+  2: 'ground'
+labels_10:
+  0: 'unlabeled'
+  1: 'person'
+  2: 'vehicle'
+  3: 'building-other-merged'
+  4: 'floor-other-merged'
+  5: 'rock-merged'
+  6: 'tree-merged'
+  7: 'bridge'
+  8: 'pile-other-merged'
+  9: 'grass-merged'
+  10: 'container'
+labels_5:
+  0: 'unlabeled'
+  1: 'object'
+  2: 'building-other-merged'
+  3: 'ground-other-merged'
+  4: 'bridge'
+  5: 'tree-merged'
+labels_31:
+  0: 'unknown'
+  1: 'person'
+  2: 'bicycle'
+  3: 'car'
+  4: 'motorcycle'
+  5: 'train'
+  6: 'truck'
+  7: 'boat'
+  8: 'bridge'
+  9: 'building-other-merged'
+  10: 'gravel'
+  11: 'railroad'
+  12: 'road'
+  13: 'pavement-merged'
+  14: 'dirt-merged'
+  15: 'sand'
+  16: 'snow'
+  17: 'floor-other-merged'
+  18: 'grass-merged'
+  19: 'wall-other-merged'
+  20: 'rock-merged'
+  21: 'water-other'
+  22: 'tree-merged'
+  23: 'fence-merged'
+  24: 'sky-other-merged'
+  25: 'floor-concrete'
+  26: 'container'
+  27: 'self-arm'
+  28: 'self-leg'
+  29: 'stone'
+  30: 'gravel-pile'
+  31: 'sand-pile'
+labels_6:
+  0: 'unlabeled'
+  1: 'object'
+  2: 'building-other-merged'
+  3: 'ground-other-merged'
+  4: 'gravel'
+  5: 'tree-merged'
+  6: 'grass-merged'
+labels_6_2:
+  0: 'unlabeled'
+  1: 'object'
+  2: 'building-other-merged'
+  3: 'ground-other-merged'
+  4: 'self-arm'
+  5: 'tree-merged'
+  6: 'grass-merged'
+#learning_map:
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#learning_map:
+#  0: 1
+#  1: 2
+#  2: 2
+#  3: 2
+#  4: 2
+#  5: 2
+#  6: 2
+#  7: 3
+#  8: 3
+#  9: 4
+#  10: 4
+#  11: 4
+#  12: 4
+#  13: 4
+#  14: 4
+#  15: 4
+#  16: 4
+#  17: 4
+#  18: 3
+#  19: 5
+#  20: 6
+#  21: 7
+#  22: 3
+#  23: 0
+#  24: 4
+#  25: 3
+#  26: 0
+#  27: 0
+#  28: 8
+#  29: 9
+#  30: 9
+#  31: 0
+#  32: 0
+learning_map: # labels 2
+  0: 1
+  1: 1
+  2: 1
+  3: 1
+  4: 1
+  5: 1
+  6: 1
+  7: 1
+  8: 1
+  9: 2
+  10: 2
+  11: 2
+  12: 2
+  13: 2
+  14: 2
+  15: 2
+  16: 2
+  17: 2
+  18: 1
+  19: 1
+  20: 2
+  21: 1
+  22: 1
+  23: 0
+  24: 2
+  25: 1
+  26: 0
+  27: 0
+  28: 0
+  29: 1
+  30: 1
+  31: 0
+  32: 0
+#learning_map:
+#  0: 1
+#  1: 2
+#  2: 2
+#  3: 2
+#  4: 2
+#  5: 2
+#  6: 2
+#  7: 7
+#  8: 3
+#  9: 4
+#  10: 4
+#  11: 4
+#  12: 4
+#  13: 4
+#  14: 4
+#  15: 4
+#  16: 4
+#  17: 9
+#  18: 3
+#  19: 5
+#  20: 0
+#  21: 6
+#  22: 3
+#  23: 0
+#  24: 4
+#  25: 10
+#  26: 0
+#  27: 0
+#  28: 5
+#  29: 9
+#  30: 9
+#  31: 0
+#  32: 0
+#learning_map: # labels 5
+#  0: 1
+#  1: 1
+#  2: 1
+#  3: 1
+#  4: 1
+#  5: 1
+#  6: 1
+#  7: 4
+#  8: 2
+#  9: 3
+#  10: 0
+#  11: 3
+#  12: 3
+#  13: 3
+#  14: 3
+#  15: 3
+#  16: 3
+#  17: 3
+#  18: 2
+#  19: 1
+#  20: 0
+#  21: 5
+#  22: 1
+#  23: 0
+#  24: 3
+#  25: 2
+#  26: 0
+#  27: 0
+#  28: 1
+#  29: 1
+#  30: 1
+#  31: 0
+#  32: 0
+#learning_map: # labels 31
+#  0: 1
+#  1: 2
+#  2: 3
+#  3: 4
+#  4: 5
+#  5: 6
+#  6: 7
+#  7: 8
+#  8: 9
+#  9: 10
+#  10: 11
+#  11: 12
+#  12: 13
+#  13: 14
+#  14: 15
+#  15: 16
+#  16: 17
+#  17: 18
+#  18: 19
+#  19: 20
+#  20: 21
+#  21: 22
+#  22: 23
+#  23: 24
+#  24: 25
+#  25: 26
+#  26: 27
+#  27: 28
+#  28: 29
+#  29: 30
+#  30: 31
+#  31: 0
+#  32: 0
+#learning_map: # labels 6
+#  0: 1
+#  1: 1
+#  2: 1
+#  3: 1
+#  4: 1
+#  5: 1
+#  6: 1
+#  7: 2
+#  8: 2
+#  9: 4
+#  10: 0
+#  11: 3
+#  12: 3
+#  13: 3
+#  14: 3
+#  15: 3
+#  16: 3
+#  17: 6
+#  18: 2
+#  19: 1
+#  20: 0
+#  21: 5
+#  22: 1
+#  23: 0
+#  24: 3
+#  25: 2
+#  26: 0
+#  27: 0
+#  28: 1
+#  29: 1
+#  30: 1
+#  31: 0
+#  32: 0
+#learning_map: # labels 6_2
+#  0: 1
+#  1: 1
+#  2: 1
+#  3: 1
+#  4: 1
+#  5: 1
+#  6: 1
+#  7: 2
+#  8: 2
+#  9: 3
+#  10: 0
+#  11: 3
+#  12: 3
+#  13: 3
+#  14: 3
+#  15: 3
+#  16: 3
+#  17: 6
+#  18: 2
+#  19: 1
+#  20: 0
+#  21: 5
+#  22: 1
+#  23: 0
+#  24: 3
+#  25: 2
+#  26: 4
+#  27: 0
+#  28: 1
+#  29: 1
+#  30: 1
+#  31: 0
+#  32: 0
+#learning_map_inv:
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#learning_map_inv:
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#  10: 10
+learning_map_inv: # labels 2
+  0: 0
+  2: 2
+  1: 1
+#learning_map_inv: # labels 5
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#learning_map_inv: # labels 31
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#  7: 7
+#  8: 8
+#  9: 9
+#  10: 10
+#  11: 11
+#  12: 12
+#  13: 13
+#  14: 14
+#  15: 15
+#  16: 16
+#  17: 17
+#  18: 18
+#  19: 19
+#  20: 20
+#  21: 21
+#  22: 22
+#  23: 23
+#  24: 24
+#  25: 25
+#  26: 26
+#  27: 27
+#  28: 28
+#  29: 29
+#  30: 30
+#  31: 31
+#learning_map_inv: # labels 6 and labels 6_2
+#  0: 0
+#  1: 1
+#  2: 2
+#  3: 3
+#  4: 4
+#  5: 5
+#  6: 6
+#learning_ignore: # Ignore classes
+#  0: True      # "unlabeled", and others ignored
+#  1: False     # "person"
+#  2: False     # "vehicle"
+#  3: False     # "building-other-merged"
+#  4: False     # "floor-other-merged"
+#  5: False     # "rock-merged"
+#  6: False     # "water-other"
+#  7: False     # "tree-merged"
+#  8: False     # "stone"
+#  9: False     # "pile-other-merged"
+#learning_ignore: # Ignore classes
+#  0: True      # "unlabeled", and others ignored
+#  1: False     # "person"
+#  2: False     # "vehicle"
+#  3: False     # "building-other-merged"
+#  4: False     # "floor-other-merged"
+#  5: False     # "rock-merged"
+#  6: False     # "tree-merged"
+#  7: False     # "bridge"
+#  8: False     # "pile-other-merged"
+#  9: False     # "grass-merged"
+#  10: False    # "container"
+learning_ignore: # Ignore classes
+  0: True      # "unlabeled", and others ignored
+  1: False     # "object"
+  2: False     # "ground"
+#learning_ignore: # Ignore classes
+#  0: True      # "unlabeled", and others ignored
+#  1: False     # "object"
+#  2: False     # "building-other-merged"
+#  3: False     # "ground-other-merged"
+#  4: False     # "bridge"
+#  5: False     # "tree-merged"
+#learning_ignore: # Ignore classes
+#  0: True      # "unlabeled", and others ignored
+#  1: False     # "object"
+#  2: False     # "building-other-merged"
+#  3: False     # "ground-other-merged"
+#  4: False     # "gravel"
+#  5: False     # "tree-merged"
+#  6: False     # "grass-merged"
+split: # sequence numbers
+  train:
+    - '2022-04-22-14-39-32-humans_hoengg'
+    - '2022-05-17-08-50-44-driving_hoengg'
+    - 'mapping_bag_hoengg'
+    - '2021-08-27-12-50-11-005_oberglatt'
+    - '2021-08-27-12-59-11-007_oberglatt'
+  valid:
+    - '2022-05-17-08-50-44-driving_hoengg'
+    - '2022-04-22-14-48-12-humans_hoengg'
+    - '2021-08-27-11-36-12-009_oberglatt'
+  test:
+    - 0
+color_map: # bgr
+  0 : [0, 0, 0]
+  1 : [220, 20, 60]
+  2: [0, 0, 142]
+  3: [248, 231, 28]
+  4: [124, 74, 181]
+  5: [0, 114, 143]
+  6: [58, 71, 149]
+  7: [107, 142, 35]
+  8: [0, 114, 113]
+  9: [124, 74, 141]
+  10: [200, 40, 255]
+  11: [90, 30, 150]
+  12: [255, 0, 255]
+  13: [255, 150, 255]
+  14: [75, 0, 75]
+  15: [75, 0, 175]
+  16: [0, 200, 255]
+  17: [50, 120, 255]
+  18: [0, 150, 255]
+  19: [170, 255, 150]
+  20: [0, 175, 0]
+  21: [0, 60, 135]
+  22: [80, 240, 150]
+  23: [150, 240, 255]
+  24: [100, 200, 255]
+  25: [0, 0, 255]
+  26: [255, 255, 50]
+  27: [245, 150, 100]
+  28: [255, 0, 0]
+  29: [200, 40, 255]
+  30: [30, 30, 255]
+  31: [90, 30, 150]
+  32: [0, 0, 0]

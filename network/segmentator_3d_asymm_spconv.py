@@ -52,7 +52,7 @@ class ResContextBlock(nn.Module):
         self.conv1 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef1")
         self.bn0 = nn.BatchNorm1d(out_filters)
         self.act1 = nn.LeakyReLU()
-          
+
         self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef2")
         # self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
 
@@ -108,8 +108,8 @@ class ResBlock(nn.Module):
         self.act1 = nn.LeakyReLU()
         self.bn0 = nn.BatchNorm1d(out_filters)
 
-        self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef2")
-        # self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
+        #self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef2")
         self.act1_2 = nn.LeakyReLU()
         self.bn0_2 = nn.BatchNorm1d(out_filters)
 
@@ -117,8 +117,8 @@ class ResBlock(nn.Module):
         self.act2 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef4")
-        # self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
+        #self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef4")
         self.act3 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
@@ -175,12 +175,13 @@ class UpBlock(nn.Module):
         self.act1 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        self.conv2 = conv3x1(out_filters, out_filters, indice_key=indice_key+'up2')
-        # self.conv2 = conv1x3(out_filters, out_filters, indice_key=indice_key)
+        #self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv2 = conv1x3(out_filters, out_filters, indice_key=indice_key+'up2')
         self.act2 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
-        self.conv3 = conv3x3(out_filters, out_filters, indice_key=indice_key+'up3')
+        #self.conv3 = conv3x3(out_filters, out_filters, indice_key=indice_key)
+        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key+'up3')
         self.act3 = nn.LeakyReLU()
         self.bn3 = nn.BatchNorm1d(out_filters)
         # self.dropout3 = nn.Dropout3d(p=dropout_rate)
@@ -289,6 +290,21 @@ class Asymm_3d_spconv(nn.Module):
         self.logits = spconv.SubMConv3d(4 * init_size, nclasses, indice_key="logit", kernel_size=3, stride=1, padding=1,
                                         bias=True)
 
+        # self.downCntx = ResContextBlock(num_input_features, init_size, indice_key="pre")
+        # self.resBlock2 = ResBlock(init_size, 2 * init_size, 0.2, height_pooling=True, indice_key="down2")
+        # self.resBlock3 = ResBlock(2 * init_size, 4 * init_size, 0.2, height_pooling=True, indice_key="down3")
+        # self.resBlock4 = ResBlock(4 * init_size, 8 * init_size, 0.2, pooling=True, height_pooling=False,
+        #                           indice_key="down4")
+        #
+        # self.upBlock0 = UpBlock(8 * init_size, 8 * init_size, indice_key="up0", up_key="down4")
+        # self.upBlock1 = UpBlock(8 * init_size, 4 * init_size, indice_key="up2", up_key="down3")
+        # self.upBlock2 = UpBlock(4 * init_size, 2 * init_size, indice_key="up3", up_key="down2")
+        #
+        # self.ReconNet = ReconBlock(2 * init_size, 2 * init_size, indice_key="recon")
+        #
+        # self.logits = spconv.SubMConv3d(4 * init_size, nclasses, indice_key="logit", kernel_size=3, stride=1, padding=1,
+        #                                 bias=True)
+
     def forward(self, voxel_features, coors, batch_size):
         # x = x.contiguous()
         coors = coors.int()
@@ -306,6 +322,15 @@ class Asymm_3d_spconv(nn.Module):
         up3e = self.upBlock1(up4e, down3b)
         up2e = self.upBlock2(up3e, down2b)
         up1e = self.upBlock3(up2e, down1b)
+
+        # ret = self.downCntx(ret)
+        # down1c, down1b = self.resBlock2(ret)
+        # down2c, down2b = self.resBlock3(down1c)
+        # down3c, down3b = self.resBlock4(down2c)
+        #
+        # up3e = self.upBlock0(down3c, down3b)
+        # up2e = self.upBlock1(up3e, down2b)
+        # up1e = self.upBlock2(up2e, down1b)
 
         up0e = self.ReconNet(up1e)
 

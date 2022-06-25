@@ -13,6 +13,7 @@ import numba as nb
 import yaml
 from torch.utils import data
 import pickle
+import sklearn.preprocessing
 
 REGISTERED_DATASET_CLASSES = {}
 
@@ -200,7 +201,7 @@ class cylinder_dataset(data.Dataset):
 
         # random data augmentation by rotation
         if self.rotate_aug:
-            rotate_rad = np.deg2rad(np.random.random() * 90) - np.pi / 4
+            rotate_rad = np.deg2rad(np.random.random() * 360) - np.pi / 1
             c, s = np.cos(rotate_rad), np.sin(rotate_rad)
             j = np.matrix([[c, s], [-s, c]])
             xyz[:, :2] = np.dot(xyz[:, :2], j)
@@ -229,12 +230,12 @@ class cylinder_dataset(data.Dataset):
 
         xyz_pol = cart2polar(xyz)
 
-        max_bound_r = np.percentile(xyz_pol[:, 0], 100, axis=0)
-        min_bound_r = np.percentile(xyz_pol[:, 0], 0, axis=0)
-        max_bound = np.max(xyz_pol[:, 1:], axis=0)
-        min_bound = np.min(xyz_pol[:, 1:], axis=0)
-        max_bound = np.concatenate(([max_bound_r], max_bound))
-        min_bound = np.concatenate(([min_bound_r], min_bound))
+        # max_bound_r = np.percentile(xyz_pol[:, 0], 100, axis=0)
+        # min_bound_r = np.percentile(xyz_pol[:, 0], 0, axis=0)
+        # max_bound = np.max(xyz_pol[:, 1:], axis=0)
+        # min_bound = np.min(xyz_pol[:, 1:], axis=0)
+        # max_bound = np.concatenate(([max_bound_r], max_bound))
+        # min_bound = np.concatenate(([min_bound_r], min_bound))
         if self.fixed_volume_space:
             max_bound = np.asarray(self.max_volume_space)
             min_bound = np.asarray(self.min_volume_space)
@@ -246,11 +247,12 @@ class cylinder_dataset(data.Dataset):
         if (intervals == 0).any(): print("Zero interval!")
         grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
 
-        voxel_position = np.zeros(self.grid_size, dtype=np.float32)
-        dim_array = np.ones(len(self.grid_size) + 1, int)
-        dim_array[0] = -1
-        voxel_position = np.indices(self.grid_size) * intervals.reshape(dim_array) + min_bound.reshape(dim_array)
-        voxel_position = polar2cat(voxel_position)
+        # voxel_position = np.zeros(self.grid_size, dtype=np.float32)
+        # dim_array = np.ones(len(self.grid_size) + 1, int)
+        # dim_array[0] = -1
+        # voxel_position = np.indices(self.grid_size) * intervals.reshape(dim_array) + min_bound.reshape(dim_array)
+        # voxel_position = polar2cat(voxel_position)
+        voxel_position = []
 
         processed_label = np.ones(self.grid_size, dtype=np.uint8) * self.ignore_label
         label_voxel_pair = np.concatenate([grid_ind, labels], axis=1)
@@ -273,6 +275,7 @@ class cylinder_dataset(data.Dataset):
         else:
             data_tuple += (grid_ind, labels, return_fea)
         return data_tuple
+
 
 
 @register_dataset
