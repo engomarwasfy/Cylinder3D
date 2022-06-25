@@ -2,6 +2,8 @@
 # author: Xinge
 # @file: segmentator_3d_asymm_spconv.py
 
+# updated to Spconv-V2 by github@min2209
+
 import numpy as np
 #import spconv
 import spconv.pytorch as spconv
@@ -47,22 +49,22 @@ def conv1x1(in_planes, out_planes, stride=1, indice_key=None):
 class ResContextBlock(nn.Module):
     def __init__(self, in_filters, out_filters, kernel_size=(3, 3, 3), stride=1, indice_key=None):
         super(ResContextBlock, self).__init__()
-        self.conv1 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef1")
         self.bn0 = nn.BatchNorm1d(out_filters)
         self.act1 = nn.LeakyReLU()
           
-        #elf.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
-        self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef2")
+        # self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
 
         self.bn0_2 = nn.BatchNorm1d(out_filters)
         self.act1_2 = nn.LeakyReLU()
 
-        self.conv2 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv2 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef3")
         self.act2 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        #self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
-        self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef4")
+        # self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act3 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
@@ -102,21 +104,21 @@ class ResBlock(nn.Module):
         self.pooling = pooling
         self.drop_out = drop_out
 
-        self.conv1 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef1")
         self.act1 = nn.LeakyReLU()
         self.bn0 = nn.BatchNorm1d(out_filters)
 
-        #self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
-        self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef2")
+        # self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act1_2 = nn.LeakyReLU()
         self.bn0_2 = nn.BatchNorm1d(out_filters)
 
-        self.conv2 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv2 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef3")
         self.act2 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        #self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
-        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef4")
+        # self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act3 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
@@ -169,17 +171,16 @@ class UpBlock(nn.Module):
         self.trans_act = nn.LeakyReLU()
         self.trans_bn = nn.BatchNorm1d(out_filters)
 
-        self.conv1 = conv1x3(out_filters, out_filters, indice_key=indice_key)
+        self.conv1 = conv1x3(out_filters, out_filters, indice_key=indice_key+'up1')
         self.act1 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        #self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
-        self.conv2 = conv1x3(out_filters, out_filters, indice_key=indice_key)
+        self.conv2 = conv3x1(out_filters, out_filters, indice_key=indice_key+'up2')
+        # self.conv2 = conv1x3(out_filters, out_filters, indice_key=indice_key)
         self.act2 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
-        #self.conv3 = conv3x3(out_filters, out_filters, indice_key=indice_key)
-        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key)
+        self.conv3 = conv3x3(out_filters, out_filters, indice_key=indice_key+'up3')
         self.act3 = nn.LeakyReLU()
         self.bn3 = nn.BatchNorm1d(out_filters)
         # self.dropout3 = nn.Dropout3d(p=dropout_rate)
@@ -223,15 +224,15 @@ class UpBlock(nn.Module):
 class ReconBlock(nn.Module):
     def __init__(self, in_filters, out_filters, kernel_size=(3, 3, 3), stride=1, indice_key=None):
         super(ReconBlock, self).__init__()
-        self.conv1 = conv3x1x1(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1 = conv3x1x1(in_filters, out_filters, indice_key=indice_key + "bef1")
         self.bn0 = nn.BatchNorm1d(out_filters)
         self.act1 = nn.Sigmoid()
 
-        self.conv1_2 = conv1x3x1(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1_2 = conv1x3x1(in_filters, out_filters, indice_key=indice_key + "bef2")
         self.bn0_2 = nn.BatchNorm1d(out_filters)
         self.act1_2 = nn.Sigmoid()
 
-        self.conv1_3 = conv1x1x3(in_filters, out_filters, indice_key=indice_key + "bef")
+        self.conv1_3 = conv1x1x3(in_filters, out_filters, indice_key=indice_key + "bef3")
         self.bn0_3 = nn.BatchNorm1d(out_filters)
         self.act1_3 = nn.Sigmoid()
 
