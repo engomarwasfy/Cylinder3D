@@ -235,11 +235,22 @@ class SemKITTI_sk(data.Dataset):
         return len(self.im_idx)
 
     def __getitem__(self, index):
-        raw_data = np.fromfile(self.im_idx[index], dtype=np.float32).reshape((-1, 4))
+        raw_data = []
+        bad_file = False
+        try:
+            raw_data = np.fromfile(self.im_idx[index], dtype=np.float32).reshape((-1, 4))
+        except:
+            raw_data = np.fromfile(self.im_idx[0], dtype=np.float32).reshape((-1, 4))
+            bad_file = True
         if self.imageset == 'test':
             annotated_data = np.expand_dims(np.zeros_like(raw_data[:, 0], dtype=int), axis=1)
         else:
-            annotated_data = np.fromfile(self.im_idx[index].replace('velodyne', 'labels')[:-3] + 'label',
+            annotated_data = []
+            i = index
+            if (bad_file):
+                i = 0
+                bad_file = False
+            annotated_data = np.fromfile(self.im_idx[i].replace('velodyne', 'labels')[:-3] + 'label',
                                          dtype=np.uint32).reshape((-1, 1))
             annotated_data = annotated_data & 0xFFFF  # delete high 16 digits binary
             annotated_data = np.vectorize(self.learning_map.__getitem__)(annotated_data)
