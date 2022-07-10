@@ -1,0 +1,1762 @@
+/opt/conda/envs/torch3/bin/python /root/pycharm/plugins/python/helpers/pydev/pydevconsole.py --mode=client --port=32947
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+sys.path.extend(['/media/wasfy/One Touch/TA/content/Cylinder3D'])
+PyDev console: starting.
+Python 3.10.2 | packaged by conda-forge | (main, Feb  1 2022, 19:29:00) [GCC 9.4.0] on linux
+runfile('/media/wasfy/One Touch/TA/content/Cylinder3D/train_cylinder_asym.py', wdir='/media/wasfy/One Touch/TA/content/Cylinder3D')
+/media/wasfy/One Touch/TA/content/Cylinder3D/train_cylinder_asym.py
+Namespace(config_path='config/semantickitti.yaml')
+[480 360  32]
+ Epoch:  0
+Global iter:  0
+  0%|          | 1/14598 [00:05<24:10:51,  5.96s/it]
+epoch 0 iter     0, loss: 4.092
+  7%|▋         | 1001/14598 [03:47<50:51,  4.46it/s]
+epoch 0 iter  1000, loss: 1.657
+ 14%|█▎        | 2001/14598 [07:26<46:39,  4.50it/s]
+epoch 0 iter  2000, loss: 1.473
+ 21%|██        | 3001/14598 [11:06<40:38,  4.76it/s]
+epoch 0 iter  3000, loss: 1.369
+ 27%|██▋       | 4001/14598 [14:44<42:31,  4.15it/s]
+epoch 0 iter  4000, loss: 1.299
+ 32%|███▏      | 4599/14598 [16:56<36:07,  4.61it/s]epoch 0 iter  4598, loss: 1.265
+ 34%|███▍      | 5001/14598 [18:24<37:52,  4.22it/s]
+epoch 0 iter  5000, loss: 1.245
+ 41%|████      | 6001/14598 [22:03<28:30,  5.03it/s]
+epoch 0 iter  6000, loss: 1.200
+ 48%|████▊     | 7001/14598 [25:43<31:08,  4.07it/s]
+epoch 0 iter  7000, loss: 1.165
+ 55%|█████▍    | 8001/14598 [29:22<25:07,  4.38it/s]
+epoch 0 iter  8000, loss: 1.137
+ 62%|██████▏   | 9001/14598 [33:00<19:55,  4.68it/s]
+epoch 0 iter  9000, loss: 1.109
+ 63%|██████▎   | 9198/14598 [33:43<18:45,  4.80it/s]epoch 0 iter  9197, loss: 1.104
+ 69%|██████▊   | 10001/14598 [36:39<17:18,  4.43it/s]
+epoch 0 iter 10000, loss: 1.085
+ 75%|███████▌  | 11001/14598 [40:19<12:59,  4.61it/s]
+epoch 0 iter 11000, loss: 1.064
+ 82%|████████▏ | 12001/14598 [43:59<09:09,  4.73it/s]
+epoch 0 iter 12000, loss: 1.045
+ 89%|████████▉ | 13001/14598 [47:39<05:45,  4.62it/s]
+epoch 0 iter 13000, loss: 1.028
+ 95%|█████████▍| 13797/14598 [50:33<02:40,  4.99it/s]epoch 0 iter 13796, loss: 1.014
+ 96%|█████████▌| 14001/14598 [51:18<02:12,  4.51it/s]
+epoch 0 iter 14000, loss: 1.011
+100%|██████████| 14598/14598 [53:30<00:00,  4.55it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  1
+Global iter:  14598
+  3%|▎         | 403/14598 [01:29<58:41,  4.03it/s]
+epoch 1 iter   402, loss: 0.790
+ 10%|▉         | 1403/14598 [05:07<52:39,  4.18it/s]
+epoch 1 iter  1402, loss: 0.780
+ 16%|█▋        | 2403/14598 [08:48<41:57,  4.84it/s]
+epoch 1 iter  2402, loss: 0.776
+ 23%|██▎       | 3403/14598 [12:28<35:59,  5.18it/s]
+epoch 1 iter  3402, loss: 0.769
+ 26%|██▌       | 3798/14598 [13:55<34:16,  5.25it/s]epoch 1 iter  3797, loss: 0.768
+Validation per class iou: 
+car : 92.20%
+bicycle : 17.15%
+motorcycle : 5.55%
+truck : 20.54%
+bus : 18.35%
+person : 32.45%
+bicyclist : 18.49%
+motorcyclist : 0.00%
+road : 88.66%
+parking : 14.71%
+sidewalk : 72.09%
+other-ground : 0.00%
+building : 85.30%
+fence : 44.17%
+vegetation : 87.08%
+trunk : 51.64%
+terrain : 73.77%
+pole : 64.35%
+traffic-sign : 40.89%
+Current val miou is 43.548 while the best val miou is 43.548
+Current val loss is 0.857
+ 30%|███       | 4403/14598 [24:19<40:54,  4.15it/s]
+epoch 1 iter  4402, loss: 0.765
+ 37%|███▋      | 5403/14598 [28:01<34:53,  4.39it/s]
+epoch 1 iter  5402, loss: 0.760
+ 44%|████▍     | 6403/14598 [31:41<27:28,  4.97it/s]
+epoch 1 iter  6402, loss: 0.755
+ 51%|█████     | 7403/14598 [35:23<30:21,  3.95it/s]
+epoch 1 iter  7402, loss: 0.752
+ 58%|█████▊    | 8397/14598 [39:04<24:35,  4.20it/s]epoch 1 iter  8396, loss: 0.747
+Validation per class iou: 
+car : 92.68%
+bicycle : 7.52%
+motorcycle : 15.57%
+truck : 42.26%
+bus : 19.89%
+person : 49.29%
+bicyclist : 54.41%
+motorcyclist : 0.00%
+road : 90.99%
+parking : 20.89%
+sidewalk : 74.31%
+other-ground : 0.00%
+building : 87.46%
+fence : 48.86%
+vegetation : 86.96%
+trunk : 49.48%
+terrain : 72.86%
+pole : 60.29%
+traffic-sign : 44.64%
+Current val miou is 48.335 while the best val miou is 48.335
+Current val loss is 0.827
+ 58%|█████▊    | 8403/14598 [46:58<41:24:05, 24.06s/it]
+epoch 1 iter  8402, loss: 0.747
+ 64%|██████▍   | 9403/14598 [50:41<17:59,  4.81it/s]
+epoch 1 iter  9402, loss: 0.744
+ 71%|███████▏  | 10403/14598 [54:24<18:11,  3.84it/s]
+epoch 1 iter 10402, loss: 0.740
+ 78%|███████▊  | 11403/14598 [58:06<11:26,  4.66it/s]
+epoch 1 iter 11402, loss: 0.735
+ 85%|████████▍ | 12403/14598 [1:01:47<08:03,  4.54it/s]
+epoch 1 iter 12402, loss: 0.732
+ 89%|████████▉ | 12996/14598 [1:03:59<06:15,  4.26it/s]epoch 1 iter 12995, loss: 0.730
+Validation per class iou: 
+car : 91.25%
+bicycle : 21.01%
+motorcycle : 25.34%
+truck : 32.88%
+bus : 26.05%
+person : 41.10%
+bicyclist : 33.90%
+motorcyclist : 0.00%
+road : 89.65%
+parking : 18.31%
+sidewalk : 71.37%
+other-ground : 0.02%
+building : 87.90%
+fence : 50.59%
+vegetation : 86.07%
+trunk : 48.40%
+terrain : 70.24%
+pole : 63.99%
+traffic-sign : 42.11%
+Current val miou is 47.378 while the best val miou is 48.335
+Current val loss is 0.849
+ 92%|█████████▏| 13403/14598 [1:13:36<04:36,  4.32it/s]
+epoch 1 iter 13402, loss: 0.728
+ 99%|█████████▊| 14403/14598 [1:17:19<00:42,  4.55it/s]
+epoch 1 iter 14402, loss: 0.724
+100%|██████████| 14598/14598 [1:18:02<00:00,  3.12it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  2
+Global iter:  29196
+  6%|▌         | 805/14598 [02:59<45:54,  5.01it/s]
+epoch 2 iter   804, loss: 0.666
+ 12%|█▏        | 1805/14598 [06:43<51:09,  4.17it/s]
+epoch 2 iter  1804, loss: 0.663
+ 19%|█▉        | 2805/14598 [10:26<41:55,  4.69it/s]
+epoch 2 iter  2804, loss: 0.658
+ 21%|██        | 2997/14598 [11:09<41:41,  4.64it/s]epoch 2 iter  2996, loss: 0.659
+Validation per class iou: 
+car : 93.74%
+bicycle : 32.21%
+motorcycle : 23.41%
+truck : 48.65%
+bus : 26.06%
+person : 44.18%
+bicyclist : 33.49%
+motorcyclist : 0.00%
+road : 90.69%
+parking : 34.91%
+sidewalk : 74.72%
+other-ground : 0.00%
+building : 87.81%
+fence : 48.20%
+vegetation : 85.45%
+trunk : 50.75%
+terrain : 69.35%
+pole : 61.48%
+traffic-sign : 42.79%
+Current val miou is 49.889 while the best val miou is 49.889
+Current val loss is 0.827
+ 26%|██▌       | 3805/14598 [22:12<38:56,  4.62it/s]
+epoch 2 iter  3804, loss: 0.657
+ 33%|███▎      | 4805/14598 [25:55<35:42,  4.57it/s]
+epoch 2 iter  4804, loss: 0.656
+ 40%|███▉      | 5805/14598 [29:38<32:58,  4.44it/s]
+epoch 2 iter  5804, loss: 0.652
+ 47%|████▋     | 6805/14598 [33:20<29:07,  4.46it/s]
+epoch 2 iter  6804, loss: 0.650
+ 52%|█████▏    | 7596/14598 [36:15<24:21,  4.79it/s]epoch 2 iter  7595, loss: 0.648
+Validation per class iou: 
+car : 93.85%
+bicycle : 27.07%
+motorcycle : 27.06%
+truck : 45.51%
+bus : 21.23%
+person : 58.32%
+bicyclist : 57.54%
+motorcyclist : 0.00%
+road : 90.48%
+parking : 35.12%
+sidewalk : 74.88%
+other-ground : 0.00%
+building : 89.11%
+fence : 58.21%
+vegetation : 84.05%
+trunk : 57.60%
+terrain : 66.36%
+pole : 63.97%
+traffic-sign : 47.50%
+Current val miou is 52.518 while the best val miou is 52.518
+Current val loss is 0.826
+ 53%|█████▎    | 7805/14598 [45:04<27:06,  4.18it/s]
+epoch 2 iter  7804, loss: 0.648
+ 60%|██████    | 8805/14598 [48:47<20:37,  4.68it/s]
+epoch 2 iter  8804, loss: 0.646
+ 67%|██████▋   | 9805/14598 [52:28<17:11,  4.65it/s]
+epoch 2 iter  9804, loss: 0.643
+ 74%|███████▍  | 10805/14598 [56:09<13:41,  4.62it/s]
+epoch 2 iter 10804, loss: 0.641
+ 81%|████████  | 11805/14598 [59:50<10:17,  4.52it/s]
+epoch 2 iter 11804, loss: 0.639
+ 84%|████████▎ | 12195/14598 [1:01:16<09:42,  4.12it/s]epoch 2 iter 12194, loss: 0.639
+Validation per class iou: 
+car : 93.45%
+bicycle : 26.62%
+motorcycle : 15.56%
+truck : 31.75%
+bus : 32.29%
+person : 56.53%
+bicyclist : 65.36%
+motorcyclist : 0.00%
+road : 91.86%
+parking : 26.81%
+sidewalk : 76.21%
+other-ground : 0.00%
+building : 90.02%
+fence : 56.05%
+vegetation : 86.08%
+trunk : 55.72%
+terrain : 71.32%
+pole : 61.00%
+traffic-sign : 45.36%
+Current val miou is 51.683 while the best val miou is 52.518
+Current val loss is 0.792
+ 88%|████████▊ | 12805/14598 [1:11:06<06:16,  4.76it/s]
+epoch 2 iter 12804, loss: 0.637
+ 95%|█████████▍| 13805/14598 [1:14:49<03:14,  4.07it/s]
+epoch 2 iter 13804, loss: 0.635
+100%|██████████| 14598/14598 [1:17:46<00:00,  3.13it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  3
+Global iter:  43794
+  1%|▏         | 207/14598 [00:46<53:20,  4.50it/s]
+epoch 3 iter   206, loss: 0.614
+  8%|▊         | 1207/14598 [04:29<45:49,  4.87it/s]
+epoch 3 iter  1206, loss: 0.596
+ 15%|█▌        | 2196/14598 [08:10<45:08,  4.58it/s]epoch 3 iter  2195, loss: 0.595
+Validation per class iou: 
+car : 94.26%
+bicycle : 8.07%
+motorcycle : 14.98%
+truck : 42.11%
+bus : 32.65%
+person : 48.80%
+bicyclist : 60.58%
+motorcyclist : 0.00%
+road : 90.56%
+parking : 35.75%
+sidewalk : 75.70%
+other-ground : 0.00%
+building : 87.87%
+fence : 50.74%
+vegetation : 83.79%
+trunk : 58.88%
+terrain : 67.53%
+pole : 64.63%
+traffic-sign : 44.06%
+Current val miou is 50.577 while the best val miou is 52.518
+Current val loss is 0.834
+ 15%|█▌        | 2207/14598 [15:54<14:16:05,  4.15s/it]
+epoch 3 iter  2206, loss: 0.595
+ 22%|██▏       | 3207/14598 [19:39<44:18,  4.28it/s]
+epoch 3 iter  3206, loss: 0.593
+ 29%|██▉       | 4207/14598 [23:23<37:35,  4.61it/s]
+epoch 3 iter  4206, loss: 0.593
+ 36%|███▌      | 5207/14598 [27:06<37:02,  4.23it/s]
+epoch 3 iter  5206, loss: 0.592
+ 43%|████▎     | 6207/14598 [30:50<31:48,  4.40it/s]
+epoch 3 iter  6206, loss: 0.591
+ 47%|████▋     | 6795/14598 [33:00<28:36,  4.55it/s]epoch 3 iter  6794, loss: 0.591
+Validation per class iou: 
+car : 93.83%
+bicycle : 9.81%
+motorcycle : 25.25%
+truck : 43.44%
+bus : 35.70%
+person : 61.65%
+bicyclist : 59.53%
+motorcyclist : 0.00%
+road : 92.04%
+parking : 23.88%
+sidewalk : 76.51%
+other-ground : 0.00%
+building : 89.79%
+fence : 58.19%
+vegetation : 87.91%
+trunk : 52.66%
+terrain : 75.60%
+pole : 64.64%
+traffic-sign : 47.37%
+Current val miou is 52.516 while the best val miou is 52.518
+Current val loss is 0.765
+ 49%|████▉     | 7207/14598 [42:08<26:14,  4.70it/s]
+epoch 3 iter  7206, loss: 0.590
+ 56%|█████▌    | 8207/14598 [45:52<23:25,  4.55it/s]
+epoch 3 iter  8206, loss: 0.588
+ 63%|██████▎   | 9207/14598 [49:36<21:03,  4.27it/s]
+epoch 3 iter  9206, loss: 0.587
+ 70%|██████▉   | 10207/14598 [53:19<15:13,  4.81it/s]
+epoch 3 iter 10206, loss: 0.586
+ 77%|███████▋  | 11207/14598 [57:01<13:46,  4.10it/s]
+epoch 3 iter 11206, loss: 0.585
+ 78%|███████▊  | 11394/14598 [57:43<12:09,  4.39it/s]epoch 3 iter 11393, loss: 0.585
+Validation per class iou: 
+car : 92.78%
+bicycle : 29.86%
+motorcycle : 27.02%
+truck : 42.47%
+bus : 22.56%
+person : 28.74%
+bicyclist : 41.89%
+motorcyclist : 0.00%
+road : 91.25%
+parking : 17.62%
+sidewalk : 74.07%
+other-ground : 0.00%
+building : 88.35%
+fence : 56.05%
+vegetation : 83.26%
+trunk : 42.74%
+terrain : 66.25%
+pole : 58.75%
+traffic-sign : 44.45%
+Current val miou is 47.795 while the best val miou is 52.518
+Current val loss is 0.854
+ 84%|████████▎ | 12207/14598 [1:08:28<08:39,  4.60it/s]
+epoch 3 iter 12206, loss: 0.583
+ 90%|█████████ | 13207/14598 [1:12:11<04:34,  5.07it/s]
+epoch 3 iter 13206, loss: 0.583
+ 97%|█████████▋| 14207/14598 [1:15:52<01:29,  4.39it/s]
+epoch 3 iter 14206, loss: 0.581
+100%|██████████| 14598/14598 [1:17:18<00:00,  3.15it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  4
+Global iter:  58392
+  4%|▍         | 609/14598 [02:15<50:36,  4.61it/s]
+epoch 4 iter   608, loss: 0.550
+ 10%|▉         | 1395/14598 [05:11<48:43,  4.52it/s]epoch 4 iter  1394, loss: 0.549
+Validation per class iou: 
+car : 94.06%
+bicycle : 22.90%
+motorcycle : 21.11%
+truck : 43.42%
+bus : 33.71%
+person : 56.55%
+bicyclist : 52.97%
+motorcyclist : 0.00%
+road : 90.71%
+parking : 33.71%
+sidewalk : 74.45%
+other-ground : 0.00%
+building : 89.40%
+fence : 49.28%
+vegetation : 87.21%
+trunk : 52.76%
+terrain : 74.39%
+pole : 63.06%
+traffic-sign : 46.60%
+Current val miou is 51.910 while the best val miou is 52.518
+Current val loss is 0.787
+ 11%|█         | 1609/14598 [13:35<41:36,  5.20it/s]
+epoch 4 iter  1608, loss: 0.552
+ 18%|█▊        | 2609/14598 [17:21<44:36,  4.48it/s]
+epoch 4 iter  2608, loss: 0.552
+ 25%|██▍       | 3609/14598 [21:04<43:41,  4.19it/s]
+epoch 4 iter  3608, loss: 0.552
+ 32%|███▏      | 4609/14598 [24:47<33:41,  4.94it/s]
+epoch 4 iter  4608, loss: 0.551
+ 38%|███▊      | 5609/14598 [28:30<34:47,  4.31it/s]
+epoch 4 iter  5608, loss: 0.550
+ 41%|████      | 5994/14598 [29:55<32:29,  4.41it/s]epoch 4 iter  5993, loss: 0.550
+Validation per class iou: 
+car : 94.70%
+bicycle : 15.79%
+motorcycle : 29.04%
+truck : 36.99%
+bus : 27.83%
+person : 50.72%
+bicyclist : 52.70%
+motorcyclist : 0.00%
+road : 90.18%
+parking : 17.80%
+sidewalk : 76.69%
+other-ground : 0.00%
+building : 90.20%
+fence : 52.40%
+vegetation : 85.63%
+trunk : 61.90%
+terrain : 72.95%
+pole : 63.74%
+traffic-sign : 45.52%
+Current val miou is 50.778 while the best val miou is 52.518
+Current val loss is 0.785
+ 45%|████▌     | 6609/14598 [39:56<27:35,  4.83it/s]
+epoch 4 iter  6608, loss: 0.550
+ 52%|█████▏    | 7609/14598 [43:47<24:18,  4.79it/s]
+epoch 4 iter  7608, loss: 0.550
+ 59%|█████▉    | 8609/14598 [47:35<23:58,  4.16it/s]
+epoch 4 iter  8608, loss: 0.549
+ 66%|██████▌   | 9609/14598 [51:23<18:50,  4.41it/s]
+epoch 4 iter  9608, loss: 0.548
+ 73%|███████▎  | 10593/14598 [55:06<15:26,  4.32it/s]epoch 4 iter 10592, loss: 0.548
+Validation per class iou: 
+car : 94.64%
+bicycle : 9.52%
+motorcycle : 32.18%
+truck : 25.47%
+bus : 24.70%
+person : 55.47%
+bicyclist : 58.19%
+motorcyclist : 0.00%
+road : 91.55%
+parking : 41.70%
+sidewalk : 76.53%
+other-ground : 0.00%
+building : 89.59%
+fence : 53.27%
+vegetation : 85.81%
+trunk : 52.70%
+terrain : 71.38%
+pole : 62.49%
+traffic-sign : 45.98%
+Current val miou is 51.114 while the best val miou is 52.518
+Current val loss is 0.794
+ 73%|███████▎  | 10609/14598 [1:02:54<57:47,  1.15it/s]  
+epoch 4 iter 10608, loss: 0.548
+ 80%|███████▉  | 11609/14598 [1:06:45<12:02,  4.14it/s]
+epoch 4 iter 11608, loss: 0.546
+ 86%|████████▋ | 12609/14598 [1:10:35<07:31,  4.40it/s]
+epoch 4 iter 12608, loss: 0.545
+ 93%|█████████▎| 13609/14598 [1:14:24<03:34,  4.61it/s]
+epoch 4 iter 13608, loss: 0.544
+100%|██████████| 14598/14598 [1:18:08<00:00,  3.11it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  5
+Global iter:  72990
+  0%|          | 11/14598 [00:02<59:47,  4.07it/s]
+epoch 5 iter    10, loss: 0.571
+  4%|▍         | 594/14598 [02:14<49:14,  4.74it/s]epoch 5 iter   593, loss: 0.529
+Validation per class iou: 
+car : 94.03%
+bicycle : 8.53%
+motorcycle : 20.05%
+truck : 5.57%
+bus : 36.74%
+person : 62.54%
+bicyclist : 64.49%
+motorcyclist : 0.00%
+road : 90.58%
+parking : 31.96%
+sidewalk : 75.00%
+other-ground : 0.01%
+building : 89.80%
+fence : 57.20%
+vegetation : 83.59%
+trunk : 55.33%
+terrain : 64.92%
+pole : 64.02%
+traffic-sign : 41.75%
+Current val miou is 49.795 while the best val miou is 52.518
+Current val loss is 0.836
+  7%|▋         | 1011/14598 [11:40<56:01,  4.04it/s]
+epoch 5 iter  1010, loss: 0.528
+ 14%|█▍        | 2011/14598 [15:30<45:00,  4.66it/s]
+epoch 5 iter  2010, loss: 0.523
+ 21%|██        | 3011/14598 [19:19<44:55,  4.30it/s]
+epoch 5 iter  3010, loss: 0.522
+ 27%|██▋       | 4011/14598 [23:09<38:39,  4.56it/s]
+epoch 5 iter  4010, loss: 0.524
+ 34%|███▍      | 5011/14598 [26:56<32:17,  4.95it/s]
+epoch 5 iter  5010, loss: 0.523
+ 36%|███▌      | 5193/14598 [27:38<35:01,  4.48it/s]epoch 5 iter  5192, loss: 0.523
+Validation per class iou: 
+car : 94.40%
+bicycle : 26.04%
+motorcycle : 38.02%
+truck : 37.66%
+bus : 41.11%
+person : 55.55%
+bicyclist : 40.44%
+motorcyclist : 0.00%
+road : 91.45%
+parking : 35.33%
+sidewalk : 76.79%
+other-ground : 0.00%
+building : 89.43%
+fence : 56.68%
+vegetation : 85.03%
+trunk : 53.13%
+terrain : 68.09%
+pole : 64.21%
+traffic-sign : 41.41%
+Current val miou is 52.357 while the best val miou is 52.518
+Current val loss is 0.805
+ 41%|████      | 6011/14598 [38:29<34:37,  4.13it/s]
+epoch 5 iter  6010, loss: 0.522
+ 48%|████▊     | 7011/14598 [42:18<28:45,  4.40it/s]
+epoch 5 iter  7010, loss: 0.521
+ 55%|█████▍    | 8011/14598 [46:08<22:39,  4.85it/s]
+epoch 5 iter  8010, loss: 0.520
+ 62%|██████▏   | 9011/14598 [49:58<22:59,  4.05it/s]
+epoch 5 iter  9010, loss: 0.519
+ 67%|██████▋   | 9792/14598 [52:56<18:51,  4.25it/s]epoch 5 iter  9791, loss: 0.518
+Validation per class iou: 
+car : 93.95%
+bicycle : 11.94%
+motorcycle : 17.71%
+truck : 57.57%
+bus : 23.68%
+person : 65.30%
+bicyclist : 57.77%
+motorcyclist : 0.00%
+road : 92.64%
+parking : 25.59%
+sidewalk : 76.54%
+other-ground : 0.02%
+building : 89.66%
+fence : 58.12%
+vegetation : 86.53%
+trunk : 51.60%
+terrain : 73.26%
+pole : 64.55%
+traffic-sign : 44.52%
+Current val miou is 52.155 while the best val miou is 52.518
+Current val loss is 0.789
+ 69%|██████▊   | 10011/14598 [1:01:28<16:28,  4.64it/s]
+epoch 5 iter 10010, loss: 0.518
+ 75%|███████▌  | 11011/14598 [1:05:13<12:16,  4.87it/s]
+epoch 5 iter 11010, loss: 0.516
+ 82%|████████▏ | 12011/14598 [1:08:55<10:02,  4.29it/s]
+epoch 5 iter 12010, loss: 0.516
+ 89%|████████▉ | 13011/14598 [1:12:39<05:50,  4.53it/s]
+epoch 5 iter 13010, loss: 0.516
+ 96%|█████████▌| 14011/14598 [1:16:21<01:51,  5.29it/s]
+epoch 5 iter 14010, loss: 0.515
+ 99%|█████████▊| 14391/14598 [1:17:45<00:46,  4.46it/s]epoch 5 iter 14390, loss: 0.515
+Validation per class iou: 
+car : 92.88%
+bicycle : 35.49%
+motorcycle : 29.92%
+truck : 34.64%
+bus : 28.70%
+person : 67.99%
+bicyclist : 75.01%
+motorcyclist : 0.00%
+road : 90.99%
+parking : 25.94%
+sidewalk : 74.47%
+other-ground : 0.01%
+building : 89.30%
+fence : 59.37%
+vegetation : 85.87%
+trunk : 62.04%
+terrain : 71.33%
+pole : 63.72%
+traffic-sign : 44.45%
+Current val miou is 54.322 while the best val miou is 54.322
+Current val loss is 0.775
+100%|██████████| 14598/14598 [1:26:25<00:00,  2.82it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  6
+Global iter:  87588
+  3%|▎         | 413/14598 [01:32<57:15,  4.13it/s]
+epoch 6 iter   412, loss: 0.497
+ 10%|▉         | 1413/14598 [05:15<49:41,  4.42it/s]
+epoch 6 iter  1412, loss: 0.496
+ 17%|█▋        | 2413/14598 [08:57<39:01,  5.20it/s]
+epoch 6 iter  2412, loss: 0.493
+ 23%|██▎       | 3413/14598 [12:40<44:12,  4.22it/s]
+epoch 6 iter  3412, loss: 0.493
+ 30%|███       | 4392/14598 [16:16<33:48,  5.03it/s]epoch 6 iter  4391, loss: 0.493
+Validation per class iou: 
+car : 91.39%
+bicycle : 3.33%
+motorcycle : 21.18%
+truck : 36.58%
+bus : 25.39%
+person : 56.51%
+bicyclist : 60.98%
+motorcyclist : 0.00%
+road : 91.74%
+parking : 23.28%
+sidewalk : 75.22%
+other-ground : 0.00%
+building : 88.57%
+fence : 52.03%
+vegetation : 83.63%
+trunk : 49.01%
+terrain : 68.59%
+pole : 60.37%
+traffic-sign : 42.14%
+Current val miou is 48.945 while the best val miou is 54.322
+Current val loss is 0.885
+ 30%|███       | 4413/14598 [24:18<56:36,  3.00it/s]  
+epoch 6 iter  4412, loss: 0.494
+ 37%|███▋      | 5413/14598 [28:01<27:38,  5.54it/s]
+epoch 6 iter  5412, loss: 0.494
+ 44%|████▍     | 6413/14598 [31:45<34:43,  3.93it/s]
+epoch 6 iter  6412, loss: 0.494
+ 51%|█████     | 7413/14598 [35:28<26:00,  4.61it/s]
+epoch 6 iter  7412, loss: 0.494
+ 58%|█████▊    | 8413/14598 [39:09<21:48,  4.73it/s]
+epoch 6 iter  8412, loss: 0.492
+ 62%|██████▏   | 8991/14598 [41:16<19:20,  4.83it/s]epoch 6 iter  8990, loss: 0.492
+Validation per class iou: 
+car : 93.90%
+bicycle : 19.12%
+motorcycle : 16.64%
+truck : 34.98%
+bus : 29.83%
+person : 40.21%
+bicyclist : 11.03%
+motorcyclist : 0.00%
+road : 90.90%
+parking : 22.57%
+sidewalk : 74.56%
+other-ground : 0.00%
+building : 87.55%
+fence : 47.53%
+vegetation : 83.98%
+trunk : 42.55%
+terrain : 65.95%
+pole : 58.17%
+traffic-sign : 40.19%
+Current val miou is 45.246 while the best val miou is 54.322
+Current val loss is 0.892
+ 64%|██████▍   | 9413/14598 [50:44<18:48,  4.59it/s]
+epoch 6 iter  9412, loss: 0.492
+ 71%|███████▏  | 10413/14598 [54:28<16:12,  4.30it/s]
+epoch 6 iter 10412, loss: 0.493
+ 78%|███████▊  | 11413/14598 [58:10<11:44,  4.52it/s]
+epoch 6 iter 11412, loss: 0.492
+ 85%|████████▌ | 12413/14598 [1:01:52<09:15,  3.93it/s]
+epoch 6 iter 12412, loss: 0.492
+ 92%|█████████▏| 13413/14598 [1:05:33<04:21,  4.52it/s]
+epoch 6 iter 13412, loss: 0.492
+ 93%|█████████▎| 13590/14598 [1:06:12<03:42,  4.54it/s]epoch 6 iter 13589, loss: 0.491
+Validation per class iou: 
+car : 94.60%
+bicycle : 26.77%
+motorcycle : 38.92%
+truck : 43.56%
+bus : 31.39%
+person : 56.71%
+bicyclist : 56.32%
+motorcyclist : 0.00%
+road : 92.35%
+parking : 37.45%
+sidewalk : 77.60%
+other-ground : 0.04%
+building : 90.58%
+fence : 56.10%
+vegetation : 87.57%
+trunk : 52.75%
+terrain : 76.90%
+pole : 63.88%
+traffic-sign : 45.21%
+Current val miou is 54.143 while the best val miou is 54.322
+Current val loss is 0.753
+ 99%|█████████▊| 14413/14598 [1:17:12<00:37,  4.87it/s]
+epoch 6 iter 14412, loss: 0.491
+100%|██████████| 14598/14598 [1:17:54<00:00,  3.12it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  7
+Global iter:  102186
+  6%|▌         | 815/14598 [03:03<54:12,  4.24it/s]
+epoch 7 iter   814, loss: 0.472
+ 12%|█▏        | 1815/14598 [06:46<50:59,  4.18it/s]
+epoch 7 iter  1814, loss: 0.474
+ 19%|█▉        | 2815/14598 [10:29<40:05,  4.90it/s]
+epoch 7 iter  2814, loss: 0.474
+ 25%|██▍       | 3591/14598 [13:22<38:46,  4.73it/s]epoch 7 iter  3590, loss: 0.475
+Validation per class iou: 
+car : 90.89%
+bicycle : 6.43%
+motorcycle : 15.68%
+truck : 22.94%
+bus : 22.67%
+person : 55.93%
+bicyclist : 67.97%
+motorcyclist : 0.00%
+road : 92.60%
+parking : 18.60%
+sidewalk : 76.79%
+other-ground : 0.00%
+building : 89.66%
+fence : 56.87%
+vegetation : 86.84%
+trunk : 47.37%
+terrain : 75.45%
+pole : 60.67%
+traffic-sign : 35.09%
+Current val miou is 48.549 while the best val miou is 54.322
+Current val loss is 0.810
+ 26%|██▌       | 3815/14598 [22:05<42:22,  4.24it/s]
+epoch 7 iter  3814, loss: 0.474
+ 33%|███▎      | 4815/14598 [25:49<37:01,  4.40it/s]
+epoch 7 iter  4814, loss: 0.473
+ 40%|███▉      | 5815/14598 [29:32<30:09,  4.85it/s]
+epoch 7 iter  5814, loss: 0.472
+ 47%|████▋     | 6815/14598 [33:13<32:09,  4.03it/s]
+epoch 7 iter  6814, loss: 0.473
+ 54%|█████▎    | 7815/14598 [36:54<24:15,  4.66it/s]
+epoch 7 iter  7814, loss: 0.473
+ 56%|█████▌    | 8190/14598 [38:17<21:12,  5.03it/s]epoch 7 iter  8189, loss: 0.473
+Validation per class iou: 
+car : 91.95%
+bicycle : 2.71%
+motorcycle : 22.60%
+truck : 58.56%
+bus : 10.52%
+person : 66.02%
+bicyclist : 62.56%
+motorcyclist : 0.00%
+road : 89.26%
+parking : 31.02%
+sidewalk : 73.87%
+other-ground : 0.04%
+building : 89.92%
+fence : 55.38%
+vegetation : 88.47%
+trunk : 57.29%
+terrain : 76.79%
+pole : 63.19%
+traffic-sign : 45.23%
+Current val miou is 51.863 while the best val miou is 54.322
+Current val loss is 0.784
+ 60%|██████    | 8815/14598 [48:33<19:51,  4.85it/s]
+epoch 7 iter  8814, loss: 0.472
+ 67%|██████▋   | 9815/14598 [52:16<18:19,  4.35it/s]
+epoch 7 iter  9814, loss: 0.473
+ 74%|███████▍  | 10815/14598 [55:59<14:19,  4.40it/s]
+epoch 7 iter 10814, loss: 0.473
+ 81%|████████  | 11815/14598 [59:41<09:14,  5.02it/s]
+epoch 7 iter 11814, loss: 0.473
+ 88%|████████▊ | 12789/14598 [1:03:16<06:15,  4.81it/s]epoch 7 iter 12788, loss: 0.473
+Validation per class iou: 
+car : 93.57%
+bicycle : 14.93%
+motorcycle : 13.91%
+truck : 63.37%
+bus : 34.18%
+person : 60.69%
+bicyclist : 55.31%
+motorcyclist : 0.00%
+road : 90.89%
+parking : 26.33%
+sidewalk : 74.77%
+other-ground : 0.14%
+building : 90.21%
+fence : 58.92%
+vegetation : 87.14%
+trunk : 54.63%
+terrain : 73.51%
+pole : 61.52%
+traffic-sign : 44.74%
+Current val miou is 52.565 while the best val miou is 54.322
+Current val loss is 0.777
+ 88%|████████▊ | 12815/14598 [1:10:59<07:51,  3.78it/s]
+epoch 7 iter 12814, loss: 0.473
+ 95%|█████████▍| 13815/14598 [1:14:44<03:02,  4.29it/s]
+epoch 7 iter 13814, loss: 0.473
+100%|██████████| 14598/14598 [1:17:39<00:00,  3.13it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  8
+Global iter:  116784
+  1%|▏         | 217/14598 [00:49<51:14,  4.68it/s]
+epoch 8 iter   216, loss: 0.451
+  8%|▊         | 1217/14598 [04:33<52:14,  4.27it/s]
+epoch 8 iter  1216, loss: 0.460
+ 15%|█▌        | 2217/14598 [08:21<46:01,  4.48it/s]
+epoch 8 iter  2216, loss: 0.459
+ 19%|█▉        | 2790/14598 [10:29<44:46,  4.39it/s]epoch 8 iter  2789, loss: 0.460
+Validation per class iou: 
+car : 94.94%
+bicycle : 11.39%
+motorcycle : 19.52%
+truck : 43.58%
+bus : 33.98%
+person : 56.42%
+bicyclist : 41.07%
+motorcyclist : 0.00%
+road : 92.25%
+parking : 27.92%
+sidewalk : 77.19%
+other-ground : 0.08%
+building : 90.82%
+fence : 62.95%
+vegetation : 83.05%
+trunk : 63.23%
+terrain : 62.13%
+pole : 62.15%
+traffic-sign : 42.96%
+Current val miou is 50.822 while the best val miou is 54.322
+Current val loss is 0.844
+ 22%|██▏       | 3217/14598 [20:00<40:12,  4.72it/s]
+epoch 8 iter  3216, loss: 0.460
+ 29%|██▉       | 4217/14598 [23:45<41:22,  4.18it/s]
+epoch 8 iter  4216, loss: 0.460
+ 36%|███▌      | 5217/14598 [27:30<34:03,  4.59it/s]
+epoch 8 iter  5216, loss: 0.458
+ 43%|████▎     | 6217/14598 [31:12<27:27,  5.09it/s]
+epoch 8 iter  6216, loss: 0.458
+ 49%|████▉     | 7217/14598 [34:55<29:56,  4.11it/s]
+epoch 8 iter  7216, loss: 0.458
+ 51%|█████     | 7389/14598 [35:34<27:21,  4.39it/s]epoch 8 iter  7388, loss: 0.458
+Validation per class iou: 
+car : 94.38%
+bicycle : 20.24%
+motorcycle : 12.91%
+truck : 37.79%
+bus : 36.91%
+person : 56.96%
+bicyclist : 68.24%
+motorcyclist : 0.00%
+road : 92.40%
+parking : 29.35%
+sidewalk : 77.05%
+other-ground : 0.00%
+building : 88.61%
+fence : 53.65%
+vegetation : 84.83%
+trunk : 52.66%
+terrain : 67.96%
+pole : 62.84%
+traffic-sign : 42.77%
+Current val miou is 51.556 while the best val miou is 54.322
+Current val loss is 0.799
+ 56%|█████▋    | 8217/14598 [46:17<23:25,  4.54it/s]
+epoch 8 iter  8216, loss: 0.458
+ 63%|██████▎   | 9217/14598 [50:02<18:15,  4.91it/s]
+epoch 8 iter  9216, loss: 0.457
+ 70%|██████▉   | 10217/14598 [53:45<16:25,  4.44it/s]
+epoch 8 iter 10216, loss: 0.457
+ 77%|███████▋  | 11217/14598 [57:27<13:12,  4.26it/s]
+epoch 8 iter 11216, loss: 0.458
+ 82%|████████▏ | 11988/14598 [1:00:19<08:44,  4.97it/s]epoch 8 iter 11987, loss: 0.457
+Validation per class iou: 
+car : 95.06%
+bicycle : 19.86%
+motorcycle : 25.35%
+truck : 44.20%
+bus : 31.74%
+person : 64.08%
+bicyclist : 56.84%
+motorcyclist : 0.00%
+road : 86.14%
+parking : 31.27%
+sidewalk : 71.07%
+other-ground : 0.00%
+building : 89.92%
+fence : 61.75%
+vegetation : 86.71%
+trunk : 37.57%
+terrain : 74.51%
+pole : 62.11%
+traffic-sign : 44.87%
+Current val miou is 51.739 while the best val miou is 54.322
+Current val loss is 0.826
+ 84%|████████▎ | 12217/14598 [1:08:47<08:22,  4.74it/s]
+epoch 8 iter 12216, loss: 0.457
+ 91%|█████████ | 13217/14598 [1:12:33<05:14,  4.39it/s]
+epoch 8 iter 13216, loss: 0.457
+ 97%|█████████▋| 14217/14598 [1:16:16<01:20,  4.75it/s]
+epoch 8 iter 14216, loss: 0.456
+100%|██████████| 14598/14598 [1:17:41<00:00,  3.13it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  9
+Global iter:  131382
+  4%|▍         | 619/14598 [02:18<47:58,  4.86it/s]
+epoch 9 iter   618, loss: 0.448
+ 11%|█         | 1619/14598 [06:03<52:02,  4.16it/s]
+epoch 9 iter  1618, loss: 0.440
+ 14%|█▎        | 1989/14598 [07:25<44:32,  4.72it/s]epoch 9 iter  1988, loss: 0.440
+Validation per class iou: 
+car : 94.52%
+bicycle : 4.09%
+motorcycle : 36.53%
+truck : 47.35%
+bus : 38.41%
+person : 58.93%
+bicyclist : 24.95%
+motorcyclist : 0.00%
+road : 90.55%
+parking : 36.21%
+sidewalk : 75.75%
+other-ground : 0.00%
+building : 86.63%
+fence : 59.31%
+vegetation : 83.28%
+trunk : 58.61%
+terrain : 67.44%
+pole : 63.93%
+traffic-sign : 40.47%
+Current val miou is 50.893 while the best val miou is 54.322
+Current val loss is 0.852
+ 18%|█▊        | 2619/14598 [17:24<46:53,  4.26it/s]
+epoch 9 iter  2618, loss: 0.438
+ 25%|██▍       | 3619/14598 [21:10<36:56,  4.95it/s]
+epoch 9 iter  3618, loss: 0.439
+ 32%|███▏      | 4619/14598 [24:53<39:17,  4.23it/s]
+epoch 9 iter  4618, loss: 0.438
+ 38%|███▊      | 5619/14598 [28:37<34:25,  4.35it/s]
+epoch 9 iter  5618, loss: 0.438
+ 45%|████▌     | 6588/14598 [32:13<29:46,  4.48it/s]epoch 9 iter  6587, loss: 0.439
+Validation per class iou: 
+car : 94.19%
+bicycle : 11.06%
+motorcycle : 16.23%
+truck : 12.81%
+bus : 29.47%
+person : 48.53%
+bicyclist : 39.55%
+motorcyclist : 0.00%
+road : 92.08%
+parking : 22.06%
+sidewalk : 76.03%
+other-ground : 0.01%
+building : 89.43%
+fence : 58.24%
+vegetation : 83.39%
+trunk : 45.47%
+terrain : 66.55%
+pole : 59.85%
+traffic-sign : 42.81%
+Current val miou is 46.725 while the best val miou is 54.322
+Current val loss is 0.868
+ 45%|████▌     | 6619/14598 [39:54<28:12,  4.72it/s]
+epoch 9 iter  6618, loss: 0.439
+ 52%|█████▏    | 7619/14598 [43:37<27:07,  4.29it/s]
+epoch 9 iter  7618, loss: 0.439
+ 59%|█████▉    | 8619/14598 [47:20<22:43,  4.38it/s]
+epoch 9 iter  8618, loss: 0.440
+ 66%|██████▌   | 9619/14598 [51:02<17:34,  4.72it/s]
+epoch 9 iter  9618, loss: 0.440
+ 73%|███████▎  | 10619/14598 [54:44<14:24,  4.60it/s]
+epoch 9 iter 10618, loss: 0.440
+ 77%|███████▋  | 11187/14598 [56:50<12:17,  4.62it/s]epoch 9 iter 11186, loss: 0.440
+Validation per class iou: 
+car : 92.44%
+bicycle : 11.12%
+motorcycle : 33.10%
+truck : 37.21%
+bus : 35.00%
+person : 62.35%
+bicyclist : 55.62%
+motorcyclist : 0.00%
+road : 92.75%
+parking : 19.95%
+sidewalk : 78.12%
+other-ground : 0.10%
+building : 89.27%
+fence : 48.86%
+vegetation : 87.13%
+trunk : 48.90%
+terrain : 77.30%
+pole : 60.81%
+traffic-sign : 44.55%
+Current val miou is 51.293 while the best val miou is 54.322
+Current val loss is 0.800
+ 80%|███████▉  | 11619/14598 [1:06:04<10:41,  4.65it/s]
+epoch 9 iter 11618, loss: 0.440
+ 86%|████████▋ | 12619/14598 [1:09:49<06:15,  5.27it/s]
+epoch 9 iter 12618, loss: 0.440
+ 93%|█████████▎| 13619/14598 [1:13:34<03:46,  4.32it/s]
+epoch 9 iter 13618, loss: 0.440
+100%|██████████| 14598/14598 [1:17:12<00:00,  3.15it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  10
+Global iter:  145980
+  0%|          | 21/14598 [00:04<52:26,  4.63it/s]
+epoch 10 iter    20, loss: 0.448
+  7%|▋         | 1021/14598 [03:47<46:39,  4.85it/s]
+epoch 10 iter  1020, loss: 0.428
+  8%|▊         | 1188/14598 [04:24<46:56,  4.76it/s]epoch 10 iter  1187, loss: 0.427
+Validation per class iou: 
+car : 94.44%
+bicycle : 6.23%
+motorcycle : 28.82%
+truck : 42.13%
+bus : 43.26%
+person : 58.15%
+bicyclist : 70.27%
+motorcyclist : 0.00%
+road : 91.39%
+parking : 31.65%
+sidewalk : 76.82%
+other-ground : 0.30%
+building : 90.66%
+fence : 61.91%
+vegetation : 86.63%
+trunk : 59.05%
+terrain : 72.06%
+pole : 63.87%
+traffic-sign : 47.76%
+Current val miou is 53.969 while the best val miou is 54.322
+Current val loss is 0.768
+ 14%|█▍        | 2021/14598 [15:10<52:04,  4.03it/s]
+epoch 10 iter  2020, loss: 0.428
+ 21%|██        | 3021/14598 [18:55<47:31,  4.06it/s]
+epoch 10 iter  3020, loss: 0.428
+ 28%|██▊       | 4021/14598 [22:38<34:16,  5.14it/s]
+epoch 10 iter  4020, loss: 0.429
+ 34%|███▍      | 5021/14598 [26:24<37:11,  4.29it/s]
+epoch 10 iter  5020, loss: 0.429
+ 40%|███▉      | 5787/14598 [29:15<33:49,  4.34it/s]epoch 10 iter  5786, loss: 0.429
+Validation per class iou: 
+car : 93.43%
+bicycle : 0.01%
+motorcycle : 30.17%
+truck : 39.91%
+bus : 40.94%
+person : 62.51%
+bicyclist : 54.83%
+motorcyclist : 0.00%
+road : 90.32%
+parking : 17.57%
+sidewalk : 74.16%
+other-ground : 0.00%
+building : 88.73%
+fence : 52.84%
+vegetation : 85.78%
+trunk : 46.41%
+terrain : 70.99%
+pole : 59.40%
+traffic-sign : 43.98%
+Current val miou is 50.105 while the best val miou is 54.322
+Current val loss is 0.831
+ 41%|████      | 6021/14598 [37:44<31:14,  4.58it/s]
+epoch 10 iter  6020, loss: 0.428
+ 48%|████▊     | 7021/14598 [41:30<25:50,  4.89it/s]
+epoch 10 iter  7020, loss: 0.427
+ 55%|█████▍    | 8021/14598 [45:13<24:46,  4.43it/s]
+epoch 10 iter  8020, loss: 0.428
+ 62%|██████▏   | 9021/14598 [48:56<22:04,  4.21it/s]
+epoch 10 iter  9020, loss: 0.428
+ 69%|██████▊   | 10021/14598 [52:37<14:26,  5.28it/s]
+epoch 10 iter 10020, loss: 0.428
+ 71%|███████   | 10386/14598 [53:59<16:17,  4.31it/s]epoch 10 iter 10385, loss: 0.428
+Validation per class iou: 
+car : 94.14%
+bicycle : 3.08%
+motorcycle : 14.54%
+truck : 36.40%
+bus : 37.77%
+person : 66.09%
+bicyclist : 61.81%
+motorcyclist : 0.00%
+road : 91.43%
+parking : 28.64%
+sidewalk : 75.94%
+other-ground : 0.02%
+building : 90.33%
+fence : 60.01%
+vegetation : 86.92%
+trunk : 47.90%
+terrain : 73.93%
+pole : 61.90%
+traffic-sign : 43.38%
+Current val miou is 51.274 while the best val miou is 54.322
+Current val loss is 0.796
+ 75%|███████▌  | 11021/14598 [1:03:59<14:17,  4.17it/s]
+epoch 10 iter 11020, loss: 0.427
+ 82%|████████▏ | 12021/14598 [1:07:44<09:17,  4.62it/s]
+epoch 10 iter 12020, loss: 0.428
+ 89%|████████▉ | 13021/14598 [1:11:28<05:14,  5.01it/s]
+epoch 10 iter 13020, loss: 0.428
+ 96%|█████████▌| 14021/14598 [1:15:12<02:11,  4.40it/s]
+epoch 10 iter 14020, loss: 0.428
+100%|██████████| 14598/14598 [1:17:20<00:00,  3.15it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  11
+Global iter:  160578
+  3%|▎         | 387/14598 [01:26<50:30,  4.69it/s]epoch 11 iter   386, loss: 0.416
+Validation per class iou: 
+car : 94.06%
+bicycle : 3.45%
+motorcycle : 18.44%
+truck : 52.25%
+bus : 29.81%
+person : 51.24%
+bicyclist : 3.76%
+motorcyclist : 0.00%
+road : 91.39%
+parking : 15.07%
+sidewalk : 74.91%
+other-ground : 0.09%
+building : 89.83%
+fence : 55.22%
+vegetation : 85.70%
+trunk : 49.35%
+terrain : 70.83%
+pole : 57.33%
+traffic-sign : 38.01%
+Current val miou is 46.354 while the best val miou is 54.322
+Current val loss is 0.837
+  3%|▎         | 423/14598 [09:13<54:57,  4.30it/s]
+epoch 11 iter   422, loss: 0.416
+ 10%|▉         | 1423/14598 [12:56<48:49,  4.50it/s]
+epoch 11 iter  1422, loss: 0.414
+ 17%|█▋        | 2423/14598 [16:41<45:49,  4.43it/s]
+epoch 11 iter  2422, loss: 0.410
+ 23%|██▎       | 3423/14598 [20:24<42:21,  4.40it/s]
+epoch 11 iter  3422, loss: 0.415
+ 30%|███       | 4423/14598 [24:08<34:03,  4.98it/s]
+epoch 11 iter  4422, loss: 0.417
+ 34%|███▍      | 4986/14598 [26:14<30:58,  5.17it/s]epoch 11 iter  4985, loss: 0.417
+Validation per class iou: 
+car : 95.23%
+bicycle : 3.46%
+motorcycle : 32.40%
+truck : 42.90%
+bus : 37.30%
+person : 61.13%
+bicyclist : 61.70%
+motorcyclist : 0.00%
+road : 93.54%
+parking : 29.99%
+sidewalk : 78.54%
+other-ground : 0.07%
+building : 90.28%
+fence : 60.42%
+vegetation : 85.65%
+trunk : 55.03%
+terrain : 69.47%
+pole : 62.04%
+traffic-sign : 46.66%
+Current val miou is 52.937 while the best val miou is 54.322
+Current val loss is 0.803
+ 37%|███▋      | 5423/14598 [35:30<34:49,  4.39it/s]
+epoch 11 iter  5422, loss: 0.416
+ 44%|████▍     | 6423/14598 [39:15<29:36,  4.60it/s]
+epoch 11 iter  6422, loss: 0.414
+ 51%|█████     | 7423/14598 [42:58<24:32,  4.87it/s]
+epoch 11 iter  7422, loss: 0.415
+ 58%|█████▊    | 8423/14598 [46:42<24:02,  4.28it/s]
+epoch 11 iter  8422, loss: 0.415
+ 65%|██████▍   | 9423/14598 [50:23<19:45,  4.36it/s]
+epoch 11 iter  9422, loss: 0.415
+ 66%|██████▌   | 9585/14598 [50:59<19:31,  4.28it/s]epoch 11 iter  9584, loss: 0.415
+Validation per class iou: 
+car : 93.40%
+bicycle : 2.14%
+motorcycle : 5.11%
+truck : 16.79%
+bus : 36.70%
+person : 61.66%
+bicyclist : 55.28%
+motorcyclist : 0.00%
+road : 92.05%
+parking : 28.81%
+sidewalk : 76.67%
+other-ground : 0.27%
+building : 89.76%
+fence : 60.49%
+vegetation : 87.16%
+trunk : 54.26%
+terrain : 74.26%
+pole : 62.85%
+traffic-sign : 43.18%
+Current val miou is 49.518 while the best val miou is 54.322
+Current val loss is 0.788
+ 71%|███████▏  | 10423/14598 [1:02:07<13:55,  5.00it/s]
+epoch 11 iter 10422, loss: 0.414
+ 78%|███████▊  | 11423/14598 [1:05:50<12:54,  4.10it/s]
+epoch 11 iter 11422, loss: 0.414
+ 85%|████████▌ | 12423/14598 [1:09:35<07:36,  4.76it/s]
+epoch 11 iter 12422, loss: 0.414
+ 92%|█████████▏| 13423/14598 [1:13:18<03:51,  5.08it/s]
+epoch 11 iter 13422, loss: 0.414
+ 97%|█████████▋| 14184/14598 [1:16:07<01:26,  4.81it/s]epoch 11 iter 14183, loss: 0.415
+Validation per class iou: 
+car : 94.92%
+bicycle : 1.09%
+motorcycle : 33.02%
+truck : 59.76%
+bus : 33.05%
+person : 57.81%
+bicyclist : 73.39%
+motorcyclist : 0.00%
+road : 91.13%
+parking : 34.87%
+sidewalk : 76.12%
+other-ground : 0.11%
+building : 89.22%
+fence : 60.33%
+vegetation : 85.62%
+trunk : 50.97%
+terrain : 70.89%
+pole : 64.53%
+traffic-sign : 42.41%
+Current val miou is 53.645 while the best val miou is 54.322
+Current val loss is 0.820
+ 99%|█████████▉| 14423/14598 [1:24:45<00:39,  4.40it/s]
+epoch 11 iter 14422, loss: 0.415
+100%|██████████| 14598/14598 [1:25:24<00:00,  2.85it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  12
+Global iter:  175176
+  6%|▌         | 825/14598 [03:06<52:09,  4.40it/s]
+epoch 12 iter   824, loss: 0.400
+ 13%|█▎        | 1825/14598 [06:50<39:43,  5.36it/s]
+epoch 12 iter  1824, loss: 0.404
+ 19%|█▉        | 2825/14598 [10:35<47:06,  4.17it/s]
+epoch 12 iter  2824, loss: 0.405
+ 26%|██▌       | 3825/14598 [14:20<37:31,  4.78it/s]
+epoch 12 iter  3824, loss: 0.404
+ 29%|██▊       | 4185/14598 [15:40<37:52,  4.58it/s]epoch 12 iter  4184, loss: 0.403
+Validation per class iou: 
+car : 92.91%
+bicycle : 5.79%
+motorcycle : 39.16%
+truck : 45.77%
+bus : 9.68%
+person : 59.48%
+bicyclist : 23.55%
+motorcyclist : 0.00%
+road : 90.30%
+parking : 26.05%
+sidewalk : 67.78%
+other-ground : 0.00%
+building : 85.19%
+fence : 52.18%
+vegetation : 85.00%
+trunk : 39.04%
+terrain : 64.58%
+pole : 56.08%
+traffic-sign : 36.60%
+Current val miou is 46.270 while the best val miou is 54.322
+Current val loss is 0.946
+ 33%|███▎      | 4825/14598 [25:55<32:22,  5.03it/s]
+epoch 12 iter  4824, loss: 0.403
+ 40%|███▉      | 5825/14598 [29:40<35:51,  4.08it/s]
+epoch 12 iter  5824, loss: 0.403
+ 47%|████▋     | 6825/14598 [33:25<29:42,  4.36it/s]
+epoch 12 iter  6824, loss: 0.405
+ 54%|█████▎    | 7825/14598 [37:10<22:26,  5.03it/s]
+epoch 12 iter  7824, loss: 0.404
+ 60%|██████    | 8784/14598 [40:44<18:26,  5.26it/s]epoch 12 iter  8783, loss: 0.404
+Validation per class iou: 
+car : 94.09%
+bicycle : 4.52%
+motorcycle : 12.37%
+truck : 23.89%
+bus : 26.60%
+person : 59.00%
+bicyclist : 47.22%
+motorcyclist : 0.00%
+road : 88.62%
+parking : 20.33%
+sidewalk : 72.64%
+other-ground : 0.00%
+building : 90.00%
+fence : 60.78%
+vegetation : 82.60%
+trunk : 56.79%
+terrain : 63.01%
+pole : 56.33%
+traffic-sign : 43.39%
+Current val miou is 47.484 while the best val miou is 54.322
+Current val loss is 0.887
+ 60%|██████    | 8825/14598 [48:35<23:44,  4.05it/s]
+epoch 12 iter  8824, loss: 0.404
+ 67%|██████▋   | 9825/14598 [52:22<17:30,  4.54it/s]
+epoch 12 iter  9824, loss: 0.403
+ 74%|███████▍  | 10825/14598 [56:06<13:00,  4.83it/s]
+epoch 12 iter 10824, loss: 0.404
+ 81%|████████  | 11825/14598 [59:49<10:39,  4.34it/s]
+epoch 12 iter 11824, loss: 0.404
+ 88%|████████▊ | 12825/14598 [1:03:32<06:13,  4.74it/s]
+epoch 12 iter 12824, loss: 0.403
+ 92%|█████████▏| 13383/14598 [1:05:36<04:26,  4.56it/s]epoch 12 iter 13382, loss: 0.403
+Validation per class iou: 
+car : 93.69%
+bicycle : 2.94%
+motorcycle : 25.31%
+truck : 38.20%
+bus : 29.74%
+person : 64.05%
+bicyclist : 74.29%
+motorcyclist : 0.00%
+road : 92.37%
+parking : 28.34%
+sidewalk : 76.95%
+other-ground : 0.05%
+building : 90.49%
+fence : 61.47%
+vegetation : 85.58%
+trunk : 45.61%
+terrain : 71.33%
+pole : 60.78%
+traffic-sign : 40.87%
+Current val miou is 51.688 while the best val miou is 54.322
+Current val loss is 0.822
+ 95%|█████████▍| 13825/14598 [1:15:06<02:45,  4.67it/s]
+epoch 12 iter 13824, loss: 0.403
+100%|██████████| 14598/14598 [1:18:04<00:00,  3.12it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  13
+Global iter:  189774
+  2%|▏         | 227/14598 [00:52<1:00:03,  3.99it/s]
+epoch 13 iter   226, loss: 0.392
+  8%|▊         | 1227/14598 [04:44<50:09,  4.44it/s]
+epoch 13 iter  1226, loss: 0.390
+ 15%|█▌        | 2227/14598 [08:32<43:20,  4.76it/s]
+epoch 13 iter  2226, loss: 0.397
+ 22%|██▏       | 3227/14598 [12:19<46:35,  4.07it/s]
+epoch 13 iter  3226, loss: 0.397
+ 23%|██▎       | 3384/14598 [12:55<44:21,  4.21it/s]epoch 13 iter  3383, loss: 0.397
+Validation per class iou: 
+car : 94.47%
+bicycle : 0.41%
+motorcycle : 14.97%
+truck : 7.34%
+bus : 39.68%
+person : 54.70%
+bicyclist : 27.74%
+motorcyclist : 0.00%
+road : 89.86%
+parking : 12.48%
+sidewalk : 73.62%
+other-ground : 0.02%
+building : 88.84%
+fence : 58.86%
+vegetation : 85.00%
+trunk : 49.36%
+terrain : 71.04%
+pole : 61.04%
+traffic-sign : 38.15%
+Current val miou is 45.663 while the best val miou is 54.322
+Current val loss is 0.872
+ 29%|██▉       | 4227/14598 [24:05<43:45,  3.95it/s]
+epoch 13 iter  4226, loss: 0.396
+ 36%|███▌      | 5227/14598 [27:54<30:56,  5.05it/s]
+epoch 13 iter  5226, loss: 0.396
+ 43%|████▎     | 6227/14598 [31:44<34:59,  3.99it/s]
+epoch 13 iter  6226, loss: 0.395
+ 50%|████▉     | 7227/14598 [35:32<29:16,  4.20it/s]
+epoch 13 iter  7226, loss: 0.394
+ 55%|█████▍    | 7983/14598 [38:24<23:52,  4.62it/s]epoch 13 iter  7982, loss: 0.394
+Validation per class iou: 
+car : 94.31%
+bicycle : 1.52%
+motorcycle : 17.50%
+truck : 44.33%
+bus : 35.37%
+person : 52.93%
+bicyclist : 62.22%
+motorcyclist : 0.00%
+road : 92.64%
+parking : 37.78%
+sidewalk : 77.84%
+other-ground : 0.38%
+building : 90.07%
+fence : 58.41%
+vegetation : 86.11%
+trunk : 52.50%
+terrain : 71.61%
+pole : 63.68%
+traffic-sign : 40.08%
+Current val miou is 51.542 while the best val miou is 54.322
+Current val loss is 0.810
+ 56%|█████▋    | 8227/14598 [47:19<22:57,  4.62it/s]
+epoch 13 iter  8226, loss: 0.394
+ 63%|██████▎   | 9227/14598 [51:11<21:18,  4.20it/s]
+epoch 13 iter  9226, loss: 0.394
+ 70%|███████   | 10227/14598 [55:02<17:41,  4.12it/s]
+epoch 13 iter 10226, loss: 0.394
+ 77%|███████▋  | 11227/14598 [58:49<11:23,  4.93it/s]
+epoch 13 iter 11226, loss: 0.394
+ 84%|████████▍ | 12227/14598 [1:02:32<08:57,  4.41it/s]
+epoch 13 iter 12226, loss: 0.394
+ 86%|████████▌ | 12582/14598 [1:03:53<07:02,  4.77it/s]epoch 13 iter 12581, loss: 0.394
+Validation per class iou: 
+car : 94.20%
+bicycle : 1.29%
+motorcycle : 25.80%
+truck : 17.22%
+bus : 39.56%
+person : 40.65%
+bicyclist : 54.40%
+motorcyclist : 0.00%
+road : 91.22%
+parking : 21.28%
+sidewalk : 75.40%
+other-ground : 0.00%
+building : 88.63%
+fence : 58.81%
+vegetation : 82.78%
+trunk : 57.43%
+terrain : 64.06%
+pole : 62.41%
+traffic-sign : 41.17%
+Current val miou is 48.227 while the best val miou is 54.322
+Current val loss is 0.869
+ 91%|█████████ | 13227/14598 [1:14:31<05:07,  4.45it/s]
+epoch 13 iter 13226, loss: 0.394
+ 97%|█████████▋| 14227/14598 [1:18:21<01:28,  4.18it/s]
+epoch 13 iter 14226, loss: 0.393
+100%|██████████| 14598/14598 [1:19:45<00:00,  3.05it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  14
+Global iter:  204372
+  4%|▍         | 629/14598 [02:26<1:00:48,  3.83it/s]
+epoch 14 iter   628, loss: 0.376
+ 11%|█         | 1629/14598 [06:16<48:52,  4.42it/s]
+epoch 14 iter  1628, loss: 0.382
+ 18%|█▊        | 2583/14598 [09:56<47:33,  4.21it/s]epoch 14 iter  2582, loss: 0.380
+Validation per class iou: 
+car : 94.37%
+bicycle : 4.44%
+motorcycle : 29.45%
+truck : 43.30%
+bus : 26.65%
+person : 67.14%
+bicyclist : 59.41%
+motorcyclist : 0.00%
+road : 90.17%
+parking : 8.61%
+sidewalk : 73.26%
+other-ground : 0.03%
+building : 88.12%
+fence : 48.17%
+vegetation : 86.63%
+trunk : 42.73%
+terrain : 73.28%
+pole : 61.20%
+traffic-sign : 46.02%
+Current val miou is 49.630 while the best val miou is 54.322
+Current val loss is 0.824
+ 18%|█▊        | 2629/14598 [18:01<39:53,  5.00it/s]
+epoch 14 iter  2628, loss: 0.380
+ 25%|██▍       | 3629/14598 [21:45<40:57,  4.46it/s]
+epoch 14 iter  3628, loss: 0.381
+ 32%|███▏      | 4629/14598 [25:27<40:06,  4.14it/s]
+epoch 14 iter  4628, loss: 0.379
+ 39%|███▊      | 5629/14598 [29:11<30:05,  4.97it/s]
+epoch 14 iter  5628, loss: 0.381
+ 45%|████▌     | 6629/14598 [32:55<30:03,  4.42it/s]
+epoch 14 iter  6628, loss: 0.381
+ 49%|████▉     | 7182/14598 [34:59<27:29,  4.49it/s]epoch 14 iter  7181, loss: 0.380
+Validation per class iou: 
+car : 94.27%
+bicycle : 7.04%
+motorcycle : 25.45%
+truck : 44.71%
+bus : 39.86%
+person : 61.22%
+bicyclist : 47.28%
+motorcyclist : 0.00%
+road : 93.12%
+parking : 37.00%
+sidewalk : 78.80%
+other-ground : 0.01%
+building : 90.02%
+fence : 58.72%
+vegetation : 85.82%
+trunk : 48.72%
+terrain : 71.69%
+pole : 63.52%
+traffic-sign : 44.26%
+Current val miou is 52.184 while the best val miou is 54.322
+Current val loss is 0.795
+ 52%|█████▏    | 7629/14598 [44:22<27:32,  4.22it/s]
+epoch 14 iter  7628, loss: 0.380
+ 59%|█████▉    | 8629/14598 [48:06<18:43,  5.31it/s]
+epoch 14 iter  8628, loss: 0.382
+ 66%|██████▌   | 9629/14598 [51:51<18:48,  4.40it/s]
+epoch 14 iter  9628, loss: 0.381
+ 73%|███████▎  | 10629/14598 [55:34<15:12,  4.35it/s]
+epoch 14 iter 10628, loss: 0.381
+ 80%|███████▉  | 11629/14598 [59:15<09:39,  5.12it/s]
+epoch 14 iter 11628, loss: 0.381
+ 81%|████████  | 11781/14598 [59:49<10:15,  4.58it/s]epoch 14 iter 11780, loss: 0.381
+Validation per class iou: 
+car : 95.37%
+bicycle : 4.98%
+motorcycle : 40.02%
+truck : 25.92%
+bus : 40.98%
+person : 65.96%
+bicyclist : 42.46%
+motorcyclist : 0.00%
+road : 92.61%
+parking : 40.51%
+sidewalk : 78.05%
+other-ground : 0.01%
+building : 90.29%
+fence : 60.71%
+vegetation : 85.21%
+trunk : 53.99%
+terrain : 69.65%
+pole : 65.30%
+traffic-sign : 43.10%
+Current val miou is 52.375 while the best val miou is 54.322
+Current val loss is 0.792
+ 87%|████████▋ | 12629/14598 [1:10:37<07:45,  4.23it/s]
+epoch 14 iter 12628, loss: 0.381
+ 93%|█████████▎| 13629/14598 [1:14:21<03:42,  4.35it/s]
+epoch 14 iter 13628, loss: 0.381
+100%|██████████| 14598/14598 [1:18:00<00:00,  3.12it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  15
+Global iter:  218970
+  0%|          | 31/14598 [00:06<53:03,  4.58it/s]
+epoch 15 iter    30, loss: 0.381
+  7%|▋         | 1031/14598 [03:51<53:50,  4.20it/s]
+epoch 15 iter  1030, loss: 0.374
+ 12%|█▏        | 1782/14598 [06:39<41:34,  5.14it/s]epoch 15 iter  1781, loss: 0.373
+Validation per class iou: 
+car : 93.89%
+bicycle : 3.71%
+motorcycle : 21.29%
+truck : 31.96%
+bus : 10.00%
+person : 63.29%
+bicyclist : 60.97%
+motorcyclist : 0.00%
+road : 92.28%
+parking : 30.80%
+sidewalk : 76.85%
+other-ground : 0.01%
+building : 90.31%
+fence : 61.36%
+vegetation : 86.69%
+trunk : 59.12%
+terrain : 73.32%
+pole : 61.36%
+traffic-sign : 43.50%
+Current val miou is 50.563 while the best val miou is 54.322
+Current val loss is 0.823
+ 14%|█▍        | 2031/14598 [15:34<51:41,  4.05it/s]
+epoch 15 iter  2030, loss: 0.372
+ 21%|██        | 3031/14598 [19:20<40:50,  4.72it/s]
+epoch 15 iter  3030, loss: 0.370
+ 28%|██▊       | 4031/14598 [23:06<42:19,  4.16it/s]
+epoch 15 iter  4030, loss: 0.371
+ 34%|███▍      | 5031/14598 [26:50<35:27,  4.50it/s]
+epoch 15 iter  5030, loss: 0.371
+ 41%|████▏     | 6031/14598 [30:33<32:13,  4.43it/s]
+epoch 15 iter  6030, loss: 0.370
+ 44%|████▎     | 6381/14598 [31:52<31:42,  4.32it/s]epoch 15 iter  6380, loss: 0.371
+Validation per class iou: 
+car : 93.57%
+bicycle : 4.62%
+motorcycle : 26.87%
+truck : 28.54%
+bus : 18.53%
+person : 58.93%
+bicyclist : 53.70%
+motorcyclist : 0.00%
+road : 90.32%
+parking : 14.96%
+sidewalk : 73.94%
+other-ground : 0.00%
+building : 85.68%
+fence : 43.95%
+vegetation : 80.17%
+trunk : 41.27%
+terrain : 57.70%
+pole : 54.50%
+traffic-sign : 37.91%
+Current val miou is 45.534 while the best val miou is 54.322
+Current val loss is 0.956
+ 48%|████▊     | 7031/14598 [41:57<32:23,  3.89it/s]
+epoch 15 iter  7030, loss: 0.372
+ 55%|█████▌    | 8031/14598 [45:43<24:27,  4.47it/s]
+epoch 15 iter  8030, loss: 0.372
+ 62%|██████▏   | 9031/14598 [49:28<20:21,  4.56it/s]
+epoch 15 iter  9030, loss: 0.372
+ 69%|██████▊   | 10031/14598 [53:11<17:27,  4.36it/s]
+epoch 15 iter 10030, loss: 0.371
+ 75%|███████▌  | 10980/14598 [56:42<13:15,  4.55it/s]epoch 15 iter 10979, loss: 0.372
+Validation per class iou: 
+car : 93.30%
+bicycle : 0.28%
+motorcycle : 1.79%
+truck : 1.20%
+bus : 32.12%
+person : 37.60%
+bicyclist : 36.17%
+motorcyclist : 0.00%
+road : 86.61%
+parking : 0.25%
+sidewalk : 62.16%
+other-ground : 0.00%
+building : 75.72%
+fence : 49.23%
+vegetation : 79.22%
+trunk : 27.73%
+terrain : 61.04%
+pole : 43.04%
+traffic-sign : 37.51%
+Current val miou is 38.156 while the best val miou is 54.322
+Current val loss is 1.079
+ 76%|███████▌  | 11031/14598 [1:04:36<13:39,  4.35it/s]
+epoch 15 iter 11030, loss: 0.372
+ 82%|████████▏ | 12031/14598 [1:08:21<09:41,  4.42it/s]
+epoch 15 iter 12030, loss: 0.371
+ 89%|████████▉ | 13031/14598 [1:12:06<06:06,  4.28it/s]
+epoch 15 iter 13030, loss: 0.371
+ 96%|█████████▌| 14031/14598 [1:15:49<02:07,  4.45it/s]
+epoch 15 iter 14030, loss: 0.371
+100%|██████████| 14598/14598 [1:17:56<00:00,  3.12it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  16
+Global iter:  233568
+  3%|▎         | 433/14598 [01:36<50:16,  4.70it/s]
+epoch 16 iter   432, loss: 0.357
+  7%|▋         | 981/14598 [03:39<51:52,  4.38it/s]epoch 16 iter   980, loss: 0.356
+Validation per class iou: 
+car : 94.75%
+bicycle : 1.15%
+motorcycle : 41.08%
+truck : 36.73%
+bus : 33.51%
+person : 56.65%
+bicyclist : 71.23%
+motorcyclist : 0.00%
+road : 91.86%
+parking : 34.32%
+sidewalk : 76.72%
+other-ground : 0.00%
+building : 90.46%
+fence : 58.77%
+vegetation : 85.23%
+trunk : 44.69%
+terrain : 69.14%
+pole : 61.47%
+traffic-sign : 41.50%
+Current val miou is 52.066 while the best val miou is 54.322
+Current val loss is 0.826
+ 10%|▉         | 1433/14598 [13:14<52:33,  4.17it/s]
+epoch 16 iter  1432, loss: 0.359
+ 17%|█▋        | 2433/14598 [17:00<43:51,  4.62it/s]
+epoch 16 iter  2432, loss: 0.362
+ 24%|██▎       | 3433/14598 [20:45<39:56,  4.66it/s]
+epoch 16 iter  3432, loss: 0.361
+ 30%|███       | 4433/14598 [24:31<41:14,  4.11it/s]
+epoch 16 iter  4432, loss: 0.361
+ 37%|███▋      | 5433/14598 [28:14<34:43,  4.40it/s]
+epoch 16 iter  5432, loss: 0.361
+ 38%|███▊      | 5580/14598 [28:47<31:07,  4.83it/s]epoch 16 iter  5579, loss: 0.360
+Validation per class iou: 
+car : 94.64%
+bicycle : 0.11%
+motorcycle : 27.73%
+truck : 46.47%
+bus : 29.44%
+person : 66.85%
+bicyclist : 67.37%
+motorcyclist : 0.00%
+road : 90.39%
+parking : 12.13%
+sidewalk : 73.06%
+other-ground : 0.00%
+building : 89.79%
+fence : 59.31%
+vegetation : 85.98%
+trunk : 55.64%
+terrain : 71.24%
+pole : 63.74%
+traffic-sign : 40.70%
+Current val miou is 51.295 while the best val miou is 54.322
+Current val loss is 0.841
+ 44%|████▍     | 6433/14598 [40:08<26:30,  5.13it/s]
+epoch 16 iter  6432, loss: 0.360
+ 51%|█████     | 7433/14598 [43:53<29:51,  4.00it/s]
+epoch 16 iter  7432, loss: 0.361
+ 58%|█████▊    | 8433/14598 [47:36<22:21,  4.59it/s]
+epoch 16 iter  8432, loss: 0.361
+ 65%|██████▍   | 9433/14598 [51:18<17:19,  4.97it/s]
+epoch 16 iter  9432, loss: 0.361
+ 70%|██████▉   | 10179/14598 [54:05<16:09,  4.56it/s]epoch 16 iter 10178, loss: 0.362
+Validation per class iou: 
+car : 93.94%
+bicycle : 0.61%
+motorcycle : 10.84%
+truck : 56.67%
+bus : 24.34%
+person : 62.41%
+bicyclist : 55.76%
+motorcyclist : 0.00%
+road : 92.43%
+parking : 23.79%
+sidewalk : 77.14%
+other-ground : 0.04%
+building : 89.47%
+fence : 53.87%
+vegetation : 86.96%
+trunk : 47.64%
+terrain : 74.76%
+pole : 61.75%
+traffic-sign : 37.47%
+Current val miou is 49.994 while the best val miou is 54.322
+Current val loss is 0.810
+ 71%|███████▏  | 10433/14598 [1:03:16<15:55,  4.36it/s]
+epoch 16 iter 10432, loss: 0.362
+ 78%|███████▊  | 11433/14598 [1:07:01<11:55,  4.42it/s]
+epoch 16 iter 11432, loss: 0.362
+ 85%|████████▌ | 12433/14598 [1:10:46<07:03,  5.11it/s]
+epoch 16 iter 12432, loss: 0.362
+ 92%|█████████▏| 13433/14598 [1:14:30<04:34,  4.24it/s]
+epoch 16 iter 13432, loss: 0.362
+ 99%|█████████▉| 14433/14598 [1:18:14<00:36,  4.55it/s]
+epoch 16 iter 14432, loss: 0.362
+100%|██████████| 14598/14598 [1:18:50<00:00,  3.09it/s]
+  0%|          | 0/14598 [00:00<?, ?it/s]
+ Epoch:  17
+Global iter:  248166
+  1%|          | 180/14598 [00:39<52:47,  4.55it/s]epoch 17 iter   179, loss: 0.354
+Validation per class iou: 
+car : 94.56%
+bicycle : 1.91%
+motorcycle : 19.26%
+truck : 8.21%
+bus : 43.29%
+person : 56.81%
+bicyclist : 58.11%
+motorcyclist : 0.00%
+road : 90.82%
+parking : 14.55%
+sidewalk : 74.22%
+other-ground : 0.00%
+building : 88.80%
+fence : 53.99%
+vegetation : 84.54%
+trunk : 56.67%
+terrain : 67.14%
+pole : 59.74%
+traffic-sign : 47.01%
+Current val miou is 48.402 while the best val miou is 54.322
+Current val loss is 0.881
+  6%|▌         | 835/14598 [11:15<45:54,  5.00it/s]
+epoch 17 iter   834, loss: 0.353
+ 13%|█▎        | 1835/14598 [14:58<50:56,  4.18it/s]
+epoch 17 iter  1834, loss: 0.350
+ 19%|█▉        | 2835/14598 [18:42<44:07,  4.44it/s]
+epoch 17 iter  2834, loss: 0.352
+ 26%|██▋       | 3835/14598 [22:27<40:39,  4.41it/s]
+epoch 17 iter  3834, loss: 0.351
+ 33%|███▎      | 4779/14598 [25:57<36:48,  4.45it/s]epoch 17 iter  4778, loss: 0.353

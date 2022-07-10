@@ -1,0 +1,88 @@
+/opt/conda/envs/torch3/bin/python "/media/wasfy/One Touch/TA/content/Codes-for-PVKD/train_cyl_sem.py"
+/media/wasfy/One Touch/TA/content/Codes-for-PVKD/train_cyl_sem.py
+Namespace(config_path='config/semantickitti.yaml')
+[480 360  32]
+  0%|          | 1/19140 [00:04<25:52:54,  4.87s/it]epoch 0 iter     0, loss: 4.012
+
+  5%|▌         | 1001/19140 [04:25<1:24:21,  3.58it/s]epoch 0 iter  1000, loss: 1.692
+
+ 10%|█         | 2001/19140 [08:45<1:04:01,  4.46it/s]epoch 0 iter  2000, loss: 1.500
+
+ 16%|█▌        | 3001/19140 [13:05<1:01:56,  4.34it/s]epoch 0 iter  3000, loss: 1.387
+
+ 21%|██        | 4001/19140 [17:27<1:13:31,  3.43it/s]epoch 0 iter  4000, loss: 1.307
+
+ 26%|██▌       | 5000/19140 [21:48<58:32,  4.03it/s]  epoch 0 iter  4999, loss: 1.251
+
+epoch 0 iter  5000, loss: 1.251
+
+ 31%|███▏      | 6001/19140 [26:10<50:05,  4.37it/s]epoch 0 iter  6000, loss: 1.202
+
+ 37%|███▋      | 7001/19140 [30:32<57:13,  3.54it/s]  epoch 0 iter  7000, loss: 1.164
+
+ 42%|████▏     | 8001/19140 [34:53<43:14,  4.29it/s]epoch 0 iter  8000, loss: 1.132
+
+ 47%|████▋     | 9001/19140 [39:15<40:45,  4.15it/s]epoch 0 iter  9000, loss: 1.105
+
+ 52%|█████▏    | 10000/19140 [43:38<48:49,  3.12it/s]epoch 0 iter  9999, loss: 1.081
+
+ 52%|█████▏    | 10001/19140 [43:38<43:42,  3.49it/s]epoch 0 iter 10000, loss: 1.081
+
+ 57%|█████▋    | 11001/19140 [47:59<31:03,  4.37it/s]epoch 0 iter 11000, loss: 1.060
+
+ 63%|██████▎   | 12001/19140 [52:21<27:50,  4.27it/s]epoch 0 iter 12000, loss: 1.040
+
+ 68%|██████▊   | 13001/19140 [56:44<29:14,  3.50it/s]epoch 0 iter 13000, loss: 1.023
+
+ 73%|███████▎  | 14001/19140 [1:01:05<18:30,  4.63it/s]epoch 0 iter 14000, loss: 1.007
+
+ 78%|███████▊  | 15000/19140 [1:05:27<15:03,  4.58it/s]epoch 0 iter 14999, loss: 0.992
+
+ 78%|███████▊  | 15001/19140 [1:05:27<16:23,  4.21it/s]epoch 0 iter 15000, loss: 0.992
+
+ 84%|████████▎ | 16001/19140 [1:09:50<15:44,  3.32it/s]epoch 0 iter 16000, loss: 0.979
+
+ 89%|████████▉ | 17001/19140 [1:14:12<08:17,  4.30it/s]epoch 0 iter 17000, loss: 0.965
+
+ 94%|█████████▍| 18001/19140 [1:18:33<04:42,  4.04it/s]epoch 0 iter 18000, loss: 0.953
+
+ 99%|█████████▉| 19001/19140 [1:22:56<00:41,  3.36it/s]epoch 0 iter 19000, loss: 0.943
+
+100%|██████████| 19140/19140 [1:23:32<00:00,  3.82it/s]
+  4%|▍         | 860/19140 [03:49<1:16:51,  3.96it/s]epoch 1 iter   859, loss: 0.745
+
+Validation per class iou: 
+car : 93.38%
+bicycle : 23.63%
+motorcycle : 22.58%
+truck : 8.16%
+bus : 23.31%
+person : 54.55%
+bicyclist : 32.37%
+motorcyclist : 0.00%
+road : 91.03%
+parking : 25.87%
+sidewalk : 74.50%
+other-ground : 0.00%
+building : 90.14%
+fence : 59.82%
+vegetation : 86.93%
+trunk : 66.55%
+terrain : 70.44%
+pole : 64.99%
+traffic-sign : 46.18%
+Traceback (most recent call last):
+  File "/media/wasfy/One Touch/TA/content/Codes-for-PVKD/train_cyl_sem.py", line 167, in <module>
+    main(args)
+  File "/media/wasfy/One Touch/TA/content/Codes-for-PVKD/train_cyl_sem.py", line 119, in main
+    torch.save(my_model.state_dict(), model_save_path)
+  File "/opt/conda/envs/torch3/lib/python3.10/site-packages/torch/serialization.py", line 377, in save
+    with _open_file_like(f, 'wb') as opened_file:
+  File "/opt/conda/envs/torch3/lib/python3.10/site-packages/torch/serialization.py", line 231, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/opt/conda/envs/torch3/lib/python3.10/site-packages/torch/serialization.py", line 212, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './model_save_dir/model_tmp.pt'
+  4%|▍         | 860/19140 [16:25<5:49:08,  1.15s/it]
+
+Process finished with exit code 1
