@@ -47,21 +47,23 @@ def conv1x1(in_planes, out_planes, stride=1, indice_key=None):
 class ResContextBlock(nn.Module):
     def __init__(self, in_filters, out_filters, kernel_size=(3, 3, 3), stride=1, indice_key=None):
         super(ResContextBlock, self).__init__()
-        self.conv1 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef1")
+        self.conv1 = conv1x3(in_filters, out_filters, indice_key=f"{indice_key}bef1")
         self.bn0 = nn.BatchNorm1d(out_filters)
         self.act1 = nn.LeakyReLU()
-          
-        self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef2")
+
+        self.conv1_2 = conv3x1(
+            out_filters, out_filters, indice_key=f"{indice_key}bef2"
+        )
         # self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
 
         self.bn0_2 = nn.BatchNorm1d(out_filters)
         self.act1_2 = nn.LeakyReLU()
 
-        self.conv2 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef3")
+        self.conv2 = conv3x1(in_filters, out_filters, indice_key=f"{indice_key}bef3")
         self.act2 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef4")
+        self.conv3 = conv1x3(out_filters, out_filters, indice_key=f"{indice_key}bef4")
         # self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act3 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
@@ -102,20 +104,22 @@ class ResBlock(nn.Module):
         self.pooling = pooling
         self.drop_out = drop_out
 
-        self.conv1 = conv3x1(in_filters, out_filters, indice_key=indice_key + "bef1")
+        self.conv1 = conv3x1(in_filters, out_filters, indice_key=f"{indice_key}bef1")
         self.act1 = nn.LeakyReLU()
         self.bn0 = nn.BatchNorm1d(out_filters)
 
-        self.conv1_2 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef2")
+        self.conv1_2 = conv1x3(
+            out_filters, out_filters, indice_key=f"{indice_key}bef2"
+        )
         # self.conv1_2 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act1_2 = nn.LeakyReLU()
         self.bn0_2 = nn.BatchNorm1d(out_filters)
 
-        self.conv2 = conv1x3(in_filters, out_filters, indice_key=indice_key + "bef3")
+        self.conv2 = conv1x3(in_filters, out_filters, indice_key=f"{indice_key}bef3")
         self.act2 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        self.conv3 = conv3x1(out_filters, out_filters, indice_key=indice_key + "bef4")
+        self.conv3 = conv3x1(out_filters, out_filters, indice_key=f"{indice_key}bef4")
         # self.conv3 = conv1x3(out_filters, out_filters, indice_key=indice_key + "bef")
         self.act3 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
@@ -164,29 +168,52 @@ class Attention_Block_Test(nn.Module):
     def __init__(self, gating_features, shortcut_features, n_coefficients, kernel_size, indice_key = None, up_key = None):
         super(Attention_Block_Test, self).__init__()
 
-        # shortcut block 
+        # shortcut block
         self.shortcut_block = spconv.SparseSequential(
-            spconv.SparseConv3d(shortcut_features, n_coefficients, 3, stride = 2, padding = 1, indice_key= indice_key + 'shortcut_sparse'),
+            spconv.SparseConv3d(
+                shortcut_features,
+                n_coefficients,
+                3,
+                stride=2,
+                padding=1,
+                indice_key=f'{indice_key}shortcut_sparse',
+            ),
             nn.BatchNorm1d(n_coefficients),
             nn.LeakyReLU(),
         )
-        
+
         # gating_signal block
         self.gating_block = spconv.SparseSequential(
-            spconv.SparseConv3d(gating_features, n_coefficients, 3, stride = 1, padding = 1, indice_key= indice_key + 'gating_sparse'),
+            spconv.SparseConv3d(
+                gating_features,
+                n_coefficients,
+                3,
+                stride=1,
+                padding=1,
+                indice_key=f'{indice_key}gating_sparse',
+            ),
             nn.BatchNorm1d(n_coefficients),
             nn.LeakyReLU(),
-            spconv.SparseInverseConv3d(n_coefficients, n_coefficients, kernel_size= 3, indice_key = indice_key + 'shortcut_sparse'),
+            spconv.SparseInverseConv3d(
+                n_coefficients,
+                n_coefficients,
+                kernel_size=3,
+                indice_key=f'{indice_key}shortcut_sparse',
+            ),
             nn.BatchNorm1d(n_coefficients),
             nn.LeakyReLU(),
         )
 
         # sum block
         self.sum_block = spconv.SparseSequential(
-            conv3x3(n_coefficients, 1, stride= 1, indice_key= indice_key + 'sum_subm'),
+            conv3x3(
+                n_coefficients, 1, stride=1, indice_key=f'{indice_key}sum_subm'
+            ),
             nn.BatchNorm1d(1),
             nn.LeakyReLU(),
-            spconv.SparseInverseConv3d(1, shortcut_features, kernel_size= 3, indice_key= up_key),
+            spconv.SparseInverseConv3d(
+                1, shortcut_features, kernel_size=3, indice_key=up_key
+            ),
             nn.BatchNorm1d(shortcut_features),
             nn.Sigmoid(),
         )
@@ -208,18 +235,39 @@ class Attention_Gate(nn.Module):
     def __init__(self, gating_features, shortcut_features, n_coefficients, kernel_size, indice_key = None, up_key = None):
         super(Attention_Gate, self).__init__()
 
-        self.shortcut_conv = spconv.SparseConv3d(shortcut_features, n_coefficients, kernel_size= 3, stride = 2, padding = 1, indice_key= indice_key + 'shortcut_sparse')
+        self.shortcut_conv = spconv.SparseConv3d(
+            shortcut_features,
+            n_coefficients,
+            kernel_size=3,
+            stride=2,
+            padding=1,
+            indice_key=f'{indice_key}shortcut_sparse',
+        )
         self.shortcut_bn = nn.BatchNorm1d(n_coefficients)
         self.shortcut_act = nn.LeakyReLU()
 
-        self.gate_conv = spconv.SparseConv3d(gating_features, n_coefficients, kernel_size= 3, stride = 1, padding = 1, indice_key= indice_key + 'gate_sparse')
+        self.gate_conv = spconv.SparseConv3d(
+            gating_features,
+            n_coefficients,
+            kernel_size=3,
+            stride=1,
+            padding=1,
+            indice_key=f'{indice_key}gate_sparse',
+        )
         self.gate_bn = nn.BatchNorm1d(n_coefficients)
         self.gate_act = nn.LeakyReLU()
-        self.gate_up = spconv.SparseInverseConv3d(n_coefficients, n_coefficients, kernel_size= 3, indice_key= indice_key + 'shortcut_sparse')
+        self.gate_up = spconv.SparseInverseConv3d(
+            n_coefficients,
+            n_coefficients,
+            kernel_size=3,
+            indice_key=f'{indice_key}shortcut_sparse',
+        )
         self.gate_up_bn = nn.BatchNorm1d(n_coefficients)
         self.gate_up_act = nn.LeakyReLU()
 
-        self.sum_conv = conv3x3(n_coefficients, 1, stride= 1, indice_key= indice_key + 'sum_conv')
+        self.sum_conv = conv3x3(
+            n_coefficients, 1, stride=1, indice_key=f'{indice_key}sum_conv'
+        )
         self.sum_bn = nn.BatchNorm1d(1)
         self.sum_act = nn.LeakyReLU()
         self.up_sum = spconv.SparseInverseConv3d(1, shortcut_features, kernel_size= 3, indice_key= up_key)
@@ -365,20 +413,22 @@ class UpBlock(nn.Module):
     def __init__(self, in_filters, out_filters, kernel_size=(3, 3, 3), indice_key=None, up_key=None):
         super(UpBlock, self).__init__()
         # self.drop_out = drop_out
-        self.trans_dilao = conv3x3(in_filters, out_filters, indice_key=indice_key + "new_up")
+        self.trans_dilao = conv3x3(
+            in_filters, out_filters, indice_key=f"{indice_key}new_up"
+        )
         self.trans_act = nn.LeakyReLU()
         self.trans_bn = nn.BatchNorm1d(out_filters)
 
-        self.conv1 = conv1x3(out_filters, out_filters, indice_key=indice_key+'up1')
+        self.conv1 = conv1x3(out_filters, out_filters, indice_key=f'{indice_key}up1')
         self.act1 = nn.LeakyReLU()
         self.bn1 = nn.BatchNorm1d(out_filters)
 
-        self.conv2 = conv3x1(out_filters, out_filters, indice_key=indice_key+'up2')
+        self.conv2 = conv3x1(out_filters, out_filters, indice_key=f'{indice_key}up2')
         # self.conv2 = conv1x3(out_filters, out_filters, indice_key=indice_key)
         self.act2 = nn.LeakyReLU()
         self.bn2 = nn.BatchNorm1d(out_filters)
 
-        self.conv3 = conv3x3(out_filters, out_filters, indice_key=indice_key+'up3')
+        self.conv3 = conv3x3(out_filters, out_filters, indice_key=f'{indice_key}up3')
         self.act3 = nn.LeakyReLU()
         self.bn3 = nn.BatchNorm1d(out_filters)
         # self.dropout3 = nn.Dropout3d(p=dropout_rate)
@@ -422,15 +472,19 @@ class UpBlock(nn.Module):
 class ReconBlock(nn.Module):
     def __init__(self, in_filters, out_filters, kernel_size=(3, 3, 3), stride=1, indice_key=None):
         super(ReconBlock, self).__init__()
-        self.conv1 = conv3x1x1(in_filters, out_filters, indice_key=indice_key + "bef1")
+        self.conv1 = conv3x1x1(in_filters, out_filters, indice_key=f"{indice_key}bef1")
         self.bn0 = nn.BatchNorm1d(out_filters)
         self.act1 = nn.Sigmoid()
 
-        self.conv1_2 = conv1x3x1(in_filters, out_filters, indice_key=indice_key + "bef2")
+        self.conv1_2 = conv1x3x1(
+            in_filters, out_filters, indice_key=f"{indice_key}bef2"
+        )
         self.bn0_2 = nn.BatchNorm1d(out_filters)
         self.act1_2 = nn.Sigmoid()
 
-        self.conv1_3 = conv1x1x3(in_filters, out_filters, indice_key=indice_key + "bef3")
+        self.conv1_3 = conv1x1x3(
+            in_filters, out_filters, indice_key=f"{indice_key}bef3"
+        )
         self.bn0_3 = nn.BatchNorm1d(out_filters)
         self.act1_3 = nn.Sigmoid()
 
@@ -519,5 +573,4 @@ class Asymm_3d_spconv(nn.Module):
         up0e = up0e.replace_feature(torch.cat((up0e.features, up1e.features), 1))
 
         logits = self.logits(up0e)
-        y = logits.dense()
-        return y
+        return logits.dense()

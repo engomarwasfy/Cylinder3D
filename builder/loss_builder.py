@@ -12,9 +12,9 @@ def build(wce=True, lovasz=True, num_class=20, ignore_label=0):
 
     if wce and lovasz:
         return loss_funs, lovasz_softmax
-    elif wce and not lovasz:
+    elif wce:
         return wce
-    elif not wce and lovasz:
+    elif lovasz:
         return lovasz_softmax
     else:
         raise NotImplementedError

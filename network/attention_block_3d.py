@@ -41,6 +41,5 @@ class AttentionBlock(nn.Module):
         x1 = self.W_x(skip_connection)
         psi = self.relu(g1 + x1)
         psi = self.psi(psi)
-        out = skip_connection * psi
-        return out
+        return skip_connection * psi
 

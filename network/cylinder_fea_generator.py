@@ -55,11 +55,10 @@ class cylinder_fea(nn.Module):
     def forward(self, pt_fea, xy_ind):
         cur_dev = pt_fea[0].get_device()
 
-        # concate everything
-        cat_pt_ind = []
-        for i_batch in range(len(xy_ind)):
-            cat_pt_ind.append(F.pad(xy_ind[i_batch], (1, 0), 'constant', value=i_batch))
-
+        cat_pt_ind = [
+            F.pad(xy_ind[i_batch], (1, 0), 'constant', value=i_batch)
+            for i_batch in range(len(xy_ind))
+        ]
         cat_pt_fea = torch.cat(pt_fea, dim=0)
         cat_pt_ind = torch.cat(cat_pt_ind, dim=0)
         pt_num = cat_pt_ind.shape[0]
